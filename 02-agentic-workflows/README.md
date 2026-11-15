@@ -1,6 +1,6 @@
 # 02 · Agentic workflows: who should control the flow?
 
-Companion demo for **Article #24, "Agentic Workflows: When Should an LLM Control the Flow?"** on [snehalagrawal.com](https://snehalagrawal.com/articles/) (not published yet; this README will link to it when it is).
+Companion demo for **Article #24, ["Agentic Workflows: When Should an LLM Control the Flow?"](https://snehalagrawal.com/articles/agentic-workflows-when-should-an-llm-control-the-flow/)** on snehalagrawal.com.
 
 The same support assistant answers the same twelve questions three ways. The model, the customer-facing system prompt, the data, and the five tools are identical. W and H add a router call (its own classification instructions and a JSON schema) before the assistant runs; A does not. The control flow is the variable being compared: who decides which tools run, and in what order.
 
