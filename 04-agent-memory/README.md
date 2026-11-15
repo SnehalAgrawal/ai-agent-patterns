@@ -1,6 +1,6 @@
 # 04 · Agent memory: what should an agent carry between conversations?
 
-Companion demo for **Article #26, "Memory in AI Agents: What Does an Agent Actually Need to Remember?"** on [snehalagrawal.com](https://snehalagrawal.com/articles/) (not published yet; this README will link to it when it is).
+Companion demo for **Article #26, ["Memory in AI Agents: What Does an Agent Actually Need to Remember?"](https://snehalagrawal.com/articles/memory-in-ai-agents-what-does-an-agent-actually-need-to-remember/)** on snehalagrawal.com.
 
 The support assistant from [`02-agentic-workflows`](../02-agentic-workflows/) and [`03-multi-agent`](../03-multi-agent/) has talked to the same customer three times before. In a new conversation, it gets the customer's question and, depending on the design, some memory of those earlier conversations. It can always look up the customer's current records with the same five read-only tools.
 
