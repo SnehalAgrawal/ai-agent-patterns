@@ -1,0 +1,17 @@
+{
+  "_comment": "Synthetic data. The signed-in customer for every conversation, and the billing records the tools read. Based on the account in ai-engineering-examples/tool-calling (Article #8), with two more invoices and a description for each. The refund rule: an invoice can be refunded until refund_window_days after its date (inclusive), unless it has already been refunded.",
+  "today": "2026-11-12",
+  "refund_window_days": 30,
+  "customer": {
+    "id": "C-1001",
+    "email": "owner@customer.example",
+    "plan": "Pro"
+  },
+  "invoices": [
+    {"id": "INV-0998", "customer": "C-1001", "date": "2026-08-28", "amount": 25, "description": "Pro plan, August 2026", "status": "refunded"},
+    {"id": "INV-1001", "customer": "C-1001", "date": "2026-09-28", "amount": 25, "description": "Pro plan, September 2026", "status": "paid"},
+    {"id": "INV-1002", "customer": "C-1001", "date": "2026-10-28", "amount": 25, "description": "Pro plan, October 2026", "status": "paid"},
+    {"id": "INV-1003", "customer": "C-1001", "date": "2026-11-05", "amount": 15, "description": "Extra seats add-on", "status": "paid"},
+    {"id": "INV-2042", "customer": "C-2042", "date": "2026-11-02", "amount": 25, "description": "Pro plan, November 2026", "status": "paid"}
+  ]
+}

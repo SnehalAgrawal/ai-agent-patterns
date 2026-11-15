@@ -1,0 +1,4 @@
+{
+  "_comment": "The system prompt, identical for every toolset, model, and seed. It is the 'basic' prompt from ai-engineering-examples/tool-calling (Article #8), unchanged. It names no tools, so it fits all three toolsets.",
+  "system": "Today's date is 2026-11-12. The signed-in customer is owner@customer.example (plan: Pro).\n\nYou are a helpful support assistant for our product. Use the available tools to help the customer."
+}
