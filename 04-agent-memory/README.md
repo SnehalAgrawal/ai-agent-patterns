@@ -98,7 +98,7 @@ memory + records   N        3        0          2          1         0        0 
 memory + records   T        3        2          1          0         0        1        0        1        1
 memory + records   S        3        0          3          0         0        0        0        0        3
 memory + records   K        3        0          3          0         0        0        0        0        3
-records only       N        9        7          2          0         0        7        0        0        2
+records only       N        9        6          3          0         0        6        0        0        3
 records only       T        9        7          1          1         0        7        0        0        2
 records only       S        9        7          2          0         0        7        0        0        2
 records only       K        9        6          3          0         0        6        0        0        3
@@ -106,7 +106,7 @@ never said         N        6        0          3          3         2        0 
 never said         T        6        1          1          4         0        1        0        0        5
 never said         S        6        1          2          3         2        1        0        0        5
 never said         K        6        3          1          2         1        3        0        0        3
-all                N       30        9         10         11         2        9        9        0       12
+all                N       30        8         11         11         2        8        9        0       13
 all                T       30       15          9          6         1       14        0        1       15
 all                S       30       11         15          4         4       11        0        0       19
 all                K       30       12         14          4         2       11        0        1       18
@@ -134,9 +134,12 @@ What the recorded conversations show (every reply and every S and K memory block
 - **Stale memory pulled the lookup in the wrong direction.** On B1, all three N runs called `get_payments` and found the refund (PAY-5008); S and K, whose memory said "refund pending", never retrieved it in six runs (they read the invoices or the refund status instead). Successes: N 2, T 2, S 0, K 0 of 3. No design that carried the old status said it had changed (0 of 9), and three replies repeated "pending" as current.
 - **Memory designs claimed to have no memory.** On "Did I give you my VAT number?", 7 of the 9 replies from designs that carried the history were no answer, and 6 of those said they had no access to earlier conversations, which they had. Only S and K, once each, answered no.
 - **Invented memories appeared with and without memory.** On "What did we agree about my September invoice?", N invented an earlier discussion in two of three runs ("last time we discussed your September invoice, we decided to add 2 extra seats"), as did S twice and K once; T didn't. One S reply to B2 reported the customer's intention as an action ("since you mentioned you removed one seat").
-- **Summaries and notes kept most facts, not all.** Of 30 memory facts (5 per block, 6 blocks), 28 were present: K seed 2 dropped the case number, and S seed 2 turned the reminder request into "Reminder sent." K seed 1 also recorded an INV-1002 date that appears nowhere (2026-11-01).
-- **Records-only questions were unaffected, and cost more.** On C2, D1, and D2, every design succeeded 6 or 7 times of 9. Carrying memory raised the median input per conversation from 940 tokens (N) to 1,372 (S), 1,721 (T), and 1,824 (K). K's notes (436 tokens per call) were longer than the full transcripts (385); with creation included, K used the most input tokens overall (52,003 against N's 24,580).
-- **Overall:** substantive successes N 9, T 14, S 11, K 11 of 30; N's 9 appropriate abstentions are reported separately and aren't successes.
+- **Summaries and notes kept most facts, not all.** Of 30 memory facts (5 per block, 6 blocks), 28 were kept correctly: K seed 2 dropped the case number, and S seed 2 turned the reminder request into "Reminder sent." K seed 1 also recorded an INV-1002 date that appears nowhere (2026-11-01).
+- **Memory didn't help the records-only questions, and cost more.** On C2, D1, and D2, every design succeeded 6 or 7 times of 9 (N and K 6, T and S 7). Carrying memory raised the median input per conversation from 940 tokens (N) to 1,372 (S), 1,721 (T), and 1,824 (K). K's notes (436 tokens per call) were longer than the full transcripts (385); with creation included, K used the most input tokens overall (52,003 against N's 24,580).
+- **Overall:** substantive successes N 8, T 14, S 11, K 11 of 30; N's 9 appropriate abstentions are reported separately and aren't successes. T's lead describes this run, not a general ranking.
+- **Negative evidence (E1, E2).** The frozen rules count a design as having the complete history when its memory was created from all three conversations (an operational definition; it doesn't mean the summaries or notes preserve everything said), so S's and K's "no" answers count as successes. A stricter reading would accept only the verbatim transcripts as proof that something was never said; under it, those 4 answers (S 1, K 3) would be correct but unsupported, giving S 10 and K 8 successes. The frozen scoring is reported above; this reading is noted, not substituted.
+
+One label was revised after review: N's seed-3 reply to C2 was first labeled correct and is now incorrect (it prices a "seat included in the Pro plan" that the data doesn't have); the revision is recorded in its note. `python/report-qwen2.5_3b.txt` is the full report output for these labels.
 
 The check run (`python/results-check.jsonl`, 16 conversations, seed 1) was made before the full run with the same code; it is kept as a record and is not part of these numbers. Its seed-1 memory blocks are identical to the full run's.
 
@@ -144,4 +147,5 @@ The check run (`python/results-check.jsonl`, 16 conversations, seed 1) was made 
 
 - An educational experiment, not a benchmark: one small local model, ten questions, three seeds, one synthetic customer with three short earlier conversations.
 - One design of each memory strategy, written before the run. Other prompts, longer histories, retrieval over a memory store, or memory the agent writes itself during a conversation are not tested.
-- Answers and memory facts are labeled by hand, by one person, against the written rules in `data/evaluation.json`.
+- Answers and memory facts are labeled by hand, by one person, against the written rules in `data/evaluation.json`. One label was revised after review (see Results).
+- Token counts are Ollama's `prompt_eval_count` and `eval_count` for this model's tokenizer; memory-block tokens are measured as the difference from design N's first call; latencies are for this machine with nothing else running.

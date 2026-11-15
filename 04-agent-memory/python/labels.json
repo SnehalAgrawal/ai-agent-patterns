@@ -384,9 +384,9 @@
    "note": "2 seats, $7.50 each, $15"
   },
   "C2|48b02abbf91787253602207ddcb7172fec332f977797cc8affbf588bff2333aa": {
-   "label": "correct",
+   "label": "incorrect",
    "invented_memory": false,
-   "note": "2 seats, $7.50 each; adds '1 seat included in the Pro plan' (not in the data) and $40 total"
+   "note": "2 seats at $7.50 and the $40 total are right, but it adds '1 seat included in the Pro plan' (not in the data) and then 'Each of these seats costs $7.50 per month', which prices the included seat too. Relabeled from correct on 2026-11-15 after review: the original label overlooked the false per-seat claim."
   },
   "C2|70fd0e49ebb5cbb8a854795ee9f7765d4e206224ab287b575bc16de6082103f8": {
    "label": "correct",
