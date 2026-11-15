@@ -1,0 +1,27 @@
+{
+  "_comment": "Synthetic data. The account from 01-tool-design (Article #23), extended with card payments and a plan history so that open-ended questions have something to investigate. October's invoice INV-1002 had a declined first attempt, then was charged twice on the retry day (a duplicate charge). The refund rule: an invoice can be refunded until refund_window_days after its date (inclusive), unless already refunded.",
+  "today": "2026-11-12",
+  "refund_window_days": 30,
+  "customer": {"id": "C-1001", "email": "owner@customer.example", "plan": "Pro"},
+  "invoices": [
+    {"id": "INV-0998", "customer": "C-1001", "date": "2026-08-28", "amount": 25, "description": "Pro plan, August 2026", "status": "refunded"},
+    {"id": "INV-1001", "customer": "C-1001", "date": "2026-09-28", "amount": 25, "description": "Pro plan, September 2026", "status": "paid"},
+    {"id": "INV-1002", "customer": "C-1001", "date": "2026-10-28", "amount": 25, "description": "Pro plan, October 2026", "status": "paid"},
+    {"id": "INV-1003", "customer": "C-1001", "date": "2026-11-05", "amount": 15, "description": "Extra seats add-on", "status": "paid"},
+    {"id": "INV-2042", "customer": "C-2042", "date": "2026-11-02", "amount": 25, "description": "Pro plan, November 2026", "status": "paid"}
+  ],
+  "payments": [
+    {"id": "PAY-5001", "customer": "C-1001", "date": "2026-08-28", "type": "charge", "amount": 25, "invoice": "INV-0998", "status": "succeeded"},
+    {"id": "PAY-5002", "customer": "C-1001", "date": "2026-09-05", "type": "refund", "amount": 25, "invoice": "INV-0998", "status": "succeeded"},
+    {"id": "PAY-5003", "customer": "C-1001", "date": "2026-09-28", "type": "charge", "amount": 25, "invoice": "INV-1001", "status": "succeeded"},
+    {"id": "PAY-5004", "customer": "C-1001", "date": "2026-10-28", "type": "charge", "amount": 25, "invoice": "INV-1002", "status": "failed", "note": "card declined"},
+    {"id": "PAY-5005", "customer": "C-1001", "date": "2026-10-29", "type": "charge", "amount": 25, "invoice": "INV-1002", "status": "succeeded"},
+    {"id": "PAY-5006", "customer": "C-1001", "date": "2026-10-29", "type": "charge", "amount": 25, "invoice": "INV-1002", "status": "succeeded"},
+    {"id": "PAY-5007", "customer": "C-1001", "date": "2026-11-05", "type": "charge", "amount": 15, "invoice": "INV-1003", "status": "succeeded"},
+    {"id": "PAY-6001", "customer": "C-2042", "date": "2026-11-02", "type": "charge", "amount": 25, "invoice": "INV-2042", "status": "succeeded"}
+  ],
+  "plan_history": [
+    {"customer": "C-1001", "date": "2026-06-28", "change": "Started the Pro plan ($25 per month)"},
+    {"customer": "C-1001", "date": "2026-11-05", "change": "Added 2 extra seats ($7.50 per seat per month)"}
+  ]
+}

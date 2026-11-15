@@ -1,0 +1,16 @@
+{
+  "_comment": "Synthetic help center: the eight articles from 01-tool-design (Article #23), unchanged, plus three about payments and seats, so the open-ended questions can be answered from it.",
+  "documents": {
+    "refunds": "Customers can request a refund within 30 days of purchase. Approved refunds are returned to the original payment method.",
+    "cancel": "To cancel your subscription, go to Settings > Billing > Cancel. Your plan stays active until the end of the current billing period.",
+    "password": "If you forgot your password, click 'Forgot Password' on the login page. The reset link expires after 1 hour.",
+    "support-hours": "Our support team is available 24/7 via live chat.",
+    "billing": "Billing issues can be resolved by contacting our accounting department at billing@example.com.",
+    "plans": "The Basic plan costs $10 per month and includes 3 projects. The Pro plan costs $25 per month and includes unlimited projects.",
+    "export": "You can export your data as CSV from Settings > Data > Export. Exports include all projects and are emailed to the account owner.",
+    "two-factor": "Two-factor authentication can be enabled under Settings > Security. We support authenticator apps. SMS codes are not supported.",
+    "duplicate-charges": "If you were charged more than once for the same invoice, the extra charge is refunded to the original payment method within 5 business days. Contact support with the invoice number to start the refund.",
+    "failed-payments": "If a card payment is declined, we retry it the next day. A declined attempt is not a charge, and nothing is owed for it.",
+    "seats": "Extra seats cost $7.50 per seat per month. Seats added during a billing period are billed in full on the day they are added."
+  }
+}

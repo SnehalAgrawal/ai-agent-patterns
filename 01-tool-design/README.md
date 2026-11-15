@@ -1,6 +1,6 @@
 # 01 · Tool design: does the shape of a tool change what an agent does next?
 
-Companion demo for **Article #23, "Tools, Function Calling, and the Foundation of AI Agents"** on [snehalagrawal.com](https://snehalagrawal.com/articles/) (not published yet; this README will link to it when it is).
+Companion demo for **Article #23, ["Tools, Function Calling, and the Foundation of AI Agents"](https://snehalagrawal.com/articles/tools-function-calling-and-the-foundation-of-ai-agents/)** on snehalagrawal.com.
 
 The same support assistant, model, prompt, data, and agent loop answer the same ten questions with three different toolsets. Only the tools change. The demo records what each model did with each toolset: which tools it called, whether the facts its answer needed ever reached it, whether the answer was right, and how many tokens it took.
 

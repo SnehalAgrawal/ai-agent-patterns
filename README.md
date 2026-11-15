@@ -4,7 +4,8 @@ Runnable examples for the AI Agents articles on [snehalagrawal.com](https://sneh
 
 | Demo | Article | What it shows |
 |---|---|---|
-| [`01-tool-design`](01-tool-design/) | #23 Tools, Function Calling, and the Foundation of AI Agents (not published yet) | The same agent with three toolsets: how the shape of a tool changes what the model does next |
+| [`01-tool-design`](01-tool-design/) | [#23 Tools, Function Calling, and the Foundation of AI Agents](https://snehalagrawal.com/articles/tools-function-calling-and-the-foundation-of-ai-agents/) | The same agent with three toolsets: how the shape of a tool changes what the model does next |
+| [`02-agentic-workflows`](02-agentic-workflows/) | #24 Agentic Workflows: When Should an LLM Control the Flow? (not published yet) | The same assistant as a fixed workflow, an agent, and a hybrid: who should decide the steps |
 
 Each demo has its own README with setup, how to run it, expected output, and limitations. All data is synthetic.
 

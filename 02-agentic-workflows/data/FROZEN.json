@@ -1,0 +1,10 @@
+{
+  "_comment": "Test material frozen before any system code was written. python/run.py checks these hashes before every run and records them in the results.",
+  "frozen_at_utc": "2026-11-15T10:47:37Z",
+  "sha256": {
+    "account.json": "079296db321e3858b75e8746541442dfcc2eba2f9c87a0d483e62747ff7b825f",
+    "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+    "prompt.json": "65bf1bc99b33faa224786cfa4b0589de1fb0c9dcbfd2f2dd29412068462c7070",
+    "questions.json": "5b79c3db25de692da60eae78efb7f391aea2b5ebc04498dd1f03d826473b7277"
+  }
+}

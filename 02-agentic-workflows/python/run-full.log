@@ -1,0 +1,127 @@
+{
+ "ollama": "0.40.16",
+ "model": "qwen2.5:3b",
+ "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+ "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+ "router_prompt_sha256": "83adc6418030b96dd3094afb893afb8379ffa5795ec5880382de1fc08871661a",
+ "max_steps": 5,
+ "max_tokens": 1000,
+ "sampling": "Ollama defaults, seed = run seed",
+ "frozen_sha256": {
+  "account.json": "079296db321e3858b75e8746541442dfcc2eba2f9c87a0d483e62747ff7b825f",
+  "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+  "prompt.json": "65bf1bc99b33faa224786cfa4b0589de1fb0c9dcbfd2f2dd29412068462c7070",
+  "questions.json": "5b79c3db25de692da60eae78efb7f391aea2b5ebc04498dd1f03d826473b7277"
+ },
+ "started_utc": "2026-11-15T11:41:01Z"
+}
+   1/108  W  K1  seed 1  route=refund_status  answer  2 model call(s)  3.0 s
+   2/108  W  K1  seed 2  route=refund_status  answer  2 model call(s)  2.3 s
+   3/108  W  K1  seed 3  route=refund_status  answer  2 model call(s)  1.4 s
+   4/108  W  K2  seed 1  route=refund_status  answer  2 model call(s)  1.4 s
+   5/108  W  K2  seed 2  route=refund_status  answer  2 model call(s)  1.0 s
+   6/108  W  K2  seed 3  route=refund_status  answer  2 model call(s)  1.0 s
+   7/108  W  K3  seed 1  route=refund_status  answer  2 model call(s)  1.3 s
+   8/108  W  K3  seed 2  route=refund_status  answer  2 model call(s)  0.7 s
+   9/108  W  K3  seed 3  route=refund_status  answer  2 model call(s)  0.9 s
+  10/108  W  K4  seed 1  route=refund_status  answer  2 model call(s)  2.2 s
+  11/108  W  K4  seed 2  route=refund_status  answer  2 model call(s)  1.4 s
+  12/108  W  K4  seed 3  route=refund_status  answer  2 model call(s)  1.8 s
+  13/108  W  K5  seed 1  route=invoice_lookup  answer  2 model call(s)  0.9 s
+  14/108  W  K5  seed 2  route=invoice_lookup  answer  2 model call(s)  0.6 s
+  15/108  W  K5  seed 3  route=invoice_lookup  answer  2 model call(s)  0.5 s
+  16/108  W  K6  seed 1  route=refund_status  answer  2 model call(s)  1.6 s
+  17/108  W  K6  seed 2  route=refund_status  answer  2 model call(s)  0.9 s
+  18/108  W  K6  seed 3  route=refund_status  answer  2 model call(s)  2.2 s
+  19/108  W  K7  seed 1  route=help_center  answer  2 model call(s)  0.6 s
+  20/108  W  K7  seed 2  route=help_center  answer  2 model call(s)  0.3 s
+  21/108  W  K7  seed 3  route=help_center  answer  2 model call(s)  0.3 s
+  22/108  W  K8  seed 1  route=help_center  answer  2 model call(s)  0.7 s
+  23/108  W  K8  seed 2  route=help_center  answer  2 model call(s)  0.6 s
+  24/108  W  K8  seed 3  route=help_center  answer  2 model call(s)  0.6 s
+  25/108  W  O1  seed 1  route=invoice_lookup  answer  2 model call(s)  1.4 s
+  26/108  W  O1  seed 2  route=invoice_lookup  answer  2 model call(s)  1.4 s
+  27/108  W  O1  seed 3  route=invoice_lookup  answer  2 model call(s)  1.0 s
+  28/108  W  O2  seed 1  route=invoice_lookup  answer  2 model call(s)  1.7 s
+  29/108  W  O2  seed 2  route=invoice_lookup  answer  2 model call(s)  1.2 s
+  30/108  W  O2  seed 3  route=invoice_lookup  answer  2 model call(s)  1.1 s
+  31/108  W  O3  seed 1  route=refund_status  answer  2 model call(s)  5.7 s
+  32/108  W  O3  seed 2  route=refund_status  answer  2 model call(s)  3.2 s
+  33/108  W  O3  seed 3  route=refund_status  answer  2 model call(s)  1.1 s
+  34/108  W  O4  seed 1  route=refund_status  answer  2 model call(s)  2.8 s
+  35/108  W  O4  seed 2  route=refund_status  answer  2 model call(s)  0.9 s
+  36/108  W  O4  seed 3  route=refund_status  answer  2 model call(s)  1.7 s
+  37/108  A  K1  seed 1  route=None  answer  2 model call(s)  3.3 s
+  38/108  A  K1  seed 2  route=None  answer  2 model call(s)  2.8 s
+  39/108  A  K1  seed 3  route=None  answer  2 model call(s)  2.7 s
+  40/108  A  K2  seed 1  route=None  answer  2 model call(s)  1.0 s
+  41/108  A  K2  seed 2  route=None  answer  2 model call(s)  1.0 s
+  42/108  A  K2  seed 3  route=None  answer  2 model call(s)  1.0 s
+  43/108  A  K3  seed 1  route=None  answer  2 model call(s)  0.9 s
+  44/108  A  K3  seed 2  route=None  answer  2 model call(s)  0.9 s
+  45/108  A  K3  seed 3  route=None  answer  2 model call(s)  0.9 s
+  46/108  A  K4  seed 1  route=None  answer  1 model call(s)  0.6 s
+  47/108  A  K4  seed 2  route=None  answer  2 model call(s)  1.4 s
+  48/108  A  K4  seed 3  route=None  answer  2 model call(s)  1.6 s
+  49/108  A  K5  seed 1  route=None  answer  2 model call(s)  1.7 s
+  50/108  A  K5  seed 2  route=None  answer  2 model call(s)  1.0 s
+  51/108  A  K5  seed 3  route=None  answer  2 model call(s)  1.0 s
+  52/108  A  K6  seed 1  route=None  answer  2 model call(s)  3.4 s
+  53/108  A  K6  seed 2  route=None  answer  2 model call(s)  4.1 s
+  54/108  A  K6  seed 3  route=None  answer  2 model call(s)  2.3 s
+  55/108  A  K7  seed 1  route=None  answer  1 model call(s)  0.7 s
+  56/108  A  K7  seed 2  route=None  answer  2 model call(s)  1.0 s
+  57/108  A  K7  seed 3  route=None  answer  2 model call(s)  1.4 s
+  58/108  A  K8  seed 1  route=None  answer  2 model call(s)  2.0 s
+  59/108  A  K8  seed 2  route=None  answer  2 model call(s)  2.3 s
+  60/108  A  K8  seed 3  route=None  answer  2 model call(s)  2.2 s
+  61/108  A  O1  seed 1  route=None  answer  3 model call(s)  9.1 s
+  62/108  A  O1  seed 2  route=None  answer  1 model call(s)  0.4 s
+  63/108  A  O1  seed 3  route=None  answer  2 model call(s)  1.8 s
+  64/108  A  O2  seed 1  route=None  answer  2 model call(s)  2.4 s
+  65/108  A  O2  seed 2  route=None  answer  2 model call(s)  2.2 s
+  66/108  A  O2  seed 3  route=None  answer  2 model call(s)  1.8 s
+  67/108  A  O3  seed 1  route=None  answer  2 model call(s)  4.7 s
+  68/108  A  O3  seed 2  route=None  answer  3 model call(s)  7.5 s
+  69/108  A  O3  seed 3  route=None  answer  2 model call(s)  5.3 s
+  70/108  A  O4  seed 1  route=None  answer  2 model call(s)  3.8 s
+  71/108  A  O4  seed 2  route=None  answer  2 model call(s)  2.3 s
+  72/108  A  O4  seed 3  route=None  answer  2 model call(s)  1.9 s
+  73/108  H  K1  seed 1  route=refund_status  answer  2 model call(s)  2.3 s
+  74/108  H  K1  seed 2  route=refund_status  answer  2 model call(s)  2.1 s
+  75/108  H  K1  seed 3  route=refund_status  answer  2 model call(s)  1.3 s
+  76/108  H  K2  seed 1  route=refund_status  answer  2 model call(s)  0.8 s
+  77/108  H  K2  seed 2  route=refund_status  answer  2 model call(s)  1.0 s
+  78/108  H  K2  seed 3  route=refund_status  answer  2 model call(s)  1.0 s
+  79/108  H  K3  seed 1  route=refund_status  answer  2 model call(s)  0.6 s
+  80/108  H  K3  seed 2  route=refund_status  answer  2 model call(s)  0.7 s
+  81/108  H  K3  seed 3  route=refund_status  answer  2 model call(s)  0.8 s
+  82/108  H  K4  seed 1  route=refund_status  answer  2 model call(s)  1.5 s
+  83/108  H  K4  seed 2  route=refund_status  answer  2 model call(s)  1.4 s
+  84/108  H  K4  seed 3  route=refund_status  answer  2 model call(s)  1.8 s
+  85/108  H  K5  seed 1  route=invoice_lookup  answer  2 model call(s)  0.5 s
+  86/108  H  K5  seed 2  route=invoice_lookup  answer  2 model call(s)  0.6 s
+  87/108  H  K5  seed 3  route=invoice_lookup  answer  2 model call(s)  0.5 s
+  88/108  H  K6  seed 1  route=refund_status  answer  2 model call(s)  1.1 s
+  89/108  H  K6  seed 2  route=refund_status  answer  2 model call(s)  0.9 s
+  90/108  H  K6  seed 3  route=refund_status  answer  2 model call(s)  2.3 s
+  91/108  H  K7  seed 1  route=help_center  answer  2 model call(s)  0.4 s
+  92/108  H  K7  seed 2  route=help_center  answer  2 model call(s)  0.3 s
+  93/108  H  K7  seed 3  route=help_center  answer  2 model call(s)  0.3 s
+  94/108  H  K8  seed 1  route=help_center  answer  2 model call(s)  0.7 s
+  95/108  H  K8  seed 2  route=help_center  answer  2 model call(s)  0.6 s
+  96/108  H  K8  seed 3  route=help_center  answer  2 model call(s)  0.6 s
+  97/108  H  O1  seed 1  route=invoice_lookup  answer  2 model call(s)  1.0 s
+  98/108  H  O1  seed 2  route=invoice_lookup  answer  2 model call(s)  1.5 s
+  99/108  H  O1  seed 3  route=invoice_lookup  answer  2 model call(s)  1.1 s
+ 100/108  H  O2  seed 1  route=invoice_lookup  answer  2 model call(s)  1.4 s
+ 101/108  H  O2  seed 2  route=invoice_lookup  answer  2 model call(s)  1.2 s
+ 102/108  H  O2  seed 3  route=invoice_lookup  answer  2 model call(s)  1.1 s
+ 103/108  H  O3  seed 1  route=refund_status  answer  2 model call(s)  5.6 s
+ 104/108  H  O3  seed 2  route=refund_status  answer  2 model call(s)  3.4 s
+ 105/108  H  O3  seed 3  route=refund_status  answer  2 model call(s)  1.1 s
+ 106/108  H  O4  seed 1  route=refund_status  answer  2 model call(s)  2.4 s
+ 107/108  H  O4  seed 2  route=refund_status  answer  2 model call(s)  0.9 s
+ 108/108  H  O4  seed 3  route=refund_status  answer  2 model call(s)  1.8 s
+
+108 conversations in 183 s, saved to results-qwen2.5_3b.jsonl. Model unloaded.
