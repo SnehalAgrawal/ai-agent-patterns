@@ -1,0 +1,127 @@
+{
+  "_comment": "Test material for 02-agentic-workflows, frozen before any system was implemented (see data/FROZEN.json). Every question is asked of every system (W workflow, A agent, H hybrid) with every seed. 'intent' is the route a correct router chooses; 'expected' is the answer a correct reply gives; 'facts' lists what the answer depends on. Dates follow data/account.json (today 2026-11-12).",
+  "intents": {
+    "refund_status": "Whether one or more of the customer's invoices can be refunded, or until when.",
+    "invoice_lookup": "Facts about the customer's invoices, such as an amount or a date.",
+    "help_center": "General questions about the product, its prices, or its policies.",
+    "other": "Anything else, including questions that need investigating the account."
+  },
+  "grading": {
+    "routing": "For W and H, the router's chosen intent is compared with 'intent'. A different intent is a routing error, even if the reply that follows happens to be acceptable.",
+    "handoff": "When W's router chooses 'other', the conversation is handed to a person and the reply is a fixed handoff message. A handoff is its own outcome: it is not labeled correct or incorrect, it is not a success, and no human answer is simulated. It is reported separately.",
+    "facts_retrieved": "A conversation retrieved the facts when, for every fact of its question, at least one 'any_of' string appears in the result of a tool call that executed in that conversation (the exact text the model received). Error results don't count.",
+    "answer_labels": {
+      "correct": "The reply gives the part of 'expected' that answers the question, and every value or claim it states is true. Supporting values listed in 'expected' are optional.",
+      "incorrect": "The reply attempts an answer that is wrong or incomplete, or it states anything false about the customer's invoices, payments, plan, the policies, or prices (including offers or conditions the help center doesn't contain), even if the rest of the reply only asks for information.",
+      "no_answer": "The reply is empty, or doesn't attempt an answer and states nothing false: it only asks the customer for information, says it can't help, or contains only a tool call written as text."
+    },
+    "labeling": "Every reply that isn't a handoff is labeled by hand with the rules above (the interpretation approved for 01-tool-design), and the label is stored with the SHA-256 of the exact reply.",
+    "success": "A conversation is a success only when its answer is labeled correct AND it retrieved the facts. A correct answer without the facts is reported separately.",
+    "cost": "Model calls and input tokens include every model call in the conversation: the router, the agent loop, and the phrasing step. Latency is wall-clock time for the automated path, from the question to the final reply or the handoff message; a person's response time is not part of it."
+  },
+  "questions": [
+    {
+      "id": "K1", "kind": "known", "intent": "refund_status",
+      "question": "Which of my invoices can still be refunded?",
+      "expected": "INV-1002 and INV-1003, and no other invoice.",
+      "facts": [
+        {"fact": "INV-0998 date", "any_of": ["2026-08-28"]},
+        {"fact": "INV-1001 date", "any_of": ["2026-09-28"]},
+        {"fact": "INV-1002 date", "any_of": ["2026-10-28"]},
+        {"fact": "INV-1003 date", "any_of": ["2026-11-05"]},
+        {"fact": "refund window", "any_of": ["within 30 days", "\"refund_deadline\": \"2026-11-27\"", "\"refund_deadline\": \"2026-12-05\""]}
+      ]
+    },
+    {
+      "id": "K2", "kind": "known", "intent": "refund_status",
+      "question": "Can I still get a refund for INV-1001?",
+      "expected": "No: INV-1001 (2026-09-28) is past its refund window, which ended on 2026-10-28.",
+      "facts": [
+        {"fact": "INV-1001 date", "any_of": ["2026-09-28"]},
+        {"fact": "refund window", "any_of": ["within 30 days", "\"refund_deadline\": \"2026-10-28\""]}
+      ]
+    },
+    {
+      "id": "K3", "kind": "known", "intent": "refund_status",
+      "question": "Until what date can I ask for a refund on INV-1002?",
+      "expected": "2026-11-27.",
+      "facts": [
+        {"fact": "INV-1002 date", "any_of": ["2026-10-28"]},
+        {"fact": "refund window", "any_of": ["within 30 days", "\"refund_deadline\": \"2026-11-27\""]}
+      ]
+    },
+    {
+      "id": "K4", "kind": "known", "intent": "refund_status",
+      "question": "Can I get a refund for my August invoice?",
+      "expected": "No: the August invoice (INV-0998) has already been refunded. Saying instead that it is outside the 30-day window is also correct.",
+      "facts": [
+        {"fact": "INV-0998 status", "any_of": ["\"status\": \"refunded\""]}
+      ]
+    },
+    {
+      "id": "K5", "kind": "known", "intent": "invoice_lookup",
+      "question": "How much was my most recent invoice?",
+      "expected": "$15 (INV-1003, dated 2026-11-05).",
+      "facts": [
+        {"fact": "INV-1003 amount", "any_of": ["\"amount\": 15"]}
+      ]
+    },
+    {
+      "id": "K6", "kind": "known", "intent": "help_center",
+      "question": "How long do I have to request a refund?",
+      "expected": "30 days from the purchase.",
+      "facts": [
+        {"fact": "refund window", "any_of": ["within 30 days"]}
+      ]
+    },
+    {
+      "id": "K7", "kind": "known", "intent": "help_center",
+      "question": "How much does the Pro plan cost?",
+      "expected": "$25 per month.",
+      "facts": [
+        {"fact": "Pro plan price", "any_of": ["The Pro plan costs $25 per month"]}
+      ]
+    },
+    {
+      "id": "K8", "kind": "known", "intent": "help_center",
+      "question": "How do I cancel my subscription?",
+      "expected": "Settings > Billing > Cancel (the plan stays active until the end of the current billing period; that part is optional).",
+      "facts": [
+        {"fact": "cancellation steps", "any_of": ["Settings > Billing > Cancel"]}
+      ]
+    },
+    {
+      "id": "O1", "kind": "open", "intent": "other",
+      "question": "Something looks off with my October bill. What happened?",
+      "expected": "October's invoice (INV-1002, $25) was charged twice on 2026-10-29 (after a declined attempt on 2026-10-28), so the customer paid $25 twice. Required: that October's invoice was charged twice. The duplicate refund policy is optional.",
+      "facts": [
+        {"fact": "first October charge", "any_of": ["PAY-5005"]},
+        {"fact": "second October charge", "any_of": ["PAY-5006"]}
+      ]
+    },
+    {
+      "id": "O2", "kind": "open", "intent": "other",
+      "question": "Why did I pay $15 on November 5? I didn't buy anything.",
+      "expected": "Two extra seats were added to the plan on 2026-11-05 ($7.50 each), and seats are billed on the day they are added. Required: that the $15 was for extra seats.",
+      "facts": [
+        {"fact": "what the charge was for", "any_of": ["Added 2 extra seats", "Extra seats add-on"]}
+      ]
+    },
+    {
+      "id": "O3", "kind": "open", "intent": "other",
+      "question": "Have you ever refunded me anything?",
+      "expected": "Yes: $25 for the August invoice (INV-0998), refunded on 2026-09-05. Required: yes, the August invoice (or INV-0998, or $25).",
+      "facts": [
+        {"fact": "the refund", "any_of": ["\"type\": \"refund\"", "\"status\": \"refunded\""]}
+      ]
+    },
+    {
+      "id": "O4", "kind": "open", "intent": "other",
+      "question": "My card was declined in October. Do I still owe you anything?",
+      "expected": "No: the declined attempt on 2026-10-28 was retried and paid on 2026-10-29, so nothing is owed (October was in fact charged twice). Required: nothing is owed.",
+      "facts": [
+        {"fact": "October's invoice was paid", "any_of": ["PAY-5005", "\"description\": \"Pro plan, October 2026\", \"status\": \"paid\""]}
+      ]
+    }
+  ]
+}

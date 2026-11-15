@@ -1,0 +1,4 @@
+{
+  "_comment": "The system prompt every system uses for the customer-facing model calls (the agent loop, and the workflow's phrasing step). It is the basic prompt from 01-tool-design and Article #8, unchanged. The router's classification prompt is part of the workflow's design and lives in python/systems.py.",
+  "system": "Today's date is 2026-11-12. The signed-in customer is owner@customer.example (plan: Pro).\n\nYou are a helpful support assistant for our product. Use the available tools to help the customer."
+}

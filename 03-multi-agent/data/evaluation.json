@@ -1,0 +1,79 @@
+{
+  "_comment": "How every conversation is evaluated. Frozen with the dataset and data/agents.json before any system code was written; python/run.py checks the hash. 'Facts' are each question's frozen evidence list in data/questions.json (unchanged from Article #24): the information an answer needs, not a list of things the reply must say.",
+
+  "answer_label": {
+    "rule": "Unchanged from Article #24 (data/questions.json, grading.answer_labels): correct, incorrect, or no_answer, by hand, for the reply the customer gets. Stored in python/labels.json with the SHA-256 of the exact text labeled.",
+    "R_draft": "In R, the draft is also labeled, with the same rules, as if it were sent. The draft's label and the final label are stored separately."
+  },
+
+  "facts": {
+    "F1_retrieved": "Every fact of the question appears (one of its any_of strings, exact text) in the result of a tool call that executed, made by any agent in the conversation. Error results don't count. Same rule as Article #24.",
+    "F2_passed_on": {
+      "applies_to": "M only.",
+      "unit": "Each specialist reply the manager received (the text returned as the tool result), and each fact of the question.",
+      "labels": {
+        "present": "The reply states the information the fact's any_of strings carry, correctly, in any wording (for example 'INV-1002 is dated October 28, 2026' for 2026-10-28; 'refunds within 30 days' or the correct refund deadline for the refund window).",
+        "misstated": "The reply states that information with a wrong value or a wrong claim (a wrong date, amount, status, or rule).",
+        "absent": "The reply doesn't state it."
+      },
+      "stored": "By hand, in python/handoff_labels.json, with the SHA-256 of the specialist reply.",
+      "fact_passed_on": "At least one specialist reply in the conversation labels the fact present. If another reply misstates it, the conflict is recorded and reported.",
+      "conversation": "F2 holds when every fact of the question was passed on. The fixed 'couldn't finish' text and error results pass on nothing."
+    },
+    "F3_available_to_writer": {
+      "writer": "The agent whose text the customer gets. S: the agent. M: the manager. R: the drafter if the verdict is approve or no_verdict; the reviewer if the verdict is rewrite.",
+      "rule": "Every fact was in the writer's own context as evidence: S, and R's drafter: an executed result of its own tool calls (string match, as F1). M's manager: passed on to it (F2), because it has no other source. R's reviewer when it rewrites: an executed result of its own tool calls only. The draft is a claim, not evidence, and never counts."
+    },
+    "F4_used_correctly": "The answer label is correct. Facts aren't judged one by one in the reply, because they are the evidence an answer needs, not the content it must state."
+  },
+
+  "success": {
+    "main": "Answer labeled correct AND F3 (the writer had the facts).",
+    "also_reported": "Answer labeled correct AND F1 (some agent retrieved the facts), which matches Article #24's definition.",
+    "correct_unsupported": "Correct without F3 is reported as 'correct, unsupported', not as a success.",
+    "gap": "The difference between the two success counts is the retrieved-to-writer availability gap: conversations where a fact was retrieved somewhere in the system but was not available to the agent that wrote the reply. It can come from delegation, retrieval, the handoff, or the reviewer's choice; it is evidence about where information was, not a measure of what a handoff costs. Cost is measured separately."
+  },
+
+  "reviewer": {
+    "applies_to": "R only.",
+    "action": "approve, rewrite, or no_verdict, from the frozen verdict rule in data/agents.json, recorded separately from the draft's and the final reply's labels.",
+    "outcomes": {
+      "_comment": "Mutually exclusive and exhaustive. 'not correct' means labeled incorrect or no_answer.",
+      "approved_correct": "draft correct, action approve",
+      "rewrote_still_correct": "draft correct, action rewrite, final correct",
+      "damaged": "draft correct, action rewrite, final not correct",
+      "fixed": "draft not correct, action rewrite, final correct",
+      "approved_wrong": "draft not correct, action approve",
+      "rewrote_still_wrong": "draft not correct, action rewrite, final not correct",
+      "no_verdict": "action no_verdict (the draft was sent); reported with the draft's label"
+    },
+    "summary_groups": "left_wrong = approved_wrong + rewrote_still_wrong.",
+    "per_review": {
+      "checked": "The reviewer made at least one tool call that executed.",
+      "evidence_in_front": "The reviewer's own executed tool results contain every fact of the question (string match, as F1).",
+      "approved_unchecked": "Action approve with no tool call that executed."
+    }
+  },
+
+  "m_failure_stage": {
+    "applies_to": "Every M conversation whose answer is not labeled correct. Exactly one stage: the first that fails, checked in this order. Correct answers without F3 are 'correct, unsupported' and get no stage.",
+    "can_provide": "A specialist can provide a fact if one of the fact's any_of strings appears in the result of one of its tools called with no arguments (billing: get_invoices, get_refund_status, get_payments, get_plan_history) or in the text of a help-center article (help center). Computed by code from the frozen data.",
+    "stages": {
+      "delegation": "The manager made no specialist call that ran; OR for some fact, no specialist that can provide it was called with a valid request; OR (by hand) every request to the specialists that can provide a fact, read on its own, doesn't ask for the information that fact carries.",
+      "retrieval": "Not delegation, and F1 fails: the right specialist was asked for the right information, but no executed tool result in the conversation contains a needed fact.",
+      "handoff": "Not delegation or retrieval, and F2 fails: the facts were retrieved, but no specialist reply passed one of them on correctly (absent or misstated).",
+      "synthesis": "F2 holds (the manager was told every fact), and the answer is not correct."
+    },
+    "stored": "The hand judgment for delegation's last clause is stored in python/handoff_labels.json with the SHA-256 of each request."
+  },
+
+  "cost": {
+    "model_calls": "Every model call in the conversation, by every agent: S's agent; M's manager and specialists; R's drafter and reviewer.",
+    "tokens": "Input tokens (Ollama prompt_eval_count, including cached tokens) and output tokens (eval_count), summed over every model call.",
+    "latency": "End-to-end wall-clock seconds measured by the runner, from the question to the reply the customer gets: the whole sequence of manager and specialist calls, or drafter and reviewer calls, and tool execution. Not a sum of Ollama's per-call times, and not only the final agent's generation.",
+    "by_role": "Also reported per role: agent (S), manager, billing specialist, help-center specialist (M), drafter, reviewer (R).",
+    "summary": "Mean model calls, median input and output tokens, median and maximum seconds, per system and question group (known, open, all)."
+  },
+
+  "side_check": "S is Article #24's agent A on the same data, prompt, model, and seeds. Report how many of S's 36 replies are identical to A's saved replies in 02-agentic-workflows/python/results-qwen2.5_3b.jsonl."
+}

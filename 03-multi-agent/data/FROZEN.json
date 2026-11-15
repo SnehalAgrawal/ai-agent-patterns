@@ -1,0 +1,13 @@
+{
+  "_comment": "Test material, system definitions, prompts, and evaluation rules, frozen before any system code was written. account.json, help_center.json, prompt.json and questions.json are byte-identical copies of 02-agentic-workflows/data (same SHA-256 as its FROZEN.json). python/run.py checks these hashes before every run and records them in the results.",
+  "frozen_at_utc": "2026-11-15T12:59:49Z",
+  "copied_from": "02-agentic-workflows/data (frozen 2026-11-15T10:47:37Z)",
+  "sha256": {
+    "account.json": "079296db321e3858b75e8746541442dfcc2eba2f9c87a0d483e62747ff7b825f",
+    "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+    "prompt.json": "65bf1bc99b33faa224786cfa4b0589de1fb0c9dcbfd2f2dd29412068462c7070",
+    "questions.json": "5b79c3db25de692da60eae78efb7f391aea2b5ebc04498dd1f03d826473b7277",
+    "agents.json": "e15cc40a97a330b8ca51d202617b42cc43cbd397118c4ac1ae3d4b91ff3dc123",
+    "evaluation.json": "fd40ce65ecfc41d950a002f3a5e6081147a9919868951fb5f824bfbc2ce24efc"
+  }
+}

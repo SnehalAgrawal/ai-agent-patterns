@@ -1,0 +1,64 @@
+{
+  "_comment": "The three systems, every agent's prompt, and every tool an agent gets that isn't one of the five data tools from 02-agentic-workflows. Frozen with the dataset before any system code was written; python/run.py checks the hash. The customer-facing prompt is data/prompt.json, unchanged from Article #24.",
+  "limits": {
+    "max_model_calls_per_agent_loop": 5,
+    "max_tokens_per_call": 1000,
+    "seed": "the run number (1, 2, or 3), used for every model call in the conversation"
+  },
+  "systems": {
+    "S": {
+      "name": "single agent",
+      "definition": "Article #24's agent A, unchanged: one agent loop with the customer-facing prompt (data/prompt.json) and the five data tools. Its final text is the reply the customer gets."
+    },
+    "M": {
+      "name": "manager + two specialists (agents as tools)",
+      "definition": "The manager is an agent loop with the customer-facing prompt (data/prompt.json), unchanged, whose only tools are the two specialist tools below. Calling one runs that specialist's own agent loop, with its own prompt and tools, on the manager's 'request' only: the specialist doesn't see the customer's message or the manager's conversation. The specialist's final text is returned to the manager as the tool result, exactly as written. The manager's final text is the reply the customer gets.",
+      "manager_tools": [
+        {
+          "name": "ask_billing_specialist",
+          "description": "Ask the billing specialist about this customer's invoices, payments, refunds, or plan. It can read the customer's records. Write the request as a complete question; it can't see the conversation.",
+          "parameters": {"request": {"type": "string", "description": "The complete question for the specialist."}},
+          "required": ["request"]
+        },
+        {
+          "name": "ask_help_center_specialist",
+          "description": "Ask the help-center specialist about the product, prices, or policies. It can search the help center. Write the request as a complete question; it can't see the conversation.",
+          "parameters": {"request": {"type": "string", "description": "The complete question for the specialist."}},
+          "required": ["request"]
+        }
+      ],
+      "specialists": {
+        "billing": {
+          "tool": "ask_billing_specialist",
+          "tools": ["get_invoices", "get_refund_status", "get_payments", "get_plan_history"],
+          "prompt": "You are the billing specialist on a support team. Another agent asks you about the account of the signed-in customer, owner@customer.example. Today's date is 2026-11-12. Use your tools to find the records that answer the request, then reply with the facts that answer it, including exact values: ids, dates, amounts, and statuses. Reply to the agent who asked, not to the customer.",
+          "user_message": "<the manager's request, exactly as written>"
+        },
+        "help_center": {
+          "tool": "ask_help_center_specialist",
+          "tools": ["search_help_center"],
+          "prompt": "You are the help-center specialist on a support team. Another agent asks you about the product, its prices, or its policies. Use your tool to search the help center, then reply with what the help center says that answers the request, quoting the relevant text. Reply to the agent who asked, not to the customer.",
+          "user_message": "<the manager's request, exactly as written>"
+        }
+      },
+      "specialist_tool_errors": "A call to a specialist tool is validated like a data tool call in 02-agentic-workflows, and an invalid call gets the same error text, as JSON: {\"error\": \"Unknown tool: <name>\"}, {\"error\": \"Arguments are not valid JSON.\"}, or {\"error\": \"Invalid arguments: <problem>.\"} (a missing, non-string, or empty 'request', or any other argument). No specialist runs for an invalid call.",
+      "specialist_no_reply": "If a specialist's loop ends without a non-empty reply (step limit, a model error, or empty text), the manager gets this fixed text instead: The specialist couldn't finish this request."
+    },
+    "R": {
+      "name": "agent + reviewer (one review pass)",
+      "definition": "System S writes a draft in the same conversation. Then the reviewer, an agent loop with its own prompt and all five data tools, gets the customer's message and the draft. Its final text decides what the customer gets (see 'verdict'). There is one review pass and no return to the drafter.",
+      "reviewer": {
+        "tools": ["search_help_center", "get_invoices", "get_refund_status", "get_payments", "get_plan_history"],
+        "prompt": "You review a support assistant's draft reply before it is sent to a customer. Today's date is 2026-11-12. The signed-in customer is owner@customer.example (plan: Pro). Use your tools to check every value and claim in the draft against the customer's records and the help center, and check that the draft answers the customer's question. If the draft is correct and answers the question, reply with exactly APPROVE. Otherwise, reply with the corrected message to the customer, and nothing else.",
+        "user_message": "Customer's message:\n<the customer's message>\n\nDraft reply:\n<the draft>",
+        "no_draft": "If S produced no reply (step limit, a model error, or empty text), <the draft> is: (The assistant produced no reply.)"
+      },
+      "verdict": {
+        "normalization": "Take the reviewer's final text, remove every whitespace character and every one of these characters: * . ! \" ' ` and compare the rest with APPROVE, ignoring case.",
+        "approve": "The normalized text equals APPROVE exactly (a reply that merely contains the word, such as 'APPROVE, but...', is not an approval). The draft is sent unchanged.",
+        "rewrite": "The final text is non-empty after removing whitespace and is not an approval. The reviewer's final text is sent to the customer exactly as written, even if it is commentary rather than a reply; it is labeled as what the customer got.",
+        "no_verdict": "The reviewer's loop ends without a final text that is non-empty after removing whitespace (step limit, a model error, or empty text). The draft is sent unchanged, and the action is recorded as no_verdict and reported separately."
+      }
+    }
+  }
+}
