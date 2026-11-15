@@ -1,0 +1,52 @@
+{
+  "_comment": "The four memory designs: what each carries from the earlier conversations (data/conversations.json) into a new conversation, how that memory is created, and where it is placed. Frozen before any system code; python/run.py checks the hash. In every design, the new conversation uses the customer-facing prompt (data/prompt.json) and the same five read-only data tools as Articles #24 and #25, so current records can always be looked up.",
+  "limits": {
+    "max_model_calls_per_conversation": 5,
+    "max_tokens_per_call": 1000,
+    "max_tokens_per_memory_creation_call": 400,
+    "seed": "the run number (1, 2, or 3), used for every model call in a conversation and for every memory-creation call of that seed"
+  },
+  "transcript_format": "Each earlier conversation is rendered as a line '[<date>]' followed by one line per message, 'Customer: <text>' or 'Assistant: <text>', exactly as written in data/conversations.json. Conversations are separated by a blank line and appear in date order.",
+  "placement": "The memory block is appended to the customer-facing system prompt, after one blank line: <prompt>\\n\\n<memory block>. Design N appends nothing. The new conversation itself is the customer's message as the only user message.",
+  "designs": {
+    "N": {
+      "name": "no memory",
+      "memory_block": null,
+      "creation": null
+    },
+    "T": {
+      "name": "transcripts",
+      "memory_block": "Transcripts of your earlier conversations with this customer:\n\n<the three conversations, in the transcript format>",
+      "creation": null
+    },
+    "S": {
+      "name": "summaries (written Σ in the article)",
+      "memory_block": "Summaries of your earlier conversations with this customer:\n\n[<date>] <summary>\n\n[<date>] <summary>\n\n[<date>] <summary>",
+      "creation": {
+        "calls": "One model call per earlier conversation, independently, in date order; no tools; the model's text is the summary, used exactly as returned.",
+        "system": "You write memory for a customer support assistant. Summarize the conversation below so that a future conversation with the same customer can use it. Keep every fact, number, id, date, preference, and commitment that may matter later. Write plain text, at most 120 words.",
+        "user": "Conversation on <date>:\n<the conversation, in the transcript format without its date line>"
+      }
+    },
+    "K": {
+      "name": "structured notes",
+      "memory_block": "Notes from your earlier conversations with this customer (JSON, one object per conversation date):\n<a JSON object mapping each date to its notes object, in date order>",
+      "creation": {
+        "calls": "One model call per earlier conversation, independently, in date order; no tools; structured output with the schema below. The parsed object is stored as returned. If the output can't be parsed as JSON, the notes for that date are recorded as the fixed object {\"preferences\": [], \"commitments\": [], \"open_items\": [], \"facts\": []} and the failure is reported.",
+        "system": "You extract notes for a customer support assistant's memory from the conversation below, for use in future conversations with the same customer. Put the customer's stated preferences in 'preferences'; promises or stated intentions by the customer or the assistant in 'commitments'; issues that were not resolved during the conversation, with their status at the time, in 'open_items'; and other facts that may matter later, such as ids, amounts, and dates, in 'facts'. Each entry is one short sentence. Return JSON only.",
+        "user": "Conversation on <date>:\n<the conversation, in the transcript format without its date line>",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "preferences": {"type": "array", "items": {"type": "string"}},
+            "commitments": {"type": "array", "items": {"type": "string"}},
+            "open_items": {"type": "array", "items": {"type": "string"}},
+            "facts": {"type": "array", "items": {"type": "string"}}
+          },
+          "required": ["preferences", "commitments", "open_items", "facts"]
+        }
+      }
+    }
+  },
+  "saved": "The memory each design carried (the rendered memory block) and every memory-creation call (input, output, tokens, seconds) are saved with the results, per seed."
+}

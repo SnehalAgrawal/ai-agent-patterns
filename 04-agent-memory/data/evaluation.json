@@ -1,0 +1,48 @@
+{
+  "_comment": "How every conversation is evaluated. Frozen with the data, conversations, questions, and memory designs before any system code was written; python/run.py checks the hash. Three dimensions are recorded separately for every conversation: the answer label, evidence availability, and the outcome.",
+
+  "answer_label": {
+    "rule": "By hand, for the reply the customer gets, with the rules used since Article #23: correct (gives the part of 'expected' that answers the question, and every value or claim it states is true), incorrect (attempts an answer that is wrong or incomplete, or states anything false about the customer's invoices, payments, plan, the policies, prices, or the earlier conversations), or no_answer (empty, or doesn't attempt an answer and states nothing false: asks for information, says it can't help or has no record, or contains only a tool call written as text). Stored in python/labels.json, keyed '<question>|<SHA-256 of the exact reply>'.",
+    "earlier_conversations": "Claims about what was said in earlier conversations are judged against data/conversations.json, the complete reference."
+  },
+
+  "invented_memory": "A separate yes/no flag, by hand, for every reply: yes when the reply states that something was said, agreed, or done in an earlier conversation and data/conversations.json doesn't contain it. It is reported separately from ordinary incorrect answers. A reply that says it has no record of earlier conversations is not invented memory.",
+
+  "evidence": {
+    "memory_facts": {
+      "rule": "Whether each memory fact (data/questions.json, memory_facts) reached the answering model, in the memory block its design carried.",
+      "N": "absent by construction (no memory block).",
+      "T": "present by construction (the frozen transcripts, verbatim).",
+      "S_and_K": "By hand, per seed and per fact, from the saved memory block: present (states the fact correctly, in any wording), misstated (states it with a wrong value or claim), or absent. Stored in python/memory_labels.json with the SHA-256 of the memory block. Only 'present' counts as available."
+    },
+    "record_evidence": "Available when at least one option in the question's record_evidence is satisfied: every string in the option appears in the result of a data-tool call that executed in the conversation (error results don't count). The memory block is never record evidence.",
+    "complete_history": "For E1 and E2: available when the design carried memory of all three earlier conversations (T, S, K); not available for N.",
+    "available": "A conversation's evidence is available when every required memory fact is available, the record evidence (if the question has any) is available, and, for E1 and E2, complete history is available."
+  },
+
+  "outcome": {
+    "_comment": "Exactly one per conversation.",
+    "substantive_success": "Answer labeled correct, and evidence available.",
+    "appropriate_abstention": "Answer labeled no_answer, and at least one required memory fact or complete history was not available to this conversation. Example: design N on A1, A2, C1, E1, E2. It is reported separately and is not a substantive success.",
+    "correct_unsupported": "Answer labeled correct, but evidence not available (for example, a design without the history answering 'no' to E1, or a value stated without looking it up).",
+    "failure": "Everything else: incorrect answers, and no_answer when every required memory fact and complete history were available (a missed answer)."
+  },
+
+  "b1_stale_memory": {
+    "_comment": "B1 is answered from current records: its substantive success does not require the stale memory fact m3. These four sub-scores are recorded in addition, for every B1 conversation.",
+    "retrieved_current_record": "PAY-5008 appears in an executed data-tool result (automatic).",
+    "current_status": "By hand: the reply says the refund has gone through.",
+    "no_stale_claim": "By hand: the reply does not state, as currently true, that the refund is pending or not yet complete.",
+    "change_noted": "By hand: the reply says the refund was pending earlier and has since completed. Scored only where m3 was available (T always; S and K where m3 is labeled present); reported as not applicable otherwise."
+  },
+
+  "b2_intention": "For every B2 conversation, by hand: does the reply state that a seat was removed? (A remembered intention reported as an action.) Reported separately.",
+
+  "cost": {
+    "memory_creation": "Per seed, for S and K: model calls, input tokens (Ollama prompt_eval_count), output tokens (eval_count), and seconds of the memory-creation calls. N and T have none.",
+    "memory_block_tokens": "Per design and question: the input tokens of the design's first model call minus the input tokens of design N's first model call on the same question and seed (the prompts differ only by the memory block).",
+    "per_conversation": "Model calls, input tokens, and output tokens summed over every call in the conversation; input tokens are also split into carried memory (memory block tokens x model calls in the conversation) and the rest. End-to-end wall-clock seconds measured by the runner.",
+    "totals": "Total input and output tokens for the whole experiment per design, including memory creation, so designs with upfront creation costs are compared fairly.",
+    "summary": "Mean model calls, median input and output tokens, median and maximum seconds, per design and question group."
+  }
+}

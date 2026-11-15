@@ -1,0 +1,14 @@
+{
+  "_comment": "Test material, memory designs, and evaluation rules, frozen before any system code was written. help_center.json and prompt.json are byte-identical copies of 02-agentic-workflows/data (same SHA-256 as its FROZEN.json). account.json is 02's account.json with one added line: payment PAY-5008, the refund of the duplicate charge (diff the two files to check). python/run.py checks these hashes before every run and records them in the results.",
+  "frozen_at_utc": "2026-11-15T14:02:46Z",
+  "copied_from": "02-agentic-workflows/data (frozen 2026-11-15T10:47:37Z)",
+  "sha256": {
+    "account.json": "c7f7d19fb662e58702d353348d1e0d200206ba3878d73dfc4e6a2ebaf53a0607",
+    "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+    "prompt.json": "65bf1bc99b33faa224786cfa4b0589de1fb0c9dcbfd2f2dd29412068462c7070",
+    "conversations.json": "fbd63a5b71032376be7ca6bdf6392c44068a0e178020d4a79c32731aa4d8d3c2",
+    "questions.json": "8cdd259a1558f06c5c49a9e121b5e9b2c7119e230bb16e41e5fff853bd595bbf",
+    "memory.json": "d71b2d91794bbc54d7ebe2b9aaf5ab946f52c51239ef69cf6498b6df4653910e",
+    "evaluation.json": "dd21b7909069b149a7818653a3246d3fe420cc37319a5375ae6fccfcd7511ce3"
+  }
+}

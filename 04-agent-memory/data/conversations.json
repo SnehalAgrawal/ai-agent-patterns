@@ -1,0 +1,32 @@
+{
+  "_comment": "The three earlier conversations with the customer, written by hand as test material (not model output) and frozen before any system code. They are the complete reference for what was said before 2026-11-12: a question about something not in them (E1, E2) is answered against this corpus only. Memory generation reads them and never changes them. Every value in them matches data/account.json and data/help_center.json as of the conversation's date.",
+  "conversations": [
+    {
+      "date": "2026-10-30",
+      "messages": [
+        {"role": "customer", "text": "I think I was charged twice for October. Can you check?"},
+        {"role": "assistant", "text": "You're right. Your October invoice, INV-1002 ($25), was charged twice on 2026-10-29 (PAY-5005 and PAY-5006). I've opened case CASE-311 for the duplicate charge. The refund of the extra $25 is currently pending. It can take up to 5 business days to complete, and it goes back to your original card."},
+        {"role": "customer", "text": "Thanks. Please contact me about this by email only, not by phone."},
+        {"role": "assistant", "text": "Noted: we'll contact you by email only."}
+      ]
+    },
+    {
+      "date": "2026-11-06",
+      "messages": [
+        {"role": "customer", "text": "Why was I charged $15 yesterday? I didn't buy anything."},
+        {"role": "assistant", "text": "The $15 is invoice INV-1003, for two extra seats added to your plan on 2026-11-05. Extra seats cost $7.50 per seat per month and are billed in full on the day they're added."},
+        {"role": "customer", "text": "A colleague added those. I'll remove one of the seats next month."},
+        {"role": "assistant", "text": "Understood. Nothing changes until a seat is removed."}
+      ]
+    },
+    {
+      "date": "2026-11-10",
+      "messages": [
+        {"role": "customer", "text": "Until when can I still ask for a refund on my October invoice?"},
+        {"role": "assistant", "text": "INV-1002 can be refunded until 2026-11-27, 30 days after its date."},
+        {"role": "customer", "text": "Please remind me of that deadline next time I'm in touch."},
+        {"role": "assistant", "text": "Will do: INV-1002's refund deadline is 2026-11-27."}
+      ]
+    }
+  ]
+}
