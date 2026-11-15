@@ -1,0 +1,653 @@
+{
+ "_comment": "Hand labels for M's handoffs, with the rules in data/evaluation.json. replies: each specialist reply the manager received, keyed '<question>|<SHA-256 of the reply>', per fact present/misstated/absent (facts.F2_passed_on). requests: each request the manager sent, keyed '<question>|<SHA-256 of the request>', per fact true if the request, read on its own, asks for the information the fact carries (m_failure_stage.delegation). The fixed \"couldn't finish\" text isn't labeled: it passes nothing on.",
+ "replies": {
+  "K1|569b9dc829dec112ef983ef5e40455ab82b7158b8f39aeaa9654276b607867ad": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 date": "absent",
+    "INV-1001 date": "absent",
+    "INV-1002 date": "absent",
+    "INV-1003 date": "absent",
+    "refund window": "absent"
+   },
+   "note": "says no invoices were found"
+  },
+  "K1|6e4af815881d5c45cc5078de2d88aa3bd187aacc6752f2a366c3316cf7c62289": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 date": "present",
+    "INV-1001 date": "present",
+    "INV-1002 date": "present",
+    "INV-1003 date": "present",
+    "refund window": "present"
+   }
+  },
+  "K1|7f1bc8e36d12851d27dcd77aa323246b50367c2232ac4197f139ba807db6cc3c": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 date": "absent",
+    "INV-1001 date": "absent",
+    "INV-1002 date": "absent",
+    "INV-1003 date": "absent",
+    "refund window": "absent"
+   },
+   "note": "says paid invoices cannot be refunded; no dates"
+  },
+  "K1|d7df223729bfd9d75f14758b777071fd23debef695d67bd2add8a92ea3a9c03a": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 date": "absent",
+    "INV-1001 date": "absent",
+    "INV-1002 date": "absent",
+    "INV-1003 date": "absent",
+    "refund window": "absent"
+   }
+  },
+  "K1|dd36f354d42d66f29bcd1227a7bc8f085db6c9b1c8c96244c6205567145fe6ba": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 date": "absent",
+    "INV-1001 date": "absent",
+    "INV-1002 date": "absent",
+    "INV-1003 date": "absent",
+    "refund window": "absent"
+   }
+  },
+  "K2|26a364eaff012234d036fa62489144905d44b3b774e66fff2410baed67e606ff": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1001 date": "absent",
+    "refund window": "present"
+   },
+   "note": "deadline 2026-10-28 but not the invoice date"
+  },
+  "K2|738bf06e83dc5332d0da9e1f5bdd210682016f125c59803e0f6620189c57c589": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1001 date": "present",
+    "refund window": "present"
+   }
+  },
+  "K2|9b7603592f7a2468c01457d5e38a1150e4ddf69827da9c2eb69f3e8c5f9b195d": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1001 date": "present",
+    "refund window": "present"
+   }
+  },
+  "K3|27f2bf11581d07e5541dec40450ca9dd7e38106066526a04e035d63a5e81002b": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1002 date": "absent",
+    "refund window": "present"
+   },
+   "note": "deadline 2026-11-27 but not the invoice date"
+  },
+  "K3|2f09374a407d7680b2252dff6860f1b526f7886bfc505a6a03c3c09a72f50c28": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1002 date": "absent",
+    "refund window": "present"
+   },
+   "note": "deadline 2026-11-27 but not the invoice date"
+  },
+  "K3|af6d6db697ee68e200b58ecd54e41598538d80c479e9321441d717503e2b170c": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1002 date": "absent",
+    "refund window": "present"
+   },
+   "note": "deadline 2026-11-27 but not the invoice date"
+  },
+  "K4|05b7f448c27462dce88a641f7db7541bee8758a0d28c6f99b5b265fef514a75b": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": "absent"
+   }
+  },
+  "K4|0f9d368918390b17a960858fff6d32659c65af6a931ba71e3045454f8f8a7d94": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": "absent"
+   }
+  },
+  "K4|10f13fe49cfe36f151c25e1b7a10b9fce59deabdcaa5cd929fd72fb33b3a2406": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": "absent"
+   }
+  },
+  "K4|500ddc0ada8a04f023196701155c28613f90a475beeb4eecf289c24648371bfb": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": "absent"
+   }
+  },
+  "K4|73ff71abb073a27859878c5c2d4ca70ab26aed4e6eb3881b18664cd8725e1ecc": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": "absent"
+   }
+  },
+  "K5|570a930404aec6e3e5172e48158e0ccb90a8c70d0e19cd2357a0c087d27547f6": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1003 amount": "absent"
+   }
+  },
+  "K5|8c115271cce927b27f36581e0c4c08d169aef96451e3e2bc98a7271368476510": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1003 amount": "absent"
+   }
+  },
+  "K6|7612b7488ea66aeb0cbb2c8b6c0be6ace110ee02eb8415475034f710956cfa2d": {
+   "specialist": "help_center",
+   "facts": {
+    "refund window": "present"
+   }
+  },
+  "K6|969176de8529ca6764eb42dda2e556cf275a25cbd4b1b419239a842a9dd615ac": {
+   "specialist": "help_center",
+   "facts": {
+    "refund window": "present"
+   }
+  },
+  "K6|b0dcf1340285d51c1d529e1d0596ad090e942a23fdfba1364fc60a9837c3a962": {
+   "specialist": "help_center",
+   "facts": {
+    "refund window": "present"
+   }
+  },
+  "K7|001830cdcacebbce0433ad923e41b04cdd9dc43720436bb14a4e41112ccd4d3e": {
+   "specialist": "help_center",
+   "facts": {
+    "Pro plan price": "present"
+   }
+  },
+  "K7|27e7c0810c281d9b06ed3b57f6348e0702514a26e4431dd40b6e9fd31f2a7c4e": {
+   "specialist": "help_center",
+   "facts": {
+    "Pro plan price": "present"
+   }
+  },
+  "K7|e8f5e77c104825372a89ea363441db996f2ffca4325d3c3a8deda725b37ee1f6": {
+   "specialist": "help_center",
+   "facts": {
+    "Pro plan price": "present"
+   }
+  },
+  "K8|05bb262e76ba6e9ee82d6dc227950f8b1159ac81ca8c428fdd0c9930b6ea6468": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": "absent"
+   }
+  },
+  "K8|6a25acae5fffa707ec78a72d081377e375102c63e5ae9aa32be24bcd0dfe3c93": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": "absent"
+   }
+  },
+  "K8|9e5e890d679343c4a929c993786a26262e2fef4670d735f5f65364d2d32dbb47": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": "misstated"
+   },
+   "note": "says to reach out to support or update the plan"
+  },
+  "K8|f4978d3e8dd59bf05fb88cde30027f93a2f6fd3f145ac156d855c1fdd8a13ebf": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": "misstated"
+   },
+   "note": "says to cancel through support"
+  },
+  "O1|708582a72b5c8bc2a779ea85eccd3000d6e70e8236ad8d62c025e0034aabe357": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": "absent",
+    "second October charge": "absent"
+   }
+  },
+  "O1|7815ce6040d442938631e440a19caad2c3c34ad770085cefc90ffe38ec0250ef": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": "absent",
+    "second October charge": "absent"
+   }
+  },
+  "O1|7c70038b616aa116a96e1bc2b83f654451b4e64ecf1c662e015a74c5239b301b": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": "absent",
+    "second October charge": "absent"
+   }
+  },
+  "O1|d9924eee21cbcf85f1bd061d47940099d6eca7600438f4ef8cfd8b36c09dbb13": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": "absent",
+    "second October charge": "absent"
+   }
+  },
+  "O1|f4274df224f3181c32d7a7a9b15b5a1cab015d48877cb89e67a8bf5cf04193e7": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": "misstated",
+    "second October charge": "misstated"
+   },
+   "note": "lists invented payments (INV-1002 paid 2026-10-28, succeeded); no PAY-5005/5006"
+  },
+  "O2|0ae66fb0e6da1cebc51cafddf4b94941b4570cd4cbc6899584824bc52df75d95": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": "absent"
+   }
+  },
+  "O2|3d8c5ec19926df838ee270bf4cededb70506c61f0611af22761cc69d25b81b88": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": "absent"
+   }
+  },
+  "O2|83b164e306ead3c70d79b0e4092bd4a1a85146df8e8ecaae2310b40654345294": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": "absent"
+   }
+  },
+  "O2|9aa442bf38e81ddaf6ce54c67701c33977955f6af24c704c2a477e18d754eb8a": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": "misstated"
+   },
+   "note": "says the $15 might have been for a subscription"
+  },
+  "O2|cb3213b4f916880c62ae80ace1ca02b905975ab3874f4c2eaffdd495d41dc19b": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": "absent"
+   }
+  },
+  "O3|22f638025a76ff50b6a9263d5fb335c5d558af6508d4d3ec0c1d13e54b03196c": {
+   "specialist": "billing",
+   "facts": {
+    "the refund": "absent"
+   }
+  },
+  "O3|510ed236cd2a27536dbac748d3373edbd4f12ebdbf914613c7d6b3510d4eb227": {
+   "specialist": "billing",
+   "facts": {
+    "the refund": "present"
+   }
+  },
+  "O3|599e602ca59f4aa1fcd26395845051a79c74b8e28fd7460a5326d6980e4c7109": {
+   "specialist": "billing",
+   "facts": {
+    "the refund": "absent"
+   }
+  },
+  "O3|bb72454678ed3e76b37f784895165551f022e07134a7120933f3c6783fe5f1bf": {
+   "specialist": "billing",
+   "facts": {
+    "the refund": "absent"
+   }
+  },
+  "O4|252f19b3c3a8d1cea7754437e067632f1de7f3e86fdbc6838250a16538ecf5d5": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": "absent"
+   },
+   "note": "says there were no declined card transactions"
+  },
+  "O4|268a09a8b1c2b52790c185ec5ca93d476c9619b087e209f02373b44443b62c74": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": "absent"
+   }
+  },
+  "O4|5bd1411a011739245f0b9d9dd613bbaa32707ceca1fffb618d6953d5636519f0": {
+   "specialist": "help_center",
+   "facts": {
+    "October's invoice was paid": "absent"
+   },
+   "note": "help center: the general retry rule, nothing about this account"
+  },
+  "O4|82d6df1cc9a0075608a6cc45ba000b69d30f5671b0aa8f550009813ceffc0acb": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": "absent"
+   }
+  },
+  "O4|d3d868251f2f6b5670941e5e4756aa28be1b4a56a02fec88a15dd61da4340c24": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": "absent"
+   }
+  },
+  "O4|e0aa02176aa2434fa0965421a05e6e2e707655bf61ce473d5c029341a71c6f17": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": "absent"
+   }
+  }
+ },
+ "requests": {
+  "K1|52b2ec943e558b253ac2d73318571af18ecd5d89468b5d7588f830f5e3754415": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 date": true,
+    "INV-1001 date": true,
+    "INV-1002 date": true,
+    "INV-1003 date": true,
+    "refund window": true
+   }
+  },
+  "K1|84f76e900191d092ddf8c2e408443ef48e2b01de896ca665bd480614c1223ebf": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 date": true,
+    "INV-1001 date": true,
+    "INV-1002 date": true,
+    "INV-1003 date": true,
+    "refund window": true
+   }
+  },
+  "K1|9bb161d25d1791a00de57ed450f1d0aaf998a447c74881c3662060f376f33008": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 date": true,
+    "INV-1001 date": true,
+    "INV-1002 date": true,
+    "INV-1003 date": true,
+    "refund window": true
+   }
+  },
+  "K2|1669d2336582fe00e232e825b8de001a03913f882e9390c626a105ea950ede66": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1001 date": true,
+    "refund window": true
+   }
+  },
+  "K2|a42ae121924d0c13d740fe59f1608fac76ed4d3e6e6cbf1c54d6ae72f6fbf504": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1001 date": true,
+    "refund window": true
+   }
+  },
+  "K2|bafcc83b49f2c9295ec7799079ce8e76e396f73b058378fb351b95e8881b2180": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1001 date": true,
+    "refund window": true
+   }
+  },
+  "K3|0624dd91b32e5ba79b23440eaee7dd2d1fb3ad9eb3b4d8db3e1d616f43ce4ca3": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1002 date": true,
+    "refund window": true
+   }
+  },
+  "K3|a97afebccca1111c4573a747d6ddce0ed5f929b20f15d3524625ff1cf676634e": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1002 date": true,
+    "refund window": true
+   }
+  },
+  "K3|fe760b178b266ad5cc92e5c239ea5f863dec81ffed48a824a32a3fb951facf21": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1002 date": true,
+    "refund window": true
+   }
+  },
+  "K4|3887ce8eb60cd40c044a4654b1997b362c0a6bf0da67fc479c4ae0e8dfee8ca9": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": true
+   }
+  },
+  "K4|56c11ebc23228c8a395a25bfc72e70a5dd5ad0601994555c697273c73a2e627a": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": true
+   }
+  },
+  "K4|7241b12e6f714641bd07a1b7fc469a00018699ea4a8680ea3c198d755411de0a": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": true
+   }
+  },
+  "K4|7edf38252700e10ab478cefec805471d68a186152460788a4c148403a58a60d6": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": true
+   }
+  },
+  "K4|832a0e5f7e62e57f5c4ff0b218319351a945afafaa3f87ebe956d5b4b4c9fe76": {
+   "specialist": "billing",
+   "facts": {
+    "INV-0998 status": true
+   }
+  },
+  "K5|4aaf971f6ec2d30d280374ee9f507fba88ed02ff7df5b301ac37cbeca80cde06": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1003 amount": true
+   }
+  },
+  "K5|e43485eb7805d912d08095587fa72a54ae076da22ab21aee52370d17856a557b": {
+   "specialist": "billing",
+   "facts": {
+    "INV-1003 amount": true
+   }
+  },
+  "K6|0de2634341cdc9b4fb7f4002884673b328c84003c2ef5e4ce72fbdd7e1fdc9bc": {
+   "specialist": "help_center",
+   "facts": {
+    "refund window": true
+   }
+  },
+  "K6|63f9385c947b00571a0dc100d418e841159b56ccf02f375eb93325b0d525b017": {
+   "specialist": "help_center",
+   "facts": {
+    "refund window": true
+   }
+  },
+  "K7|8e41945a1d791d945a0df11d509ae4691ab11cfade05ac39ce5501eeed9d23b7": {
+   "specialist": "help_center",
+   "facts": {
+    "Pro plan price": true
+   }
+  },
+  "K7|dc0d636a41aed2682f9e5738ed6e9abfc5a1cc6313b3935e4da464d8661b4e02": {
+   "specialist": "help_center",
+   "facts": {
+    "Pro plan price": true
+   }
+  },
+  "K8|2acad2bd00173c0d98e293c61ee6c882355ce366b614cb9f7045701f5de7f357": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": true
+   }
+  },
+  "K8|4e9e19ef2a96348819e00bed2bbf5e4ee760a7e500c5a4e844451bbcfbeb8683": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": true
+   }
+  },
+  "K8|8f3470997cc81ef69b7f0020870310a62c6c573b53f331bce5b695afae2ad608": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": false
+   },
+   "note": "asks to check the subscription, not how to cancel"
+  },
+  "K8|c7758f78baa9388aa2be36fc87fc4e266301e213e65c0ebd4fdb65bc034664b3": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": false
+   },
+   "note": "asks for the plan history, not how to cancel"
+  },
+  "K8|ca132347394475770e5164d243440d4cabf3f8dc1e6f22d98ca610b6e9363344": {
+   "specialist": "billing",
+   "facts": {
+    "cancellation steps": true
+   }
+  },
+  "O1|10c18f768e30e205da02e456a36de5cb7196dca5c40256c4a0588f67ddbbf508": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": true,
+    "second October charge": true
+   }
+  },
+  "O1|3e232d6c31d1d9b7b93162c34803fdb1792927ae9a1d2982cb02f9c5dbb4733b": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": true,
+    "second October charge": true
+   }
+  },
+  "O1|69213ae8fd9759db5ccb3bcd5d834f79e64551ddaf438a210fddab677d40c721": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": true,
+    "second October charge": true
+   }
+  },
+  "O1|6a35addecc90d6a46229a0821036a4a8eae5304e7697105c241b7db009da43af": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": true,
+    "second October charge": true
+   }
+  },
+  "O1|bf24e9f33ee1f886555ecd2779c72a30d531e2e9acdf61962fe21e75bb482022": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": true,
+    "second October charge": true
+   }
+  },
+  "O1|ea47d1229f59271d217e5b6beb8bddba762d07a75aa0987d6ef64f0343103331": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": true,
+    "second October charge": true
+   }
+  },
+  "O1|fe75fa47f821c753f7d9af043e293f2877bc74214844e9cca2329c16f4d5a743": {
+   "specialist": "billing",
+   "facts": {
+    "first October charge": true,
+    "second October charge": true
+   }
+  },
+  "O2|02ca2560169ae7734e90550963319e3c722a3e67e8455b868cba9a0e227672a8": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": true
+   }
+  },
+  "O2|0fb68864c4a16d2ee021d9a84fbc031f0cd4de215a2a519b4a8a7fd1ef23300f": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": true
+   }
+  },
+  "O2|143e22c48c5ffe1cc3ef86343368ee60085314c8347cf8f9d2031aa0715135c0": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": true
+   }
+  },
+  "O2|395db73924db826ae011da7aeff7732c38a08163abd7182f24747c2183158237": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": true
+   }
+  },
+  "O2|ede0491416666950a5d0da99d7201ed0f4942cbe6a958342aa9201c5effb150d": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": true
+   }
+  },
+  "O2|f15730320e7bd7098b7306b5cf68f4dd2364c7a28b569b1c0842053cead0252a": {
+   "specialist": "billing",
+   "facts": {
+    "what the charge was for": true
+   }
+  },
+  "O3|77006857a50e70d8f11d61a40f037d7482a37475ea77dc258aba1655a7f6ccfa": {
+   "specialist": "billing",
+   "facts": {
+    "the refund": true
+   }
+  },
+  "O3|827234d5a6639170e314ba7f05227c8b6e627edeb251eb27762cfedc061e51cd": {
+   "specialist": "billing",
+   "facts": {
+    "the refund": true
+   }
+  },
+  "O3|f0fa118b948a3a5bf07193b7160ccead4109fdc023f482cc46c59424d8dec32b": {
+   "specialist": "billing",
+   "facts": {
+    "the refund": true
+   }
+  },
+  "O4|1c619e6223cad4e3ec7f021002c3b863c6a1196b9b96582bd93d64405ac7bea9": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": true
+   }
+  },
+  "O4|4ff39d6a18a38c07d9873537f5ef4aaaa0847ea0be6dd6ec2e7f8ebda5d375d0": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": true
+   }
+  },
+  "O4|93e72f72b8bda112a30c82d404884e5a051225709ddc98ee9dc7f21ea4449ba2": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": true
+   }
+  },
+  "O4|9baefe769846f0d6280c9d414654d0f03b6afb7eed7882cf526b1e95f80949b2": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": true
+   }
+  },
+  "O4|bc029880f44d71aa82147428aa08cdfd90e8acbb3b22e72989e2e0e2fab76584": {
+   "specialist": "help_center",
+   "facts": {
+    "October's invoice was paid": true
+   }
+  },
+  "O4|e11348a836fddcbe5e17d4cf67ab1193617300056f6e651860c528575a6fcb1b": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": true
+   }
+  },
+  "O4|e7d35c87e7b4753ce6c9113072914bc784a5ccdd6fabd1c779d173b5f14f0c15": {
+   "specialist": "billing",
+   "facts": {
+    "October's invoice was paid": true
+   }
+  }
+ }
+}

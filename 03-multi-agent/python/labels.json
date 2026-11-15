@@ -1,0 +1,495 @@
+{
+ "_comment": "Hand labels for the reply the customer gets and for R's drafts, keyed by '<question>|<SHA-256 of the exact text>', with the rules in data/evaluation.json (answer_label) and data/questions.json (grading.answer_labels). A text that appears in several conversations has one label. 'source' says where a label comes from: imported from Article #24's hand labels when the text is byte-identical to one of its agent A replies, or labeled by hand here.",
+ "answers": {
+  "K1|cc511efae68422c81f79776585be7eeab0cfac84ad9600953fba158e1c966d8f": {
+   "label": "incorrect",
+   "note": "dates INV-1003 October; says all invoices can be refunded for the add-on",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K1|1871c73d97288d2a26584565b956c36701efe65d31fc738354de3d66c1b0829a": {
+   "label": "incorrect",
+   "note": "right invoices and deadlines, but calls the window the reason for non-refundability",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K1|843cc9e942e52c7639ba22eb52c7aa206a0eba7dab2b4fab8ba28ae321ca0c08": {
+   "label": "correct",
+   "note": "INV-1002 and INV-1003 with correct details",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K2|7209a47932dd6a6ebf46ddc4339d4e9029526697016fa9fd54394a1a433376a0": {
+   "label": "correct",
+   "note": "no; deadline 2026-10-28",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K2|e2b526327aad51790258aca5c870adfc924b58663e23fa30185b92d50dba6fac": {
+   "label": "correct",
+   "note": "no; deadline 2026-10-28",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K2|cd931e6853952edb275b26109e542142faac0df72dc889647685a4a468e06f05": {
+   "label": "incorrect",
+   "note": "no, but tells the customer to check back in 30 days (it won't become refundable)",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K3|eee93432c65d3a3799278c8c9d47b2229f0a0e90df728e78306ab9130bb15ed1": {
+   "label": "correct",
+   "note": "2026-11-27",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K3|c373955b045a6a088dbb6ade9bddf3844d7db13034d6fcdf4549de42aeee55fc": {
+   "label": "correct",
+   "note": "2026-11-27",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K3|600eb154b9ed6f4bf141977a4cd2795b7b51b8e357dc08b59a540a080bfece8f": {
+   "label": "correct",
+   "note": "2026-11-27",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K4|80e09d42f02608b76c1539065daa1ffcfcfe23728a16bb9de20cea5dac74e564": {
+   "label": "no_answer",
+   "note": "asks for the invoice id (called no tool)",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K4|d211468e8570d6972e60712738435e9c7fc0e8a60bd9c84721ecaaf53b8113b0": {
+   "label": "incorrect",
+   "note": "says there is no August invoice",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K4|0fc56a1c1316b19c9c75368da52215b9f87bca018306e3e11514db9347674d04": {
+   "label": "correct",
+   "note": "INV-0998 already refunded",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K5|c2af38eefd192457cc155384586ed6c8a237d7312d7288ed59e741def9fe5080": {
+   "label": "correct",
+   "note": "$15, INV-1003",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K5|08fdc0685a348bbbda28b1de37b72645ee860a3515eb668743de00eb492839c2": {
+   "label": "correct",
+   "note": "$15, INV-1003",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K5|fce78be506643e948df5601742ad865c6abd8a3cc2e57eaaaf7c9f18787fb7f2": {
+   "label": "incorrect",
+   "note": "$15, but dated October 28",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K6|f78452632c13341c6df1d9c12a1e7f43663e93a2789a25e301493537a4bf6709": {
+   "label": "incorrect",
+   "note": "lists invoices; gives INV-1003's deadline as November 27",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K6|a6027dbda8f75f6c0b01fb1a5f09a64e31855dfca888c8caf4051f46e65a91fb": {
+   "label": "incorrect",
+   "note": "lists invoices; says INV-1001 is within the 30-day window",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K6|5e62b7b7aaa70c3865afacd51e0de1c2e14383fc65d916c58777d255ebbdcee1": {
+   "label": "incorrect",
+   "note": "dates INV-1002 November 5; announces a check and stops",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K7|95881eb855745654a0edde95e32539ce8ac40d8ea4df882a0bd0d0ff9988a8c1": {
+   "label": "no_answer",
+   "note": "says no tool can retrieve the price (called no tool)",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K7|e7f7132dd4f0df43986ea70dcaf09d937b9d5d60fce55223274b657b556fc07a": {
+   "label": "correct",
+   "note": "$25 per month, from the plan history (not the help center)",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K7|2fcb3b8846aef84049fd3fc637db6e801ba26f451089629f4af2eb04d13394e2": {
+   "label": "correct",
+   "note": "$25 per month, $40 with the two seats, from the plan history; announces a check",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K8|578541be2485974fd4df7d8e28ddada0245294ed29821acf2c94c9cb9525c27d": {
+   "label": "correct",
+   "note": "Settings > Billing, then Cancel",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K8|fe49c9dbb35d1b944b7c20b7ac53f0c2847bbb7ce4c533d3d359962bb2bea97e": {
+   "label": "incorrect",
+   "note": "says to contact support or let the subscription expire",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K8|05a83c44799c2531945799a63fd3351e6c7ec3370fb70939e7ed64fb8189da63": {
+   "label": "incorrect",
+   "note": "dates the seat change October 5; says to look in settings",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O1|d59b7f7313500873dc9a98d785cde4e4db99845d331e96e91cd7cf44d114e368": {
+   "label": "incorrect",
+   "note": "calls INV-1002 the extra seats add-on; refund claims contradict each other",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O1|c5a62dc6f8735df6a30d6e61056d169ea66b63a6f2e223b004e836ad2218c6bb": {
+   "label": "no_answer",
+   "note": "asks for invoice ids (called no tool)",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O1|fbf6ed8e5ebdfb86ef005333dc5535940e74124ce5245c223677ef78422d3a11": {
+   "label": "no_answer",
+   "note": "says it will check the payment history, and stops",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O2|f192fda848491fcadb2c8994becf1fa45252cebe6418aed7a7d671bfa14cc5a1": {
+   "label": "no_answer",
+   "note": "finds the payment, says it will check the details, and stops",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O2|3dab78aee46ca7dbd8c6628bfc070c0fa392905ad16439a7eedab62029e73fc4": {
+   "label": "incorrect",
+   "note": "invents a declined charge and refunds for INV-1003",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O2|a2b3cc4f5cd26fe3978caf3b8e90b8b7fa00f68c5da151f406285fa8943d99ce": {
+   "label": "incorrect",
+   "note": "suggests the invoice was charged twice",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O3|5c96eeabdae66c2600184bfa2165c1740ec4397dfbc2b586f9fab83f2d41230c": {
+   "label": "correct",
+   "note": "shows INV-0998 refunded; refundable invoices correct",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O3|1c4d26e0b980eaa9cc65e2436028f23edec482d0db5358629b1461110121a140": {
+   "label": "incorrect",
+   "note": "says INV-0998 was refunded the same day; calls PAY-5005 a failed charge",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O3|b6cd650152712cbae0b9eec9395f25bdbda78924291c5dc3377d49827eb0b37b": {
+   "label": "correct",
+   "note": "shows INV-0998 refunded; refundable invoices correct",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O4|484eab6df53c8277e2ecf75d61d39deb493dae8e7dbe32af58f05e3830723fe2": {
+   "label": "incorrect",
+   "note": "says $25 is still owed",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O4|87bc4214bfade3fe5cd369a003c5edd369e2daace3dca77ff8fa40f4d44a3ab5": {
+   "label": "incorrect",
+   "note": "says $75 is owed",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "O4|dfc1b5d2d94b864a6d6db051ecda4b958e555caf24ae60a03ce8af28b0c21167": {
+   "label": "incorrect",
+   "note": "says the declined attempt was refunded and $75 was charged",
+   "source": "02-agentic-workflows/python/labels.json (agent A, identical text)"
+  },
+  "K1|9b276cf9f50c34ffd9e8fc06e9837f8b0a56da2a8bfebece23146554243af711": {
+   "label": "incorrect",
+   "note": "says no invoices were found",
+   "source": "hand (03-multi-agent)"
+  },
+  "K1|7c7fabd8941e924a35809867223f7f247526274a5f2b57482cbb92d36e9d4a1e": {
+   "label": "incorrect",
+   "note": "says no invoice is eligible for a refund, then lists INV-1002 and INV-1003 as refundable",
+   "source": "hand (03-multi-agent)"
+  },
+  "K1|9506f1ade237a3bdb9caa7942f222b5fdcecdd046974620c77cab3623a46e426": {
+   "label": "incorrect",
+   "note": "says INV-0998 'can still be refunded', then that none are eligible",
+   "source": "hand (03-multi-agent)"
+  },
+  "K1|ca433cae25d06ebb4c1fc43f139e8cb28dd81e86fceadbcdd51515547dfc4964": {
+   "label": "no_answer",
+   "note": "'_APPROVE' (the reviewer's verdict, sent as written under the frozen rule)",
+   "source": "hand (03-multi-agent)"
+  },
+  "K2|2a1710f67ea976d452b3562b04e9373ad20ec06c702161a3d565dd2f5cc100e3": {
+   "label": "incorrect",
+   "note": "says the refund is 'already paid' and can't be processed further",
+   "source": "hand (03-multi-agent)"
+  },
+  "K2|f48a5b8e1af96bb7e99e632b7ae96920f588cf17d5ed6bd744a8ea9da7404abb": {
+   "label": "correct",
+   "note": "no; deadline 2026-10-28",
+   "source": "hand (03-multi-agent)"
+  },
+  "K2|a54963e9f02093077ad4641cd24c5290b239a5314a1ad6c963e409036539dc90": {
+   "label": "incorrect",
+   "note": "says refunds are not allowed within a 30-day window from the invoice",
+   "source": "hand (03-multi-agent)"
+  },
+  "K2|d205217a9dca59ccf86885b882c5d0e941a84c17796e27e1fe161020134773c6": {
+   "label": "correct",
+   "note": "no; deadline 2026-10-28 (the draft plus one sentence)",
+   "source": "hand (03-multi-agent)"
+  },
+  "K2|d6a2e880b90981a38a68e78febea7bd90fe95e5e6407cc4173f25ba8c43aa4c2": {
+   "label": "incorrect",
+   "note": "commentary to the drafter, then the draft's 'check back in 30 days' (it won't become refundable)",
+   "source": "hand (03-multi-agent)"
+  },
+  "K3|93e3a21a92530b170e93f6a09935872c2197b8b51ee608e7a03f12fd7b63c166": {
+   "label": "correct",
+   "note": "2026-11-27",
+   "source": "hand (03-multi-agent)"
+  },
+  "K3|fbedcfe8d246d958897d8d93fab277513cf639c838bc42473d84ef910a2fc299": {
+   "label": "correct",
+   "note": "2026-11-27",
+   "source": "hand (03-multi-agent)"
+  },
+  "K3|febd759a7cc730e6cf28df8bfdd6fd97848fe175c97cc1ae423c68ff258f848c": {
+   "label": "correct",
+   "note": "2026-11-27",
+   "source": "hand (03-multi-agent)"
+  },
+  "K4|d83f97ec698b63d5c12876c903be45694a71bd2a3bb3ee142e185bbd9942d059": {
+   "label": "no_answer",
+   "note": "asks for the invoice id",
+   "source": "hand (03-multi-agent)"
+  },
+  "K4|46017cba7acb778270782e2879ff5bab166ced40126e2b5f2ffcbc7a44ced3a3": {
+   "label": "no_answer",
+   "note": "asks for the invoice date or reference",
+   "source": "hand (03-multi-agent)"
+  },
+  "K4|3df38d02aaa1cb8f59fd787acb7ff48e838c7c089f5e93afa3fed30548d5b5fa": {
+   "label": "no_answer",
+   "note": "asks the customer to confirm the month and email",
+   "source": "hand (03-multi-agent)"
+  },
+  "K4|d64c22424dc9f6844a6cc05c5deaa1aa63c4286fb6286653b87e4c5b35f51423": {
+   "label": "no_answer",
+   "note": "asks for the invoice id (called no tool)",
+   "source": "hand (03-multi-agent)"
+  },
+  "K4|0d0d2db90bc097e52cb30f5f8a769051a46ffeb4eef8f32304b94782ca6eaf29": {
+   "label": "incorrect",
+   "note": "'ADOPT', then says the September invoice can be refunded within 30 days",
+   "source": "hand (03-multi-agent)"
+  },
+  "K4|1825234256bf79d6a85ac35cf91792d8c086af0003f33a853846399362f85080": {
+   "label": "incorrect",
+   "note": "commentary to the drafter: says INV-0998 was not refunded",
+   "source": "hand (03-multi-agent)"
+  },
+  "K5|3fe9a2170f2f9f15f1eb56dff63ce2bddedabed21e0c510f8f1f66ef96a9ccb7": {
+   "label": "no_answer",
+   "note": "says it will ask the specialist, and stops",
+   "source": "hand (03-multi-agent)"
+  },
+  "K5|11b8fed4e581c6a3b425edfe2369f0ccae454b0c33ca7cf091ee8ab1c64c6c61": {
+   "label": "no_answer",
+   "note": "asks the customer to run the get_invoices tool",
+   "source": "hand (03-multi-agent)"
+  },
+  "K5|c0ef44034e4cec2d755376db9f3135350760dfa889660cf1f73641f8f312b6e2": {
+   "label": "no_answer",
+   "note": "says the specialist could not answer; asks to try later",
+   "source": "hand (03-multi-agent)"
+  },
+  "K5|e8b1cfa8d53dd3b19e7a00beea5c0f972bb9ad633ad32edcc1777c5d67d20425": {
+   "label": "correct",
+   "note": "$15, INV-1003, 2026-11-05 (opens with commentary on the draft)",
+   "source": "hand (03-multi-agent)"
+  },
+  "K5|1ccfde6764dd5744ea89688af8edbac440ae63b46b21e5b24037858278984fbf": {
+   "label": "correct",
+   "note": "$15, November 5 (commentary to the drafter: \"Please correct the draft and resend it\")",
+   "source": "hand (03-multi-agent)"
+  },
+  "K6|fecc8792ff546da3f5661c8cb06cac82892f881787a46e0efd598360f9787d41": {
+   "label": "incorrect",
+   "note": "30 days, but adds that refunds are processed within 30 days of purchase (not in the help center)",
+   "source": "hand (03-multi-agent)"
+  },
+  "K6|c446a45f32c5fb39ab72d9441e81907ce1e8e5cc0c7ec77ea5ef24c359be27d1": {
+   "label": "correct",
+   "note": "30 days of purchase",
+   "source": "hand (03-multi-agent)"
+  },
+  "K6|7966316c78330fefe9aea2ffdb3a9c7fc85eb1c878577059892f5db716f4bfd4": {
+   "label": "incorrect",
+   "note": "30 days, but says approved refunds are processed within the same timeframe (not in the help center)",
+   "source": "hand (03-multi-agent)"
+  },
+  "K6|2b4436da33a4ae2e802a9ceb42c8f4783937bd36683221b6cdacae7864d6e00a": {
+   "label": "incorrect",
+   "note": "lists invoices; gives INV-1002's deadline as INV-1003's; never the 30-day policy",
+   "source": "hand (03-multi-agent)"
+  },
+  "K6|baed84a6372352b878e93bb7154cf32a9d2c01e882a41d61d5114d1a7bbc2525": {
+   "label": "incorrect",
+   "note": "dates INV-1002 November 5; never the 30-day policy",
+   "source": "hand (03-multi-agent)"
+  },
+  "K7|416bd4bef5a59d8c8591b97c9180af3a0fd006ab438a539c2ccca8f5ce935891": {
+   "label": "correct",
+   "note": "$25 per month",
+   "source": "hand (03-multi-agent)"
+  },
+  "K7|21801d7d479da6225a5ba57891ff0f937fcaf739d21ff729b5ed589dc1777376": {
+   "label": "correct",
+   "note": "$25 per month",
+   "source": "hand (03-multi-agent)"
+  },
+  "K7|026f3a9ca54674cc2e83fc0a42fe62386397431b94984493275524a82cb3e710": {
+   "label": "correct",
+   "note": "'ARDUE', then $25 per month in capitals",
+   "source": "hand (03-multi-agent)"
+  },
+  "K7|b5e4af4948cae71b8ff7cf7dc32916073b531252338108ddb96e41fd784175b9": {
+   "label": "correct",
+   "note": "$25 per month from the help center; then talks about the customer in the third person and announces a check",
+   "source": "hand (03-multi-agent)"
+  },
+  "K8|69bfa40f9a107819f2636240a4a259e340b53855d9bad2bc6b3dcf59bab4db5a": {
+   "label": "incorrect",
+   "note": "says to contact support to cancel",
+   "source": "hand (03-multi-agent)"
+  },
+  "K8|f0d42de4ad9c598c30f6c5a2625db9e247728720ea2373b8f14ac171a06a43f9": {
+   "label": "incorrect",
+   "note": "answers about refunds; says INV-1002 is the only refundable invoice",
+   "source": "hand (03-multi-agent)"
+  },
+  "K8|46f41bcc6155dfea00ddd0c182874e424f2253396698c5a41f401d0cc1076a32": {
+   "label": "incorrect",
+   "note": "invents steps (mark the add-on as completed); says to contact support",
+   "source": "hand (03-multi-agent)"
+  },
+  "K8|e4e788d44187af073341bc4ebcd0f13d2c008f3b6730aaf15647afc4f4ea2eb8": {
+   "label": "correct",
+   "note": "Settings > Billing > Cancel",
+   "source": "hand (03-multi-agent)"
+  },
+  "K8|89fafa291cbcc986b3db0c5c0922a3ea908f2412e5ea7a72f086a6dff94b7bf1": {
+   "label": "incorrect",
+   "note": "commentary to the drafter; says to let it expire or contact support",
+   "source": "hand (03-multi-agent)"
+  },
+  "K8|b66b4fdad30c4aba87ac3089f71cded543221617ee6c004547767b9ccfa50fe5": {
+   "label": "incorrect",
+   "note": "commentary to the drafter; dates the seats October 5; vague settings steps",
+   "source": "hand (03-multi-agent)"
+  },
+  "O1|e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
+   "label": "no_answer",
+   "note": "no reply (manager step limit)",
+   "source": "hand (03-multi-agent)"
+  },
+  "O1|d236437138aee6c27034b7c28a387399813d45a6aaa2e00fcc6365719a21bcc0": {
+   "label": "no_answer",
+   "note": "asks the customer for details",
+   "source": "hand (03-multi-agent)"
+  },
+  "O1|26a3b9ebdb512635ce4b30b9a3a6ac5adad8cd880872f9a5ea8bd62f22a1bea7": {
+   "label": "incorrect",
+   "note": "calls INV-1003 ($15) October's invoice and a 'reduction'",
+   "source": "hand (03-multi-agent)"
+  },
+  "O1|dd8f42572688918a4370b38a6720270f33252ca4c2dcdc52ad9f5051e2385111": {
+   "label": "incorrect",
+   "note": "calls INV-1002 the extra seats add-on; offers a refund; never finds the double charge",
+   "source": "hand (03-multi-agent)"
+  },
+  "O1|a6dac15de0c5855fb351f33660d8f28ad1160b031ceda99905e93020e2f611f5": {
+   "label": "incorrect",
+   "note": "'APOORV,', contradicts itself on refundability, ends with '[Your Name]'",
+   "source": "hand (03-multi-agent)"
+  },
+  "O1|049217a0cb0e4f69dfbc5e72f7d9cf29a166446b7c9b98db5b115f1950056ed9": {
+   "label": "incorrect",
+   "note": "'Approve', then a reply saying INV-1002 was paid on October 28 (declined that day; charged twice on the 29th)",
+   "source": "hand (03-multi-agent)"
+  },
+  "O1|2b6386424bbee4b9f411d8bd8619c16b61e316b1a060ee1e2c8c394bd1896995": {
+   "label": "incorrect",
+   "note": "commentary to the drafter; speculates the add-on payment took precedence",
+   "source": "hand (03-multi-agent)"
+  },
+  "O2|50d5ef0c7ce8eda2da5832c67199752db2113fa01e1d81da401d20d78ad85c9f": {
+   "label": "no_answer",
+   "note": "names INV-1003 and asks the customer to check",
+   "source": "hand (03-multi-agent)"
+  },
+  "O2|13fe6eb56b66fce736e534c9c49574a091e65f9d4dce05c4632d7b99061ca81b": {
+   "label": "incorrect",
+   "note": "says the $15 was likely for a subscription, possibly unexpected",
+   "source": "hand (03-multi-agent)"
+  },
+  "O2|980fb4fe0a163e8ec2faf5517b06b0be4bb040e0940520c7e320e3b4b386e645": {
+   "label": "no_answer",
+   "note": "asks the customer to ask the specialist",
+   "source": "hand (03-multi-agent)"
+  },
+  "O2|5287552f2546027984953104686f39958245878f763fa1412f3b5dc8c5bbcbbb": {
+   "label": "incorrect",
+   "note": "invents a failed payment on INV-1003 being retried",
+   "source": "hand (03-multi-agent)"
+  },
+  "O2|528e6d7b74b9e9dee787d75c81ca364fdbaa002eff540e17000e43ae8e3d5be8": {
+   "label": "incorrect",
+   "note": "commentary to the drafter; repeats 'charged the invoice twice'; ends 'Please review and approve.'",
+   "source": "hand (03-multi-agent)"
+  },
+  "O3|b769bb10e9048b2c84aa141f06405fdb59f680a3d68509037452c6065226d56e": {
+   "label": "no_answer",
+   "note": "says the specialist could not find refund information; asks to ask again",
+   "source": "hand (03-multi-agent)"
+  },
+  "O3|39e6e66e44d8af774e0bc586cc51f81a6ec3569641d9a5edcf7b58c1c67ba23e": {
+   "label": "incorrect",
+   "note": "says no refunds, then lists PAY-5002; says $75 for INV-1002",
+   "source": "hand (03-multi-agent)"
+  },
+  "O3|e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
+   "label": "no_answer",
+   "note": "no reply (manager step limit)",
+   "source": "hand (03-multi-agent)"
+  },
+  "O3|da92a9abbd8a57c44165d779a855d35c38f85458694ff300fceaa5b231c0062f": {
+   "label": "correct",
+   "note": "shows INV-0998 refunded (opens with commentary on the draft)",
+   "source": "hand (03-multi-agent)"
+  },
+  "O3|bc6d772b091d94ee1dcd0c32b811f3c5266618c102aa276bfa806248bacf573b": {
+   "label": "incorrect",
+   "note": "about INV-1003; dates it October 28; contradicts itself",
+   "source": "hand (03-multi-agent)"
+  },
+  "O3|241de456517e312d7d3725871314868faafdc6ee9872df529f0a660c432262b0": {
+   "label": "incorrect",
+   "note": "drops INV-0998: never says anything was refunded",
+   "source": "hand (03-multi-agent)"
+  },
+  "O4|e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855": {
+   "label": "no_answer",
+   "note": "no reply (manager step limit)",
+   "source": "hand (03-multi-agent)"
+  },
+  "O4|31d59ba39d1a6efb8e70494dfd662c0631dc08127ddf0458a2b74acc30f8dd74": {
+   "label": "incorrect",
+   "note": "nothing owed, but says there were no declined transactions in October",
+   "source": "hand (03-multi-agent)"
+  },
+  "O4|1a26134542542bb18dc0c5128e019ef07c049585fc3435bd8a9cf9a4881a90cb": {
+   "label": "incorrect",
+   "note": "reverses the payments: October 28 charged, October 29 declined",
+   "source": "hand (03-multi-agent)"
+  },
+  "O4|c6a4632a7b394d90affca9ebc31ea3a3a3c167da24ed6e28935a8b3589fe6cef": {
+   "label": "incorrect",
+   "note": "nothing owed, but reverses the payments (October 28 charged, 29 declined)",
+   "source": "hand (03-multi-agent)"
+  },
+  "O4|6e3d5196aaaeb5ba275252f3756986b506aab959030a84af9ac905afc6cbe70c": {
+   "label": "incorrect",
+   "note": "commentary to the drafter; says $75 is owed",
+   "source": "hand (03-multi-agent)"
+  },
+  "O4|eb6ef7090391b5e1e56eb4d3857630c18c2e3afd69c25e60c250bca173a181ab": {
+   "label": "incorrect",
+   "note": "commentary to the drafter; says $25 is owed",
+   "source": "hand (03-multi-agent)"
+  }
+ }
+}
