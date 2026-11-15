@@ -1,6 +1,6 @@
 # 03 · Multi-agent: what does a second agent add?
 
-Companion demo for **Article #25, "Single-Agent vs Multi-Agent Systems"** on [snehalagrawal.com](https://snehalagrawal.com/articles/) (not published yet; this README will link to it when it is).
+Companion demo for **Article #25, ["Single-Agent vs Multi-Agent Systems: What Does Another Agent Add?"](https://snehalagrawal.com/articles/single-agent-vs-multi-agent-systems/)** on snehalagrawal.com.
 
 The same support assistant from [`02-agentic-workflows`](../02-agentic-workflows/) (Article #24) answers the same twelve questions three ways: as one agent, as a manager that delegates to two specialist agents, and as one agent whose draft is checked by a reviewer agent. The question isn't whether more agents are better. It's what capability each extra agent adds, and whether that is worth another context, another decision-maker, another handoff, and more model calls.
 
