@@ -1,0 +1,159 @@
+{
+ "ollama": "0.40.16",
+ "model": "qwen2.5:3b",
+ "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+ "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+ "max_model_calls_per_conversation": 5,
+ "max_tokens": 1000,
+ "sampling": "Ollama defaults, seed = run seed for every call",
+ "frozen_sha256": {
+  "account.json": "c7f7d19fb662e58702d353348d1e0d200206ba3878d73dfc4e6a2ebaf53a0607",
+  "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+  "prompt.json": "65bf1bc99b33faa224786cfa4b0589de1fb0c9dcbfd2f2dd29412068462c7070",
+  "conversations.json": "fbd63a5b71032376be7ca6bdf6392c44068a0e178020d4a79c32731aa4d8d3c2",
+  "questions.json": "8cdd259a1558f06c5c49a9e121b5e9b2c7119e230bb16e41e5fff853bd595bbf",
+  "memory.json": "d71b2d91794bbc54d7ebe2b9aaf5ab946f52c51239ef69cf6498b6df4653910e",
+  "evaluation.json": "dd21b7909069b149a7818653a3246d3fe420cc37319a5375ae6fccfcd7511ce3"
+ },
+ "code_sha256": {
+  "systems.py": "4a5b699736265018bab2e2c5bde691c13cc012ee8c194492a0af72b84c2437f2",
+  "tools.py": "c8b21c43efc66bafb39b73e1f00076809a0aa709b68db013aaae815a5a9a8f69",
+  "llm.py": "f4e7733c164915579855568150fae46b3d4514d3053b552811c4520b927aa401",
+  "run.py": "1bd99f855cf18924d1e8fe1b390e2b8807d64d94293792d6b5aee0205d97e7a1"
+ },
+ "started_utc": "2026-11-15T15:16:11Z"
+}
+memory N seed 1: 0 creation call(s), 0 characters, 0.0 s
+memory T seed 1: 0 creation call(s), 1277 characters, 0.0 s
+memory S seed 1: 3 creation call(s), 579 characters, 1.9 s
+memory K seed 1: 3 creation call(s), 1173 characters, 4.0 s
+memory N seed 2: 0 creation call(s), 0 characters, 0.0 s
+memory T seed 2: 0 creation call(s), 1277 characters, 0.0 s
+memory S seed 2: 3 creation call(s), 526 characters, 1.5 s
+memory K seed 2: 3 creation call(s), 1406 characters, 3.9 s
+memory N seed 3: 0 creation call(s), 0 characters, 0.0 s
+memory T seed 3: 0 creation call(s), 1277 characters, 0.0 s
+memory S seed 3: 3 creation call(s), 515 characters, 1.5 s
+memory K seed 3: 3 creation call(s), 1293 characters, 4.0 s
+   1/120  N  A1  seed 1  answer  1 call(s) []  1.1 s
+   2/120  N  A1  seed 2  answer  1 call(s) []  0.5 s
+   3/120  N  A1  seed 3  answer  1 call(s) []  0.4 s
+   4/120  N  A2  seed 1  answer  1 call(s) []  0.7 s
+   5/120  N  A2  seed 2  answer  1 call(s) []  0.9 s
+   6/120  N  A2  seed 3  answer  2 call(s) ['get_payments']  3.1 s
+   7/120  N  B1  seed 1  answer  2 call(s) ['get_payments']  3.4 s
+   8/120  N  B1  seed 2  answer  2 call(s) ['get_payments']  2.6 s
+   9/120  N  B1  seed 3  answer  2 call(s) ['get_payments']  2.7 s
+  10/120  N  B2  seed 1  answer  1 call(s) []  0.6 s
+  11/120  N  B2  seed 2  answer  1 call(s) []  0.8 s
+  12/120  N  B2  seed 3  answer  1 call(s) []  0.6 s
+  13/120  N  C1  seed 1  answer  2 call(s) ['get_plan_history']  1.6 s
+  14/120  N  C1  seed 2  answer  2 call(s) ['get_plan_history']  2.3 s
+  15/120  N  C1  seed 3  answer  2 call(s) ['get_invoices']  1.7 s
+  16/120  N  C2  seed 1  answer  1 call(s) []  1.1 s
+  17/120  N  C2  seed 2  answer  2 call(s) ['get_plan_history']  1.9 s
+  18/120  N  C2  seed 3  answer  2 call(s) ['get_plan_history']  3.3 s
+  19/120  N  D1  seed 1  answer  2 call(s) ['get_invoices']  1.7 s
+  20/120  N  D1  seed 2  answer  2 call(s) ['get_invoices']  1.0 s
+  21/120  N  D1  seed 3  answer  2 call(s) ['get_invoices']  1.0 s
+  22/120  N  D2  seed 1  answer  2 call(s) ['get_refund_status']  1.0 s
+  23/120  N  D2  seed 2  answer  2 call(s) ['get_refund_status']  0.9 s
+  24/120  N  D2  seed 3  answer  2 call(s) ['get_refund_status']  1.1 s
+  25/120  N  E1  seed 1  answer  1 call(s) []  0.6 s
+  26/120  N  E1  seed 2  answer  1 call(s) []  0.3 s
+  27/120  N  E1  seed 3  answer  1 call(s) []  0.4 s
+  28/120  N  E2  seed 1  answer  2 call(s) ['get_plan_history']  1.0 s
+  29/120  N  E2  seed 2  answer  3 call(s) ['get_plan_history', 'get_invoices']  3.5 s
+  30/120  N  E2  seed 3  answer  2 call(s) ['get_plan_history']  1.3 s
+  31/120  T  A1  seed 1  answer  1 call(s) []  1.2 s
+  32/120  T  A1  seed 2  answer  1 call(s) []  0.3 s
+  33/120  T  A1  seed 3  answer  1 call(s) []  0.1 s
+  34/120  T  A2  seed 1  answer  2 call(s) ['get_plan_history']  1.2 s
+  35/120  T  A2  seed 2  answer  2 call(s) ['get_invoices']  1.4 s
+  36/120  T  A2  seed 3  answer  3 call(s) ['get_invoices', 'get_payments']  5.2 s
+  37/120  T  B1  seed 1  answer  2 call(s) ['get_refund_status']  2.9 s
+  38/120  T  B1  seed 2  answer  2 call(s) ['get_payments']  2.6 s
+  39/120  T  B1  seed 3  answer  2 call(s) ['get_payments']  2.9 s
+  40/120  T  B2  seed 1  answer  2 call(s) ['get_plan_history']  1.6 s
+  41/120  T  B2  seed 2  answer  2 call(s) ['get_plan_history']  1.6 s
+  42/120  T  B2  seed 3  answer  2 call(s) ['get_plan_history']  0.9 s
+  43/120  T  C1  seed 1  answer  2 call(s) ['get_invoices']  4.4 s
+  44/120  T  C1  seed 2  answer  3 call(s) ['get_invoices', 'get_refund_status']  4.9 s
+  45/120  T  C1  seed 3  answer  2 call(s) ['get_invoices']  1.9 s
+  46/120  T  C2  seed 1  answer  2 call(s) ['get_plan_history']  2.1 s
+  47/120  T  C2  seed 2  answer  2 call(s) ['get_plan_history']  1.3 s
+  48/120  T  C2  seed 3  answer  3 call(s) ['get_plan_history', 'get_plan_history']  2.0 s
+  49/120  T  D1  seed 1  answer  2 call(s) ['get_invoices']  1.3 s
+  50/120  T  D1  seed 2  answer  1 call(s) []  0.7 s
+  51/120  T  D1  seed 3  answer  2 call(s) ['get_invoices']  1.5 s
+  52/120  T  D2  seed 1  answer  2 call(s) ['get_refund_status']  1.4 s
+  53/120  T  D2  seed 2  answer  2 call(s) ['get_refund_status']  1.2 s
+  54/120  T  D2  seed 3  answer  2 call(s) ['get_refund_status']  1.3 s
+  55/120  T  E1  seed 1  answer  1 call(s) []  0.3 s
+  56/120  T  E1  seed 2  answer  1 call(s) []  0.4 s
+  57/120  T  E1  seed 3  answer  1 call(s) []  0.4 s
+  58/120  T  E2  seed 1  answer  1 call(s) []  0.4 s
+  59/120  T  E2  seed 2  answer  2 call(s) ['get_invoices']  2.1 s
+  60/120  T  E2  seed 3  answer  2 call(s) ['get_invoices']  1.9 s
+  61/120  S  A1  seed 1  answer  1 call(s) []  1.4 s
+  62/120  S  A1  seed 2  answer  1 call(s) []  1.4 s
+  63/120  S  A1  seed 3  answer  1 call(s) []  1.1 s
+  64/120  S  A2  seed 1  answer  2 call(s) ['get_payments']  1.7 s
+  65/120  S  A2  seed 2  answer  2 call(s) ['get_invoices']  1.7 s
+  66/120  S  A2  seed 3  answer  2 call(s) ['search_help_center']  1.4 s
+  67/120  S  B1  seed 1  answer  2 call(s) ['get_invoices']  3.8 s
+  68/120  S  B1  seed 2  answer  2 call(s) ['get_invoices']  1.8 s
+  69/120  S  B1  seed 3  answer  2 call(s) ['get_invoices']  1.2 s
+  70/120  S  B2  seed 1  answer  3 call(s) ['get_invoices', 'get_plan_history']  3.8 s
+  71/120  S  B2  seed 2  answer  2 call(s) ['get_plan_history']  0.9 s
+  72/120  S  B2  seed 3  answer  2 call(s) ['get_plan_history']  2.1 s
+  73/120  S  C1  seed 1  answer  3 call(s) ['get_invoices', 'get_invoices']  3.6 s
+  74/120  S  C1  seed 2  answer  2 call(s) ['get_refund_status']  2.8 s
+  75/120  S  C1  seed 3  answer  2 call(s) ['get_invoices']  2.0 s
+  76/120  S  C2  seed 1  answer  2 call(s) ['get_plan_history']  1.1 s
+  77/120  S  C2  seed 2  answer  2 call(s) ['get_invoices']  1.5 s
+  78/120  S  C2  seed 3  answer  2 call(s) ['get_plan_history']  1.8 s
+  79/120  S  D1  seed 1  answer  2 call(s) ['get_invoices']  1.3 s
+  80/120  S  D1  seed 2  answer  2 call(s) ['get_invoices']  1.1 s
+  81/120  S  D1  seed 3  answer  2 call(s) ['get_invoices']  1.3 s
+  82/120  S  D2  seed 1  answer  2 call(s) ['get_refund_status']  1.1 s
+  83/120  S  D2  seed 2  answer  2 call(s) ['get_refund_status']  1.2 s
+  84/120  S  D2  seed 3  answer  2 call(s) ['get_refund_status']  1.0 s
+  85/120  S  E1  seed 1  answer  1 call(s) []  0.5 s
+  86/120  S  E1  seed 2  answer  1 call(s) []  0.8 s
+  87/120  S  E1  seed 3  answer  1 call(s) []  0.5 s
+  88/120  S  E2  seed 1  answer  2 call(s) ['get_invoices']  2.5 s
+  89/120  S  E2  seed 2  answer  2 call(s) ['get_invoices']  1.1 s
+  90/120  S  E2  seed 3  answer  2 call(s) ['get_invoices']  1.4 s
+  91/120  K  A1  seed 1  answer  1 call(s) []  1.5 s
+  92/120  K  A1  seed 2  answer  1 call(s) []  1.1 s
+  93/120  K  A1  seed 3  answer  1 call(s) []  1.4 s
+  94/120  K  A2  seed 1  answer  2 call(s) ['get_payments']  1.7 s
+  95/120  K  A2  seed 2  answer  2 call(s) ['search_help_center']  1.3 s
+  96/120  K  A2  seed 3  answer  2 call(s) ['get_plan_history']  0.9 s
+  97/120  K  B1  seed 1  answer  3 call(s) ['get_invoices', 'get_refund_status']  4.6 s
+  98/120  K  B1  seed 2  answer  2 call(s) ['get_refund_status']  1.2 s
+  99/120  K  B1  seed 3  answer  2 call(s) ['get_invoices']  1.6 s
+ 100/120  K  B2  seed 1  answer  1 call(s) []  0.9 s
+ 101/120  K  B2  seed 2  answer  1 call(s) []  0.8 s
+ 102/120  K  B2  seed 3  answer  2 call(s) ['get_plan_history']  0.8 s
+ 103/120  K  C1  seed 1  answer  2 call(s) ['get_refund_status']  2.5 s
+ 104/120  K  C1  seed 2  answer  2 call(s) ['get_refund_status']  3.5 s
+ 105/120  K  C1  seed 3  answer  2 call(s) ['get_plan_history']  2.2 s
+ 106/120  K  C2  seed 1  answer  2 call(s) ['get_plan_history']  1.2 s
+ 107/120  K  C2  seed 2  answer  2 call(s) ['get_invoices']  1.5 s
+ 108/120  K  C2  seed 3  answer  2 call(s) ['get_invoices']  1.0 s
+ 109/120  K  D1  seed 1  answer  2 call(s) ['get_invoices']  1.5 s
+ 110/120  K  D1  seed 2  answer  2 call(s) ['get_invoices']  2.7 s
+ 111/120  K  D1  seed 3  answer  3 call(s) ['get_invoices', 'get_invoices']  2.7 s
+ 112/120  K  D2  seed 1  answer  2 call(s) ['get_refund_status']  1.1 s
+ 113/120  K  D2  seed 2  answer  2 call(s) ['get_refund_status']  1.3 s
+ 114/120  K  D2  seed 3  answer  2 call(s) ['get_refund_status']  1.1 s
+ 115/120  K  E1  seed 1  answer  1 call(s) []  0.4 s
+ 116/120  K  E1  seed 2  answer  1 call(s) []  1.0 s
+ 117/120  K  E1  seed 3  answer  1 call(s) []  1.0 s
+ 118/120  K  E2  seed 1  answer  1 call(s) []  1.0 s
+ 119/120  K  E2  seed 2  answer  2 call(s) ['get_invoices']  2.1 s
+ 120/120  K  E2  seed 3  answer  2 call(s) ['get_invoices']  2.1 s
+
+120 conversations in 209 s (including memory creation), saved to results-qwen2.5_3b.jsonl. Model unloaded.

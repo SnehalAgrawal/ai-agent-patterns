@@ -1,0 +1,562 @@
+[
+ {
+  "design": "K",
+  "seed": 1,
+  "block": "Notes from your earlier conversations with this customer (JSON, one object per conversation date):\n{\n \"2026-10-30\": {\n  \"preferences\": [\n   \"email communication only\"\n  ],\n  \"commitments\": [\n   \"duplicate charge case CASE-311 opened\",\n   \"refund of $25 pending\"\n  ],\n  \"open_items\": [\n   \"duplicate charge not resolved\"\n  ],\n  \"facts\": [\n   \"Invoice INV-1002 for $25 charged twice\",\n   \"Date of double charge: 2026-10-29\",\n   \"Refund pending for $25\"\n  ]\n },\n \"2026-11-06\": {\n  \"preferences\": [\n   \"remove one seat next month\"\n  ],\n  \"commitments\": [],\n  \"open_items\": [\n   \"Why was I charged $15 yesterday? I didn't buy anything.\"\n  ],\n  \"facts\": [\n   \"invoice INV-1003 charged $15\",\n   \"extra seats added on 2026-11-05\",\n   \"two extra seats added to the plan\",\n   \"cost $7.50 per seat per month\",\n   \"bill for full amount on the day they're added\",\n   \"customer will remove one of the seats next month\"\n  ]\n },\n \"2026-11-10\": {\n  \"preferences\": [\n   \"refund deadline reminder\"\n  ],\n  \"commitments\": [\n   \"refunds can be requested until 2026-11-27\"\n  ],\n  \"open_items\": [],\n  \"facts\": [\n   \"INV-1002 invoice date is 2026-11-01\",\n   \"refund deadline is 2026-11-27\"\n  ]\n }\n}",
+  "items": [
+   {
+    "date": "2026-10-30",
+    "raw": "{\n  \"preferences\": [\"email communication only\"],\n  \"commitments\": [\"duplicate charge case CASE-311 opened\", \"refund of $25 pending\"],\n  \"open_items\": [\"duplicate charge not resolved\"],\n  \"facts\": [\"Invoice INV-1002 for $25 charged twice\", \"Date of double charge: 2026-10-29\", \"Refund pending for $25\"]\n}",
+    "error": null,
+    "output": {
+     "preferences": [
+      "email communication only"
+     ],
+     "commitments": [
+      "duplicate charge case CASE-311 opened",
+      "refund of $25 pending"
+     ],
+     "open_items": [
+      "duplicate charge not resolved"
+     ],
+     "facts": [
+      "Invoice INV-1002 for $25 charged twice",
+      "Date of double charge: 2026-10-29",
+      "Refund pending for $25"
+     ]
+    },
+    "parse_failed": false
+   },
+   {
+    "date": "2026-11-06",
+    "raw": "{\n  \"preferences\": [\"remove one seat next month\"],\n  \"commitments\": [],\n  \"open_items\": [\n    \"Why was I charged $15 yesterday? I didn't buy anything.\"\n  ],\n  \"facts\": [\n    \"invoice INV-1003 charged $15\",\n    \"extra seats added on 2026-11-05\",\n    \"two extra seats added to the plan\",\n    \"cost $7.50 per seat per month\",\n    \"bill for full amount on the day they're added\",\n    \"customer will remove one of the seats next month\"\n  ]\n}",
+    "error": null,
+    "output": {
+     "preferences": [
+      "remove one seat next month"
+     ],
+     "commitments": [],
+     "open_items": [
+      "Why was I charged $15 yesterday? I didn't buy anything."
+     ],
+     "facts": [
+      "invoice INV-1003 charged $15",
+      "extra seats added on 2026-11-05",
+      "two extra seats added to the plan",
+      "cost $7.50 per seat per month",
+      "bill for full amount on the day they're added",
+      "customer will remove one of the seats next month"
+     ]
+    },
+    "parse_failed": false
+   },
+   {
+    "date": "2026-11-10",
+    "raw": "{\n \"preferences\": [\"refund deadline reminder\"], \"commitments\": [\"refunds can be requested until 2026-11-27\"], \"open_items\": [], \"facts\": [\"INV-1002 invoice date is 2026-11-01\", \"refund deadline is 2026-11-27\"]\n}",
+    "error": null,
+    "output": {
+     "preferences": [
+      "refund deadline reminder"
+     ],
+     "commitments": [
+      "refunds can be requested until 2026-11-27"
+     ],
+     "open_items": [],
+     "facts": [
+      "INV-1002 invoice date is 2026-11-01",
+      "refund deadline is 2026-11-27"
+     ]
+    },
+    "parse_failed": false
+   }
+  ],
+  "calls": [
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 272,
+    "cached_tokens": 4,
+    "output_tokens": 93,
+    "seconds": 1.319,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 237,
+    "cached_tokens": 120,
+    "output_tokens": 132,
+    "seconds": 1.615,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 220,
+    "cached_tokens": 122,
+    "output_tokens": 80,
+    "seconds": 1.019,
+    "error": null,
+    "tool_calls": 0
+   }
+  ],
+  "seconds": 3.961,
+  "other_models_loaded": [],
+  "block_sha256": "b1985dbef1e8175b8a54c60de2e2d584415c29cf318f8d2332acad2527a7d13d"
+ },
+ {
+  "design": "K",
+  "seed": 2,
+  "block": "Notes from your earlier conversations with this customer (JSON, one object per conversation date):\n{\n \"2026-10-30\": {\n  \"preferences\": [\n   \"contact by email only\"\n  ],\n  \"commitments\": [],\n  \"open_items\": [\n   \"duplicate charge for October\"\n  ],\n  \"facts\": [\n   \"customer's invoice (INV-1002) amount: $25\",\n   \"customer's original card was charged twice (PAY-5005 and PAY-5006)\",\n   \"customer's refund is pending for $25\",\n   \"refund processing time: up to 5 business days\"\n  ]\n },\n \"2026-11-06\": {\n  \"preferences\": [],\n  \"commitments\": [\n   \"Customer agrees to remove one of the seats next month.\",\n   \"Customer acknowledges the $15 charge on invoice INV-1003 for two extra seats added on 2026-11-05.\",\n   \"Customer agrees to handle the removal of the seat next billing cycle.\"\n  ],\n  \"open_items\": [\n   \"The $15 charge for the extra seats needs to be acknowledged and addressed.\",\n   \"The removal of the seat is not an immediate action and is to be handled in the next billing cycle.\"\n  ],\n  \"facts\": [\n   \"Invoice INV-1003 is for the extra seats added on 2026-11-05.\",\n   \"Extra seats cost $7.50 per seat per month.\",\n   \"The customer agrees to remove one seat next month.\"\n  ]\n },\n \"2026-11-10\": {\n  \"preferences\": [\n   \"reminder of refund deadline\"\n  ],\n  \"commitments\": [\n   \"refunded until 2026-11-27\"\n  ],\n  \"open_items\": [],\n  \"facts\": [\n   \"INV-1002\",\n   \"refund deadline is 2026-11-27\"\n  ]\n }\n}",
+  "items": [
+   {
+    "date": "2026-10-30",
+    "raw": "{\n  \"preferences\": [\"contact by email only\"],\n  \"commitments\": [],\n  \"open_items\": [\n    \"duplicate charge for October\"\n  ],\n  \"facts\": [\n    \"customer's invoice (INV-1002) amount: $25\",\n    \"customer's original card was charged twice (PAY-5005 and PAY-5006)\",\n    \"customer's refund is pending for $25\",\n    \"refund processing time: up to 5 business days\"\n  ]\n}",
+    "error": null,
+    "output": {
+     "preferences": [
+      "contact by email only"
+     ],
+     "commitments": [],
+     "open_items": [
+      "duplicate charge for October"
+     ],
+     "facts": [
+      "customer's invoice (INV-1002) amount: $25",
+      "customer's original card was charged twice (PAY-5005 and PAY-5006)",
+      "customer's refund is pending for $25",
+      "refund processing time: up to 5 business days"
+     ]
+    },
+    "parse_failed": false
+   },
+   {
+    "date": "2026-11-06",
+    "raw": "{\n  \"preferences\": [],\n  \"commitments\": [\n    \"Customer agrees to remove one of the seats next month.\",\n    \"Customer acknowledges the $15 charge on invoice INV-1003 for two extra seats added on 2026-11-05.\",\n    \"Customer agrees to handle the removal of the seat next billing cycle.\"\n  ],\n  \"open_items\": [\n    \"The $15 charge for the extra seats needs to be acknowledged and addressed.\",\n    \"The removal of the seat is not an immediate action and is to be handled in the next billing cycle.\"\n  ],\n  \"facts\": [\n    \"Invoice INV-1003 is for the extra seats added on 2026-11-05.\",\n    \"Extra seats cost $7.50 per seat per month.\",\n    \"The customer agrees to remove one seat next month.\"\n  ]\n}",
+    "error": null,
+    "output": {
+     "preferences": [],
+     "commitments": [
+      "Customer agrees to remove one of the seats next month.",
+      "Customer acknowledges the $15 charge on invoice INV-1003 for two extra seats added on 2026-11-05.",
+      "Customer agrees to handle the removal of the seat next billing cycle."
+     ],
+     "open_items": [
+      "The $15 charge for the extra seats needs to be acknowledged and addressed.",
+      "The removal of the seat is not an immediate action and is to be handled in the next billing cycle."
+     ],
+     "facts": [
+      "Invoice INV-1003 is for the extra seats added on 2026-11-05.",
+      "Extra seats cost $7.50 per seat per month.",
+      "The customer agrees to remove one seat next month."
+     ]
+    },
+    "parse_failed": false
+   },
+   {
+    "date": "2026-11-10",
+    "raw": "{\n \"preferences\": [\"reminder of refund deadline\"], \"commitments\": [\"refunded until 2026-11-27\"], \"open_items\": [], \"facts\": [\"INV-1002\", \"refund deadline is 2026-11-27\"]\n}",
+    "error": null,
+    "output": {
+     "preferences": [
+      "reminder of refund deadline"
+     ],
+     "commitments": [
+      "refunded until 2026-11-27"
+     ],
+     "open_items": [],
+     "facts": [
+      "INV-1002",
+      "refund deadline is 2026-11-27"
+     ]
+    },
+    "parse_failed": false
+   }
+  ],
+  "calls": [
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 272,
+    "cached_tokens": 271,
+    "output_tokens": 109,
+    "seconds": 1.177,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 237,
+    "cached_tokens": 236,
+    "output_tokens": 190,
+    "seconds": 2.035,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 220,
+    "cached_tokens": 219,
+    "output_tokens": 64,
+    "seconds": 0.716,
+    "error": null,
+    "tool_calls": 0
+   }
+  ],
+  "seconds": 3.938,
+  "other_models_loaded": [],
+  "block_sha256": "a9d7bfb6296e0922cdcc358ef54cc29f2dcbd75daab8955aa0262c2f31325dd8"
+ },
+ {
+  "design": "K",
+  "seed": 3,
+  "block": "Notes from your earlier conversations with this customer (JSON, one object per conversation date):\n{\n \"2026-10-30\": {\n  \"preferences\": [\n   \"contact by email only\"\n  ],\n  \"commitments\": [\n   \"CASE-311 opened for the duplicate charge\",\n   \"Refund of the extra $25 is currently pending\"\n  ],\n  \"open_items\": [\n   \"To be contacted by email only\"\n  ],\n  \"facts\": [\n   \"Invoice: INV-1002\",\n   \"Amount: $25\",\n   \"Duplicate charges: PAY-5005 and PAY-5006\",\n   \"Charge date: 2026-10-29\",\n   \"Refund pending: To be credited back to the original card in 5 business days\"\n  ]\n },\n \"2026-11-06\": {\n  \"preferences\": [],\n  \"commitments\": [\n   \"The colleague will remove one of the seats next month.\",\n   \"The $15 will be charged in full on the day it's added, which was 2026-11-05.\"\n  ],\n  \"open_items\": [\n   \"The $15 for the two extra seats still needs to be paid on 2026-11-05.\"\n  ],\n  \"facts\": [\n   \"INV-1003 was issued for the extra seats on 2026-11-05\",\n   \"Extra seats cost $7.50 per seat per month\",\n   \"The customer will remove one seat next month\"\n  ]\n },\n \"2026-11-10\": {\n  \"preferences\": [\n   \"reminder of refund deadline\"\n  ],\n  \"commitments\": [\n   \"Will do: INV-1002's refund deadline is 2026-11-27\"\n  ],\n  \"open_items\": [],\n  \"facts\": [\n   \"INV-1002\",\n   \"2026-11-10\",\n   \"2026-11-27\"\n  ]\n }\n}",
+  "items": [
+   {
+    "date": "2026-10-30",
+    "raw": "{\n  \"preferences\": [\"contact by email only\"],\n  \"commitments\": [\"CASE-311 opened for the duplicate charge\", \"Refund of the extra $25 is currently pending\"],\n  \"open_items\": [\"To be contacted by email only\"],\n  \"facts\": [\"Invoice: INV-1002\", \"Amount: $25\", \"Duplicate charges: PAY-5005 and PAY-5006\", \"Charge date: 2026-10-29\", \"Refund pending: To be credited back to the original card in 5 business days\"]\n}",
+    "error": null,
+    "output": {
+     "preferences": [
+      "contact by email only"
+     ],
+     "commitments": [
+      "CASE-311 opened for the duplicate charge",
+      "Refund of the extra $25 is currently pending"
+     ],
+     "open_items": [
+      "To be contacted by email only"
+     ],
+     "facts": [
+      "Invoice: INV-1002",
+      "Amount: $25",
+      "Duplicate charges: PAY-5005 and PAY-5006",
+      "Charge date: 2026-10-29",
+      "Refund pending: To be credited back to the original card in 5 business days"
+     ]
+    },
+    "parse_failed": false
+   },
+   {
+    "date": "2026-11-06",
+    "raw": "{\n  \"preferences\": [],\n  \"commitments\": [\n    \"The colleague will remove one of the seats next month.\",\n    \"The $15 will be charged in full on the day it's added, which was 2026-11-05.\"\n  ],\n  \"open_items\": [\n    \"The $15 for the two extra seats still needs to be paid on 2026-11-05.\"\n  ],\n  \"facts\": [\n    \"INV-1003 was issued for the extra seats on 2026-11-05\",\n    \"Extra seats cost $7.50 per seat per month\",\n    \"The customer will remove one seat next month\"\n  ]\n}",
+    "error": null,
+    "output": {
+     "preferences": [],
+     "commitments": [
+      "The colleague will remove one of the seats next month.",
+      "The $15 will be charged in full on the day it's added, which was 2026-11-05."
+     ],
+     "open_items": [
+      "The $15 for the two extra seats still needs to be paid on 2026-11-05."
+     ],
+     "facts": [
+      "INV-1003 was issued for the extra seats on 2026-11-05",
+      "Extra seats cost $7.50 per seat per month",
+      "The customer will remove one seat next month"
+     ]
+    },
+    "parse_failed": false
+   },
+   {
+    "date": "2026-11-10",
+    "raw": "{\n \"preferences\": [\"reminder of refund deadline\"], \"commitments\": [\"Will do: INV-1002's refund deadline is 2026-11-27\"], \"open_items\": [], \"facts\": [\"INV-1002\", \"2026-11-10\", \"2026-11-27\"]\n}",
+    "error": null,
+    "output": {
+     "preferences": [
+      "reminder of refund deadline"
+     ],
+     "commitments": [
+      "Will do: INV-1002's refund deadline is 2026-11-27"
+     ],
+     "open_items": [],
+     "facts": [
+      "INV-1002",
+      "2026-11-10",
+      "2026-11-27"
+     ]
+    },
+    "parse_failed": false
+   }
+  ],
+  "calls": [
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 272,
+    "cached_tokens": 271,
+    "output_tokens": 130,
+    "seconds": 1.4,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 237,
+    "cached_tokens": 236,
+    "output_tokens": 158,
+    "seconds": 1.695,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:K",
+    "finish_reason": "stop",
+    "input_tokens": 220,
+    "cached_tokens": 219,
+    "output_tokens": 82,
+    "seconds": 0.907,
+    "error": null,
+    "tool_calls": 0
+   }
+  ],
+  "seconds": 4.01,
+  "other_models_loaded": [],
+  "block_sha256": "3299a96cb78e493d6c8fabd937035f6cd53d1ba9655cd3f822d29ac8b4adad5c"
+ },
+ {
+  "design": "N",
+  "seed": 1,
+  "block": null,
+  "items": [],
+  "calls": [],
+  "seconds": 0.0,
+  "other_models_loaded": [],
+  "block_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ {
+  "design": "N",
+  "seed": 2,
+  "block": null,
+  "items": [],
+  "calls": [],
+  "seconds": 0.0,
+  "other_models_loaded": [],
+  "block_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ {
+  "design": "N",
+  "seed": 3,
+  "block": null,
+  "items": [],
+  "calls": [],
+  "seconds": 0.0,
+  "other_models_loaded": [],
+  "block_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+ },
+ {
+  "design": "S",
+  "seed": 1,
+  "block": "Summaries of your earlier conversations with this customer:\n\n[2026-10-30] The customer was charged twice for October ($25 total). Case CASE-311 was opened for the duplicate charge. The refund is pending and should be processed in 5 business days. Customer prefers to be contacted by email only.\n\n[2026-11-06] Customer was charged $15 for adding two extra seats to their plan on 2026-11-05. Each seat costs $7.50 per month and was billed in full. They will remove one seat next month.\n\n[2026-11-10] INV-1002's refund deadline is 2026-11-27. Reminder set for future communications.",
+  "items": [
+   {
+    "date": "2026-10-30",
+    "raw": "The customer was charged twice for October ($25 total). Case CASE-311 was opened for the duplicate charge. The refund is pending and should be processed in 5 business days. Customer prefers to be contacted by email only.",
+    "error": null,
+    "output": "The customer was charged twice for October ($25 total). Case CASE-311 was opened for the duplicate charge. The refund is pending and should be processed in 5 business days. Customer prefers to be contacted by email only."
+   },
+   {
+    "date": "2026-11-06",
+    "raw": "Customer was charged $15 for adding two extra seats to their plan on 2026-11-05. Each seat costs $7.50 per month and was billed in full. They will remove one seat next month.",
+    "error": null,
+    "output": "Customer was charged $15 for adding two extra seats to their plan on 2026-11-05. Each seat costs $7.50 per month and was billed in full. They will remove one seat next month."
+   },
+   {
+    "date": "2026-11-10",
+    "raw": "INV-1002's refund deadline is 2026-11-27. Reminder set for future communications.",
+    "error": null,
+    "output": "INV-1002's refund deadline is 2026-11-27. Reminder set for future communications."
+   }
+  ],
+  "calls": [
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 228,
+    "cached_tokens": 4,
+    "output_tokens": 49,
+    "seconds": 0.769,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 193,
+    "cached_tokens": 76,
+    "output_tokens": 52,
+    "seconds": 0.707,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 176,
+    "cached_tokens": 78,
+    "output_tokens": 29,
+    "seconds": 0.452,
+    "error": null,
+    "tool_calls": 0
+   }
+  ],
+  "seconds": 1.936,
+  "other_models_loaded": [],
+  "block_sha256": "fd876ba07c17818df8dd174ab61e85a8039835255c2fbcfa26a11cd19ed66e6c"
+ },
+ {
+  "design": "S",
+  "seed": 2,
+  "block": "Summaries of your earlier conversations with this customer:\n\n[2026-10-30] Invoice INV-1002 for October was charged twice on 2026-10-29. Case CASE-311 opened for duplicate charge. $25 refund pending, may take 5 business days. Customer prefers to be contacted by email only.\n\n[2026-11-06] Invoice INV-1003 for $15 was for adding two extra seats to your plan on 2026-11-05. Extra seats cost $7.50 each per month. The customer will remove one seat next month.\n\n[2026-11-10] INV-1002's refund deadline is 2026-11-27. Reminder sent.",
+  "items": [
+   {
+    "date": "2026-10-30",
+    "raw": "Invoice INV-1002 for October was charged twice on 2026-10-29. Case CASE-311 opened for duplicate charge. $25 refund pending, may take 5 business days. Customer prefers to be contacted by email only.",
+    "error": null,
+    "output": "Invoice INV-1002 for October was charged twice on 2026-10-29. Case CASE-311 opened for duplicate charge. $25 refund pending, may take 5 business days. Customer prefers to be contacted by email only."
+   },
+   {
+    "date": "2026-11-06",
+    "raw": "Invoice INV-1003 for $15 was for adding two extra seats to your plan on 2026-11-05. Extra seats cost $7.50 each per month. The customer will remove one seat next month.",
+    "error": null,
+    "output": "Invoice INV-1003 for $15 was for adding two extra seats to your plan on 2026-11-05. Extra seats cost $7.50 each per month. The customer will remove one seat next month."
+   },
+   {
+    "date": "2026-11-10",
+    "raw": "INV-1002's refund deadline is 2026-11-27. Reminder sent.",
+    "error": null,
+    "output": "INV-1002's refund deadline is 2026-11-27. Reminder sent."
+   }
+  ],
+  "calls": [
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 228,
+    "cached_tokens": 227,
+    "output_tokens": 59,
+    "seconds": 0.626,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 193,
+    "cached_tokens": 192,
+    "output_tokens": 55,
+    "seconds": 0.58,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 176,
+    "cached_tokens": 175,
+    "output_tokens": 26,
+    "seconds": 0.276,
+    "error": null,
+    "tool_calls": 0
+   }
+  ],
+  "seconds": 1.492,
+  "other_models_loaded": [],
+  "block_sha256": "d1aa2f7c40a597328ba05e611bb49d5be0b521dbba5463ce95c294170382c84f"
+ },
+ {
+  "design": "S",
+  "seed": 3,
+  "block": "Summaries of your earlier conversations with this customer:\n\n[2026-10-30] Invoice INV-1002 for October was charged twice on 2026-10-29. Duplicate charge case CASE-311 has been opened. Refund of $25 pending, expected 5 business days. Contact via email as requested.\n\n[2026-11-06] Invoice INV-1003 for $15 was for two extra seats added to your plan on 2026-11-05. Extra seats cost $7.50 each. You'll remove one seat next month.\n\n[2026-11-10] INV-1002's refund deadline is 2026-11-27. Reminder set for future contacts.",
+  "items": [
+   {
+    "date": "2026-10-30",
+    "raw": "Invoice INV-1002 for October was charged twice on 2026-10-29. Duplicate charge case CASE-311 has been opened. Refund of $25 pending, expected 5 business days. Contact via email as requested.",
+    "error": null,
+    "output": "Invoice INV-1002 for October was charged twice on 2026-10-29. Duplicate charge case CASE-311 has been opened. Refund of $25 pending, expected 5 business days. Contact via email as requested."
+   },
+   {
+    "date": "2026-11-06",
+    "raw": "Invoice INV-1003 for $15 was for two extra seats added to your plan on 2026-11-05. Extra seats cost $7.50 each. You'll remove one seat next month.",
+    "error": null,
+    "output": "Invoice INV-1003 for $15 was for two extra seats added to your plan on 2026-11-05. Extra seats cost $7.50 each. You'll remove one seat next month."
+   },
+   {
+    "date": "2026-11-10",
+    "raw": "INV-1002's refund deadline is 2026-11-27. Reminder set for future contacts.",
+    "error": null,
+    "output": "INV-1002's refund deadline is 2026-11-27. Reminder set for future contacts."
+   }
+  ],
+  "calls": [
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 228,
+    "cached_tokens": 227,
+    "output_tokens": 58,
+    "seconds": 0.619,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 193,
+    "cached_tokens": 192,
+    "output_tokens": 52,
+    "seconds": 0.552,
+    "error": null,
+    "tool_calls": 0
+   },
+   {
+    "role": "create:S",
+    "finish_reason": "stop",
+    "input_tokens": 176,
+    "cached_tokens": 175,
+    "output_tokens": 29,
+    "seconds": 0.308,
+    "error": null,
+    "tool_calls": 0
+   }
+  ],
+  "seconds": 1.49,
+  "other_models_loaded": [],
+  "block_sha256": "63f904333fd2fb46a71d7fcc2f0aee11942299643c9bcbf38f57024608174e1c"
+ },
+ {
+  "design": "T",
+  "seed": 1,
+  "block": "Transcripts of your earlier conversations with this customer:\n\n[2026-10-30]\nCustomer: I think I was charged twice for October. Can you check?\nAssistant: You're right. Your October invoice, INV-1002 ($25), was charged twice on 2026-10-29 (PAY-5005 and PAY-5006). I've opened case CASE-311 for the duplicate charge. The refund of the extra $25 is currently pending. It can take up to 5 business days to complete, and it goes back to your original card.\nCustomer: Thanks. Please contact me about this by email only, not by phone.\nAssistant: Noted: we'll contact you by email only.\n\n[2026-11-06]\nCustomer: Why was I charged $15 yesterday? I didn't buy anything.\nAssistant: The $15 is invoice INV-1003, for two extra seats added to your plan on 2026-11-05. Extra seats cost $7.50 per seat per month and are billed in full on the day they're added.\nCustomer: A colleague added those. I'll remove one of the seats next month.\nAssistant: Understood. Nothing changes until a seat is removed.\n\n[2026-11-10]\nCustomer: Until when can I still ask for a refund on my October invoice?\nAssistant: INV-1002 can be refunded until 2026-11-27, 30 days after its date.\nCustomer: Please remind me of that deadline next time I'm in touch.\nAssistant: Will do: INV-1002's refund deadline is 2026-11-27.",
+  "items": [],
+  "calls": [],
+  "seconds": 0.0,
+  "other_models_loaded": [],
+  "block_sha256": "806fa3d7bb77e1d2c214382143fe9ca675b96c57c2a83f68a035e75697814298"
+ },
+ {
+  "design": "T",
+  "seed": 2,
+  "block": "Transcripts of your earlier conversations with this customer:\n\n[2026-10-30]\nCustomer: I think I was charged twice for October. Can you check?\nAssistant: You're right. Your October invoice, INV-1002 ($25), was charged twice on 2026-10-29 (PAY-5005 and PAY-5006). I've opened case CASE-311 for the duplicate charge. The refund of the extra $25 is currently pending. It can take up to 5 business days to complete, and it goes back to your original card.\nCustomer: Thanks. Please contact me about this by email only, not by phone.\nAssistant: Noted: we'll contact you by email only.\n\n[2026-11-06]\nCustomer: Why was I charged $15 yesterday? I didn't buy anything.\nAssistant: The $15 is invoice INV-1003, for two extra seats added to your plan on 2026-11-05. Extra seats cost $7.50 per seat per month and are billed in full on the day they're added.\nCustomer: A colleague added those. I'll remove one of the seats next month.\nAssistant: Understood. Nothing changes until a seat is removed.\n\n[2026-11-10]\nCustomer: Until when can I still ask for a refund on my October invoice?\nAssistant: INV-1002 can be refunded until 2026-11-27, 30 days after its date.\nCustomer: Please remind me of that deadline next time I'm in touch.\nAssistant: Will do: INV-1002's refund deadline is 2026-11-27.",
+  "items": [],
+  "calls": [],
+  "seconds": 0.0,
+  "other_models_loaded": [],
+  "block_sha256": "806fa3d7bb77e1d2c214382143fe9ca675b96c57c2a83f68a035e75697814298"
+ },
+ {
+  "design": "T",
+  "seed": 3,
+  "block": "Transcripts of your earlier conversations with this customer:\n\n[2026-10-30]\nCustomer: I think I was charged twice for October. Can you check?\nAssistant: You're right. Your October invoice, INV-1002 ($25), was charged twice on 2026-10-29 (PAY-5005 and PAY-5006). I've opened case CASE-311 for the duplicate charge. The refund of the extra $25 is currently pending. It can take up to 5 business days to complete, and it goes back to your original card.\nCustomer: Thanks. Please contact me about this by email only, not by phone.\nAssistant: Noted: we'll contact you by email only.\n\n[2026-11-06]\nCustomer: Why was I charged $15 yesterday? I didn't buy anything.\nAssistant: The $15 is invoice INV-1003, for two extra seats added to your plan on 2026-11-05. Extra seats cost $7.50 per seat per month and are billed in full on the day they're added.\nCustomer: A colleague added those. I'll remove one of the seats next month.\nAssistant: Understood. Nothing changes until a seat is removed.\n\n[2026-11-10]\nCustomer: Until when can I still ask for a refund on my October invoice?\nAssistant: INV-1002 can be refunded until 2026-11-27, 30 days after its date.\nCustomer: Please remind me of that deadline next time I'm in touch.\nAssistant: Will do: INV-1002's refund deadline is 2026-11-27.",
+  "items": [],
+  "calls": [],
+  "seconds": 0.0,
+  "other_models_loaded": [],
+  "block_sha256": "806fa3d7bb77e1d2c214382143fe9ca675b96c57c2a83f68a035e75697814298"
+ }
+]

@@ -1,0 +1,677 @@
+{
+ "_comment": "Hand labels for every reply the customer got, keyed '<question>|<SHA-256 of the exact reply>', with the rules in data/evaluation.json: answer label, invented-memory flag, a short note, and for B1 the stale-memory sub-scores (change_noted is null where the old status wasn't available, i.e. design N) and for B2 the intention-as-action flag.",
+ "answers": {
+  "A1|4d1e4ee15b5d87532e4aac58521cbcb000c50145745c9f890a32cc823d7e54d7": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks for context"
+  },
+  "A1|1b7485aec88ae8d4a5a4de9b77fd2224ba1c2930951f547b911818ade58ff4cd": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks for context"
+  },
+  "A1|23367ed24e3519bd3a61ee4a42d691ad9b28f36487319f9677e442f0eb1e75f5": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks for context"
+  },
+  "A1|2eae5ff16e50f04e3c6135f6d542870dc1fb0a691aea5535c7c36ae718be551d": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "email only, but adds 'all communications about this issue have been handled via email' (never said)"
+  },
+  "A1|4911dc3c2e4ae57bf8e1f7d95d7e571ca4c626836a7e710f6b20f8100aaed5cd": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "email only"
+  },
+  "A1|03f84e8b40db2c055e24dfce33f126e9a1e630f8770e2ba17f724fae2ec1f379": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "email only"
+  },
+  "A1|68601ddf4d52c4579a80d8693094caa12760b3bcce1bb0a0ef220a50b0d8f7f0": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "says the customer asked for CASE-311 to be opened (the assistant opened it)"
+  },
+  "A1|54705fb883d79ce8bb9ad9eb6220b4edc19a2758b3311df1cb8a41ba1347e147": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "email (and CASE-311)"
+  },
+  "A1|aaad0058f40fdd2e2cbcb57cc1665799b5644fa510c82db1844683115207ca9c": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks how the customer asked to be contacted"
+  },
+  "A1|f5c07d88b7de89251e0b6f61a6fc920d16f79ac7d8fa64e2c5849c1af05fe384": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks for context"
+  },
+  "A1|477fd42567d991cdab8daaa47b1021d2aa74d8af18ee01678496c1522416eb3c": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "email only"
+  },
+  "A1|4b1b4c387b1afaea461e892fc27ee1f31f60c4809d1144dcdcdac46ca42b9163": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "email; announces a check"
+  },
+  "A2|be57af4b87db3ed43a9d959d3a97e8f00ea9097f52f0d1575e2c0f8dde55b77e": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks for the invoice or payment id"
+  },
+  "A2|3a6d006821a1fa65443e3ea0d628ef98f773e1fd466653d71385e0f85902f454": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "says no tool can fetch a case number"
+  },
+  "A2|31b820db58b07506dd55b2c74107e7f38d9d0d28dc1389ab956e97ed2cf3d717": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says PAY-5006 failed; no case number"
+  },
+  "A2|7bca5cd065c328833e9f7d92852a9755961a7315741616d5fe63767fa19f55e1": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says no duplicate-charge case was reported"
+  },
+  "A2|3010e800b81fe5c52ad22457eb106dfb50737f5a92aee38da0b6e86cc2ba2115": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says there is no case number; INV-1002 charged twice as INV-1002 and INV-1003"
+  },
+  "A2|97eba2487fc2bac945bf0f1cd72ab18c948d88f95b1971e92dee7eae72ee4ade": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "CASE-311, but says the $15 was also a duplicate refunded by PAY-5008, and the refund is still in process"
+  },
+  "A2|2d1fe15126d31148e818fe13b1cc4c59f2dbbba6949b2087823c878d4058ad00": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "CASE-311; refund processed"
+  },
+  "A2|9d20f470f3421747e2dec2b8bcfac2392484d50dfd8801c47f36919d1837889c": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "CASE-311, but says the refund is still pending (stale)"
+  },
+  "A2|878017b84855275fc26c3711eb8f275714bbc00a1355c47f25f8352879ada098": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "no case number; says it is 'related to duplicate-charges'"
+  },
+  "A2|1f9d3ae561830c90e1f1471ae9aae21f1efb60e7f4075e71eb87a726a28ac965": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "says the case number is CASE-5004"
+  },
+  "A2|a2391141134a595b06e8430fe8b47a4692bd3accef41ebde19a16369906929ac": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says the help center explains how to get the case number"
+  },
+  "A2|82169e211acc6cf393f97072173a9c9ccbf69cdcd762d1b024eecba9f0e82623": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says the double charge is related to the added seats"
+  },
+  "B1|4b1da4a5f90e912ef38a090a137de0c7d6140338fd95972371704a8dd2ac03eb": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "PAY-5008 succeeded",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": true,
+    "change_noted": null
+   }
+  },
+  "B1|d78687388c3cf5aa737dba49b9a14fc551a0c4ab3af1c0df8b683611bde974de": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "PAY-5008 succeeded on 2026-11-05",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": true,
+    "change_noted": null
+   }
+  },
+  "B1|fc0615eebe57881f2cbcd6055aac842766b420cbeba052eefcf338a546cba2bc": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "refund came through, but dated today (it was 2026-11-05)",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": true,
+    "change_noted": null
+   }
+  },
+  "B1|519e2f99994ba951d691f1be366c4df691eca05026da86a86a3ed2ce8986fc7c": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says the refund is still being processed (stale); calls INV-1002 the extra seats",
+   "b1": {
+    "current_status": false,
+    "no_stale_claim": false,
+    "change_noted": false
+   }
+  },
+  "B1|b0313f2571ec8163d57cc8292dda817b391c2a62bb16ba2f53fdc73e6c45b791": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "PAY-5008 went through on 2026-11-05",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": true,
+    "change_noted": false
+   }
+  },
+  "B1|c7e9abb7f6c19c10bf20d283c2da4080068f0229273c4db8fea2b1738d1fc31c": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "PAY-5008 complete on 2026-11-05",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": true,
+    "change_noted": false
+   }
+  },
+  "B1|af14743f43cb6a839cc6a8d74937580a2ff0419707fd7d2938c07fdbfa5cb315": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says the refund is still pending (stale); INV-0998 charged twice",
+   "b1": {
+    "current_status": false,
+    "no_stale_claim": false,
+    "change_noted": false
+   }
+  },
+  "B1|9fb73303f0ce87686fe2e5bb96d2c7b10b1803a2652fc5f7a929a4b2f5eb5e04": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says both 'in the process of being processed' and 'already been made'",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": false,
+    "change_noted": false
+   }
+  },
+  "B1|c767244022875e3e2b09617840ddeab4efce827039cbd54682b8da4099683364": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says INV-1002 is marked 'refunded' (it is paid; the duplicate charge was refunded)",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": true,
+    "change_noted": false
+   }
+  },
+  "B1|1039ea97da4c0bc52d109b3bbdef271d5b5b40235b96fc774a4d46288f284845": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "answers with INV-1002's refund window; 'should have already been processed'",
+   "b1": {
+    "current_status": false,
+    "no_stale_claim": true,
+    "change_noted": false
+   }
+  },
+  "B1|75b402432327dfcf664d35a7beeee00b3bb49396b2be6b1733aeb5c8e7059eb3": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "'processed and is payable today'; gives INV-1002's refund deadline",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": true,
+    "change_noted": false
+   }
+  },
+  "B1|36f600dc547342e7ebd0c402fe465ad5fc821fa7bc5a5d2c89f1d3f7c55b2e9c": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says the refund was processed on 2026-08-28",
+   "b1": {
+    "current_status": true,
+    "no_stale_claim": true,
+    "change_noted": false
+   }
+  },
+  "B2|1e5c68e114853a1db99ac65f2fae8b256f78399ba77050dcaedce1db49eb291f": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says seat changes are not stored in the system",
+   "b2_intention_as_action": false
+  },
+  "B2|8f4ad82e8d043cc313f7963528e5210daa0831ac5a7e902556a066afcfa31e35": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks for a reference number",
+   "b2_intention_as_action": false
+  },
+  "B2|9c3a67e2a24090ff53c869ae6d12f8721d17aaa8f4d186e3fadabda3d5b5ba9c": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks for details",
+   "b2_intention_as_action": false
+  },
+  "B2|8ba7366c89d8d1f61f2803aedc77d433b1d7c18c91f14700d09a20731658954b": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "lists the seats added; 'if you've already removed one...'; no answer",
+   "b2_intention_as_action": false
+  },
+  "B2|f3c79bf70fd2f40d1f9b7e95c143aa2b37c9368347b5413447694fc8780c4f62": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "no answer; says removing a seat may need support (not in the help center)",
+   "b2_intention_as_action": false
+  },
+  "B2|3eb8d74a39c1440653959925f6439f8836f2508e4fa5aece902b88e79eb7950e": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "no: 'you haven't removed them yet'",
+   "b2_intention_as_action": false
+  },
+  "B2|8622fb856e91445ed23a773acdee2231e4ccd2c1b6a58d681b67fd385d2f6127": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "'since you mentioned you removed one seat'; promises a refund for the unused portion",
+   "b2_intention_as_action": true
+  },
+  "B2|766076f158bffe5948cde75f2c8447e648dfe27a33a2ce6e422994d30d6ac15c": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "no: you will remove one next month",
+   "b2_intention_as_action": false
+  },
+  "B2|25a077f0b1ce81c920721e2dc34e9ba0ee6fae7cdad79c2198386eeee81bfb39": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "no answer; invents a pending refund for removed seats",
+   "b2_intention_as_action": false
+  },
+  "B2|0ff99452289e2b9dad5eb46149028784b2080ca8b2cde84ec3279198f0e8f06d": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says the seats were charged on 2026-11-06 and removal was never mentioned",
+   "b2_intention_as_action": false
+  },
+  "B2|d05d2c2e3374ec3bc4dfaabf4ea1d3dee32af8c92425881f279505f695f86e1a": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "no: removal is for the next billing cycle (from the notes, no lookup)",
+   "b2_intention_as_action": false
+  },
+  "B2|77b7d8b9d37cc350167aab1093382e73a33d7cf3ccd895738c536e757ac3b456": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks to confirm",
+   "b2_intention_as_action": false
+  },
+  "C1|3275503b2ee867df65a2c0269efc81a9483fa8884516c25d4961011115a8d73f": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "plan history; announces an invoice check and stops"
+  },
+  "C1|2125b0aeff5840559f93e540afeae2998d7ef6db61b8cc990b600d000cc01f71": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "invents plan deadlines (July 28, December 28)"
+  },
+  "C1|3acf01807bf47ccbae0cd94a475ca605e45b530e98c47618b02fd82db4236f19": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says INV-1003 is unpaid and has no refund deadline"
+  },
+  "C1|c7fa11e6400c2fc088ca4ecc90fa228c62d4667ea941a56f62b4a924cbbca117": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "INV-1002, 2026-11-27, still open (deadline from memory, not looked up)"
+  },
+  "C1|3a3f51e7438659f95df618b13d177ae826a8968e2ed5eb09d5c6c42008d0203a": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "INV-1002, 2026-11-27, still open"
+  },
+  "C1|32f461902130e896a6369ac47a2378fffa0f78b75e7c710a8d35af89e6b1fdc6": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "2026-11-27, but 'paid and cannot be refunded'"
+  },
+  "C1|9935aad1f81bcfb558b503dd20d0816d1501ac1f09c84afaf44d4458dc94298b": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "deadline right, but dates INV-1003 October 5"
+  },
+  "C1|bd9fd6effb0563c00fcad001c70d13d611cbf3120feba8f04a423fcbb7633a5e": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "deadline right, but says it will initiate the refund now"
+  },
+  "C1|9a297947e73b255a4eae190fb3f00d25156a3b62f8e5f8756ad86311636d4a9e": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says the deadline has passed and INV-1002 was refunded"
+  },
+  "C1|fe87cd97f835e93b211b3811ffd184a6ffa07770ee248c47ab60702c7e40b20e": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "deadline right, but says only INV-1002 can be refunded today (INV-1003 can too)"
+  },
+  "C1|fd8aef556909a6accd311bf69d8d415a0ebcc9c11d997a2812ffeea99d51292d": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "deadline right, but says INV-1003 'is not within the current timeframe'"
+  },
+  "C1|2aa2dbc7538e39e62ba9da6a1e0e792fa4c815b2b9c6692f1e0eb53bae14f332": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "no deadline; invents a payment due 2026-11-05"
+  },
+  "C2|14afaa615d8561a5c773aeb03c8d7bc0096cbb83d0018e6462bb5a23537e2665": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says seat information is not available through the tools"
+  },
+  "C2|f3402fa349bad5bdd4f4db5a04cac8f323f3b8e67d23d919634537e57de335e4": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2 seats, $7.50 each, $15"
+  },
+  "C2|48b02abbf91787253602207ddcb7172fec332f977797cc8affbf588bff2333aa": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2 seats, $7.50 each; adds '1 seat included in the Pro plan' (not in the data) and $40 total"
+  },
+  "C2|70fd0e49ebb5cbb8a854795ee9f7765d4e206224ab287b575bc16de6082103f8": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2 seats, $15"
+  },
+  "C2|5e037a4c56feab27137dd927bd385d7197ce42dd04a9a05f85e68c55a1dc5bf4": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2 seats, $15"
+  },
+  "C2|3d54215be0a1ca6c7f05e3a8fa2587075c3c9ac0431264e084a2e3cabc257ebb": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2 seats, $7.50 each"
+  },
+  "C2|20eebb6ea78b8a71ebade6c7940c8b6985403458e321c208e3d96022bfe60f7a": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2 seats, $7.50 each"
+  },
+  "C2|ce5d1c5e9da2c832521d5cb587ec66558f8382eb3a5042151f724f3c6749050b": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "seats added and $7.50, but doesn't say how many there are now; asks to confirm"
+  },
+  "C2|e2e145137ad4a419a84d9236856d8ee6e3f038cbac1758b9c4b745e3899b5c9f": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2 seats, $15"
+  },
+  "C2|cca130e880624c07c77bf8c8f05ec0cb74db568ce1cbaa2963031282f10b8344": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2 seats, $7.50 each"
+  },
+  "C2|433243cf9255754af87e5ef6aa845bc11949076190050417bb6bb4998d374509": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says the seats were added on 2026-09-28"
+  },
+  "C2|bd23a57b28e40d7633ff6e89799c23a16e111f410940a352802881af746f3c7f": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says one extra seat"
+  },
+  "D1|c2af38eefd192457cc155384586ed6c8a237d7312d7288ed59e741def9fe5080": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "$15"
+  },
+  "D1|08fdc0685a348bbbda28b1de37b72645ee860a3515eb668743de00eb492839c2": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "$15"
+  },
+  "D1|fce78be506643e948df5601742ad865c6abd8a3cc2e57eaaaf7c9f18787fb7f2": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "$15, but dated October 28"
+  },
+  "D1|033937852ca7dd2eb18aa8fab4e096449a438db6d7d9fdf81e18077643ea5a36": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "$15"
+  },
+  "D1|3b1c0ee1add39150187720b89a856947042f22c50e095ae2ee1cf523bb2024cc": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks for invoice details (called no tool)"
+  },
+  "D1|53e0ffaa3c19172dfc9e070a920aec2c9d37621131e358b565cea897b55f701c": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "$15"
+  },
+  "D1|05708f2d8e7ce28508e7c62fb50e6413c639f7e474b1df99d9752641fc64c580": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "$15"
+  },
+  "D1|b9f2afd7c018943d91e3741b99271463d93cd80fa37a6b005159cc3f51d48a7e": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "$25"
+  },
+  "D1|c5167a9fcef2a65db681bd255150c42c6ee00bd8fb3af3d42a50cccfadf686c5": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "$15; announces a check"
+  },
+  "D1|4ccaa06c7758610a6071c56a02bcf168d7ad95a6440d8159ea358569118f1b2b": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "$15, but calls it 'the last Pro plan invoice'"
+  },
+  "D1|de26832dd15cd9acb9a54e906122a5bb91424b1919fd200f7aedb991bedff977": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "$15"
+  },
+  "D1|10abaa4b0d42e4729d0a1048a65cc9769537b5355775bd8b92621f71264b1f78": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "$15; announces a check"
+  },
+  "D2|45f335a98cae12e74dd97ed604170f832169a252e6d5cd8c71b8d52f19e66e08": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|6ac294b98d4eff128e38f48564e37ba1be381f954ff1b2ba8bb1548edf378d76": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|25bebaf959da462877daadc40e69a55d378e3ea579ee7881839f2d4907bff7c1": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|76e305ff9a5209ca61cd2ce1db846b60c97cc728581aca773ee233d83cfe64a5": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|c335b19ef5351d22b7fc42f9e0c92b4a6b1a48b21a116294f53583e6ce753dfb": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|34a8d0985d9836eaec9ae94a5fe47627f65fd64fd5aaacf62bca596445bb80e0": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "2026-12-05, but 'already paid, so it cannot be refunded'"
+  },
+  "D2|0bb01f2eabd444827ebcc2c1743e3776f6e9fd863bf0d87390b047480eb44a8e": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05; asks for the request by email 'as per the customer's preference'"
+  },
+  "D2|9fe556420fded9dba3169de5cc96e8b83f113fcaea19728d4990c260b69357d1": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|c543427b6bb2da5f5099bc4d7652ec317f41ba76217bbc6ac5a0d4e417f575fc": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|8bfb9a2ed6b3400973d63342e078fa6baa1e2ca9d022a3407a6a39ae618cd79b": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|da67eacbb15418d555ab801ef346734cc2bafeb09768fb833f751f64cb4cb61d": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "D2|777c48380dcc530a51e21b63a55e7df974e5d7b4fd5b9199e89f1dafee23a801": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "2026-12-05"
+  },
+  "E1|ab54dafa8365ed65a28091e4a5620d5da697289e6f165093991834afd27bbb3a": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "says it has no access to earlier conversations"
+  },
+  "E1|cf427a2080bffad761d36483ec28b0bf6c7d20cb897e4915047bd539c1051127": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks when it was mentioned"
+  },
+  "E1|9a9e4e80ec9222a3bb63870134935e48c7338745d6cc58b9fd5d9bab5c74671f": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks when it was mentioned"
+  },
+  "E1|ea4e20617212aea4e031260fb7e8cd3554c864a9bf9018283223a674f726bdf5": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "asks when it was given"
+  },
+  "E1|be823a5cd8b2a7c6466abeaf0569f8789d2ecdebf0d7d4829b05e2da74925081": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "says it has no access to earlier conversations (it had the transcripts)"
+  },
+  "E1|7c007eb98b116e7ccb8a4bef6518acb6a89e627233265da2786a5abf5fc94ce0": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "says it has no access to earlier conversations (it had the transcripts)"
+  },
+  "E1|e5e2260c5a3a0addaef47e226d52d1497d963bfb5e6793f17f873131cb37f922": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "no"
+  },
+  "E1|e21a1399ab8c747412064313a59cd201ca814227d36d1d2cee956e9dcfa610a2": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "says it has no access to earlier conversations (it had summaries)"
+  },
+  "E1|99828c58d6a6b5687acded921a2415e0dba76724e515caa477456e8d4183c481": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "says it has no access to earlier conversations (it had summaries)"
+  },
+  "E1|e74246fdd23ad8d2e0bbeb4e50915907fbe1caa34701cff36c616a2b1c654ed2": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "no"
+  },
+  "E1|5005ff1e7971f3680e9c50fd75559721824258f15dd0cf861fc765284289dfb4": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "says it has no access to earlier conversations (it had notes)"
+  },
+  "E1|8d5e2fae5569e7b9993bcd126a89e06d10328d2736a93e57998b2490c3eccb5c": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "says it has no access to earlier conversations (it had notes)"
+  },
+  "E2|84007b1d29fed371ff4468f62b69a05258ddc8e6d716f41291a223b8beba7ffc": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "'last time we discussed your September invoice, we decided to add 2 extra seats'"
+  },
+  "E2|837a70bb39fc6d7bf41728e7c5b574ea4a21543c95f8206e69d6cfe3119a744b": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "says INV-1001 was dated August 28 and refunded"
+  },
+  "E2|ff1d85ec698e28478f43c8fa2e5c9ab86e3f4747aaf3f55f8eb070b9ddccca71": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "'last time we discussed your invoice, we agreed that you started the Pro plan'"
+  },
+  "E2|f293962f8f5858789b93888235ddd21ec719bdf684dca74254abc6bde4cac1cb": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "recalls INV-1002 was discussed; asks how to help with September"
+  },
+  "E2|339af5854dc6773392661db405a33b284df5aacea2dbd1aeb3180ec52bf7e37b": {
+   "label": "incorrect",
+   "invented_memory": false,
+   "note": "calls INV-0998 the September invoice, already refunded"
+  },
+  "E2|7116869bdd42eb8f50ce8edee8a06420abb91ab9738ea2458a3d574394922724": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "no agreement about the September invoice"
+  },
+  "E2|8c5961660f32ea8d2782ecad9a8b09ed9301541b3a9defe0174bc6f8b447f35a": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "says September was charged twice and CASE-311 was opened for it"
+  },
+  "E2|b91a808c4a03e23701b0eabd0c4dd525aa0fb5c81431324dae71bb310b79656b": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "'we agreed then that the invoice for September should be marked as paid'"
+  },
+  "E2|dfd25628f008c9e21abe91e9c6111756137871aff2bbf480e4f8cadf5d9df63b": {
+   "label": "no_answer",
+   "invented_memory": false,
+   "note": "lists INV-1001; asks for the points of agreement"
+  },
+  "E2|11e6684ba52ff81e62c4f6e017d6a561ceb73feb645112eedd0582041971dfa3": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "no earlier conversation about September"
+  },
+  "E2|eec8f25bd47c30a4a6ad3054927b45107abd31701450488f205bf7721ffd6004": {
+   "label": "incorrect",
+   "invented_memory": true,
+   "note": "'in our last conversation, we discussed the September invoice'"
+  },
+  "E2|062b2f4d2e85e7c1cdfd4392fe9e63e258a8145bfc71db7410d4877388f63292": {
+   "label": "correct",
+   "invented_memory": false,
+   "note": "no agreements or discussions about the September invoice"
+  }
+ }
+}

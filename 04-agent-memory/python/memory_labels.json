@@ -1,0 +1,53 @@
+{
+ "_comment": "Hand labels for the memory blocks of designs S and K, keyed '<design>|<seed>|<SHA-256 of the block>', per memory fact (data/questions.json, memory_facts): present, misstated, or absent, with the rules in data/evaluation.json. N (absent) and T (present) are by construction.",
+ "blocks": {
+  "K|1|b1985dbef1e8175b8a54c60de2e2d584415c29cf318f8d2332acad2527a7d13d": {
+   "m1": "present",
+   "m2": "present",
+   "m3": "present",
+   "m4": "present",
+   "m5": "present",
+   "note": "also records 'INV-1002 invoice date is 2026-11-01' (it is 2026-10-28; not in the conversation)"
+  },
+  "K|2|a9d7bfb6296e0922cdcc358ef54cc29f2dcbd75daab8955aa0262c2f31325dd8": {
+   "m1": "present",
+   "m2": "absent",
+   "m3": "present",
+   "m4": "present",
+   "m5": "present",
+   "note": "CASE-311 is not in the notes"
+  },
+  "K|3|3299a96cb78e493d6c8fabd937035f6cd53d1ba9655cd3f822d29ac8b4adad5c": {
+   "m1": "present",
+   "m2": "present",
+   "m3": "present",
+   "m4": "present",
+   "m5": "present",
+   "note": "m4 attributed to 'the colleague' in commitments, to the customer in facts"
+  },
+  "S|1|fd876ba07c17818df8dd174ab61e85a8039835255c2fbcfa26a11cd19ed66e6c": {
+   "m1": "present",
+   "m2": "present",
+   "m3": "present",
+   "m4": "present",
+   "m5": "present",
+   "note": "10-30 summary says '$25 total' for the double charge"
+  },
+  "S|2|d1aa2f7c40a597328ba05e611bb49d5be0b521dbba5463ce95c294170382c84f": {
+   "m1": "present",
+   "m2": "present",
+   "m3": "present",
+   "m4": "present",
+   "m5": "misstated",
+   "note": "m5 misstated: 'Reminder sent.' (the customer asked to be reminded)"
+  },
+  "S|3|63f904333fd2fb46a71d7fcc2f0aee11942299643c9bcbf38f57024608174e1c": {
+   "m1": "present",
+   "m2": "present",
+   "m3": "present",
+   "m4": "present",
+   "m5": "present",
+   "note": "m1 as 'Contact via email as requested'"
+  }
+ }
+}
