@@ -1,1 +1,18 @@
 # ai-agent-patterns
+
+Runnable examples for the AI Agents articles on [snehalagrawal.com](https://snehalagrawal.com/articles/): tools, agent loops, state, memory, planning, and human-in-the-loop.
+
+| Demo | Article | What it shows |
+|---|---|---|
+| [`01-tool-design`](01-tool-design/) | #23 Tools, Function Calling, and the Foundation of AI Agents (not published yet) | The same agent with three toolsets: how the shape of a tool changes what the model does next |
+
+Each demo has its own README with setup, how to run it, expected output, and limitations. All data is synthetic.
+
+## Linting
+
+Python is checked with [Ruff](https://docs.astral.sh/ruff/) from the repository root:
+
+```bash
+pip install -r requirements-dev.txt
+ruff check .
+```

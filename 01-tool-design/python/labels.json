@@ -1,0 +1,906 @@
+{
+ "_comment": "Hand labels for every saved conversation, keyed model|toolset|question|seed, each stored with the SHA-256 of the exact reply it labels (report.py ignores a label whose hash doesn't match). Labeled by reading every reply, with the rules in data/questions.json.",
+ "_interpretation": "Applied while labeling (decided while reading the first replies, before any counts were compiled): the part of 'expected' that answers the question is required (for example 'No' for Q02, the date for Q03, the day count or last day for Q04); supporting values listed after it (invoice dates, ages) are optional, but any value or claim the reply does state must be true. A false statement about the customer's invoices, the refund policy, or prices makes a reply incorrect even when the rest of it only asks the customer for information. Offers the policy doesn't contain (store credit, partial refunds), invented prices, invoices, or dates, and conditions the policy doesn't have count as false statements. Hedged general wording ('typically', 'can vary') with the right value does not.",
+ "labels": {
+  "llama3.2:3b|A|Q01|1": {
+   "label": "incorrect",
+   "sha256": "def869e05b3e9bec71c419e66c4ec7a2194a15adf6c4c074311ecaf69f82e2a9",
+   "note": "invents three invoices and amounts"
+  },
+  "llama3.2:3b|A|Q01|2": {
+   "label": "incorrect",
+   "sha256": "e7218e83846df03e414dc530897970e2e776630a7a67d82010f1f448dd86d8ed",
+   "note": "says the customer is not eligible for any refund"
+  },
+  "llama3.2:3b|A|Q01|3": {
+   "label": "incorrect",
+   "sha256": "6c4e826fdef2534351418f263f8a0acf8ec75f4337062f5b110c8098e8a7919c",
+   "note": "invents invoice numbers"
+  },
+  "llama3.2:3b|B|Q01|1": {
+   "label": "incorrect",
+   "sha256": "3566c723349e913ee8de0fd504df04049f5902fbdbb31bf151f44072b0a2ca78",
+   "note": "claims open or pending invoices are the refundable ones (false policy)"
+  },
+  "llama3.2:3b|B|Q01|2": {
+   "label": "no_answer",
+   "sha256": "24ee80927fd1d4e2172a70009897a37178a7e5e0261ac55e4d6982b57720d581",
+   "note": "asks the customer for invoice details"
+  },
+  "llama3.2:3b|B|Q01|3": {
+   "label": "no_answer",
+   "sha256": "53c989cf5bb30a24a5d1e3c45cda184b6e80077b9e60c6233864c9994b1eae4d",
+   "note": "asks the customer for invoice details"
+  },
+  "llama3.2:3b|C|Q01|1": {
+   "label": "incorrect",
+   "sha256": "b3da0a8b4bae6af0924f655c0a0f4d129845ff9b7a4c6ae265b538e0bc545a92",
+   "note": "says no invoices can be refunded"
+  },
+  "llama3.2:3b|C|Q01|2": {
+   "label": "incorrect",
+   "sha256": "0c4160cd720b4a1a1a3d9ab47a0304a29f3f7b73175b93386b40f8a1ca0d0ca0",
+   "note": "says no invoices were found for the account"
+  },
+  "llama3.2:3b|C|Q01|3": {
+   "label": "correct",
+   "sha256": "2370347834219ee29f9d4e5019a95bf1eca5d2e23ff4ad50bd74015d5fa169d5",
+   "note": "INV-1002 and INV-1003, with correct deadlines and reasons for the others"
+  },
+  "llama3.2:3b|A|Q02|1": {
+   "label": "correct",
+   "sha256": "1ac4fa6ad148b64b7377df76cfa8702013d5871fb98e63f3acedd1505cd11db0",
+   "note": "no, outside the 30-day period (no invoice date retrieved)"
+  },
+  "llama3.2:3b|A|Q02|2": {
+   "label": "incorrect",
+   "sha256": "b845f90400b8388bf8c330490f3b09b1723be0b168a632fed63c8baf66978a23",
+   "note": "says no, but offers store credit or a partial refund (not in the policy)"
+  },
+  "llama3.2:3b|A|Q02|3": {
+   "label": "incorrect",
+   "sha256": "7918b1423ad058ac362340c6d575aeac30de91a612d71f0c919bbca35e1e326f",
+   "note": "says it is eligible"
+  },
+  "llama3.2:3b|B|Q02|1": {
+   "label": "incorrect",
+   "sha256": "7a57d1de503a8a18c557c972921c1b9c170654a7b7fa869560ad588cde3d7153",
+   "note": "says no, but offers store credit or a partial refund (not in the policy)"
+  },
+  "llama3.2:3b|B|Q02|2": {
+   "label": "incorrect",
+   "sha256": "f09ad2cee0d62bdd2c3443ab5b3e6cc37e0b5a9ea6c92c6c0f930290850ffcf4",
+   "note": "says it is eligible"
+  },
+  "llama3.2:3b|B|Q02|3": {
+   "label": "incorrect",
+   "sha256": "e2e40cfcd50a923e88270e5920f69f1e16dee84b3af9d999d34955228f215866",
+   "note": "says it is eligible"
+  },
+  "llama3.2:3b|C|Q02|1": {
+   "label": "incorrect",
+   "sha256": "dfee7ac555eae1e31da29be28d5e47682642c2a4f580e54ae543192f2585a09d",
+   "note": "correct no and dates, but offers store credit (not in the policy)"
+  },
+  "llama3.2:3b|C|Q02|2": {
+   "label": "correct",
+   "sha256": "b00e049a13a6464d9140981e6e3506fabf4687f08406042d8a96b386f5080134",
+   "note": "no; invoice date and deadline correct"
+  },
+  "llama3.2:3b|C|Q02|3": {
+   "label": "correct",
+   "sha256": "6e6a7070bc2c287d3a887ae11488b6b77eb908a1fc8f273df635b6e32fc5b705",
+   "note": "no; deadline correct"
+  },
+  "llama3.2:3b|A|Q03|1": {
+   "label": "incorrect",
+   "sha256": "2e15c77f5ed58cdae01de04adf9453a2f244113938a386c5f8447110dea57d02",
+   "note": "restates the 30-day policy; no date"
+  },
+  "llama3.2:3b|A|Q03|2": {
+   "label": "incorrect",
+   "sha256": "5069273f148e291f2417e331d000b3a82f70c7486bbdfb86535eb25d25f9806a",
+   "note": "restates the 30-day policy; no date"
+  },
+  "llama3.2:3b|A|Q03|3": {
+   "label": "incorrect",
+   "sha256": "64086d751bff2f37da83e16d579960df9e9d258bcd32896c16d3fb8cd9a9313f",
+   "note": "restates the policy; no date; adds a case-by-case claim"
+  },
+  "llama3.2:3b|B|Q03|1": {
+   "label": "incorrect",
+   "sha256": "f68ec10a8c92f8605612301ee3a9e30929c85adee5168687814d3154051b7403",
+   "note": "restates the 30-day policy; no date"
+  },
+  "llama3.2:3b|B|Q03|2": {
+   "label": "incorrect",
+   "sha256": "030a2534abe9d0433e7c8a1b4652cc3f8661ab9b485f7707ae0c7a417b02a29e",
+   "note": "restates the 30-day policy; no date"
+  },
+  "llama3.2:3b|B|Q03|3": {
+   "label": "incorrect",
+   "sha256": "b2cc06471a7f7105fe526c3707d0cc311e878fb6376cefb5164714c30457840c",
+   "note": "restates the 30-day policy; no date"
+  },
+  "llama3.2:3b|C|Q03|1": {
+   "label": "correct",
+   "sha256": "f60a3842cc9c93de460d8b0ab42aa3da743ecf440064bb9bf8c5bb91c0bbb2f6",
+   "note": "November 27, 2026"
+  },
+  "llama3.2:3b|C|Q03|2": {
+   "label": "correct",
+   "sha256": "e248f65dad49d5d5e0e0799c92ad038892361b710f3cc362d4b8fbca099708aa",
+   "note": "November 27, 2026; 15 days left"
+  },
+  "llama3.2:3b|C|Q03|3": {
+   "label": "correct",
+   "sha256": "bce44c5373388fcb33a37dfda7530291ed43ffe529eabffdc457e6c2a58a316d",
+   "note": "November 27, 2026; 15 days left"
+  },
+  "llama3.2:3b|A|Q04|1": {
+   "label": "incorrect",
+   "sha256": "a1c682d470134f1cba4595fed37d4002e2832ce5530b67bc239eaa0402eb4c65",
+   "note": "27 days"
+  },
+  "llama3.2:3b|A|Q04|2": {
+   "label": "incorrect",
+   "sha256": "de38e43fa91bb4f70a2c78302aaadaf9c0e11c9adba58454a5009208a425ec6f",
+   "note": "restates 30 days; no count"
+  },
+  "llama3.2:3b|A|Q04|3": {
+   "label": "incorrect",
+   "sha256": "71ea707e57e4bd8cad3031b3e2bbeb72b33450ae950c88564e7fec0535f825cb",
+   "note": "26 days"
+  },
+  "llama3.2:3b|B|Q04|1": {
+   "label": "incorrect",
+   "sha256": "7d086dbac6ab022e27ff64fc6ce4ec00975de4b594c8db1c861a7a932527742f",
+   "note": "0 days left"
+  },
+  "llama3.2:3b|B|Q04|2": {
+   "label": "incorrect",
+   "sha256": "2bc5af7caea33185bd855e5aba4dabe96e67a2a1e9bd4c2c55e920a91dc50ce0",
+   "note": "26 days"
+  },
+  "llama3.2:3b|B|Q04|3": {
+   "label": "incorrect",
+   "sha256": "71ea707e57e4bd8cad3031b3e2bbeb72b33450ae950c88564e7fec0535f825cb",
+   "note": "26 days"
+  },
+  "llama3.2:3b|C|Q04|1": {
+   "label": "no_answer",
+   "sha256": "29b51367a9b5ae5e0329ba628ea1ffbcbbc8e6bdf46f0c925de13580939a2524",
+   "note": "says it has no access to the invoice; asks for the number"
+  },
+  "llama3.2:3b|C|Q04|2": {
+   "label": "no_answer",
+   "sha256": "ac1a24f116e106a397edae9d19896dc28389b094be937f402dafb21c60fa1525",
+   "note": "says there are no outstanding invoices (true: all paid); asks for the number"
+  },
+  "llama3.2:3b|C|Q04|3": {
+   "label": "incorrect",
+   "sha256": "2f45e16515b378bbd73efa6810bca8d741e8652d5b32cff2d7b05d40158e5a8d",
+   "note": "claims a refund is available for invoices over 30 days old"
+  },
+  "llama3.2:3b|A|Q05|1": {
+   "label": "no_answer",
+   "sha256": "60d970e5daec2ddc94716ae2ecb34a13f0e2407dfc660e06213d6ba77ee422cf",
+   "note": "found nothing; suggests checking email and contacting support"
+  },
+  "llama3.2:3b|A|Q05|2": {
+   "label": "incorrect",
+   "sha256": "eef9e74edc5eb0f3582ca179d87c1668596f0109712b378a4911a4be34877af8",
+   "note": "says the charge is outside the 30-day window (it is 7 days old)"
+  },
+  "llama3.2:3b|A|Q05|3": {
+   "label": "incorrect",
+   "sha256": "dc9f925f5e2225966a77bcd60e6bd43e8000b1d653326f3663fa80ff51c0f1eb",
+   "note": "invents a processing fee; says 7 days is outside the 30-day window"
+  },
+  "llama3.2:3b|B|Q05|1": {
+   "label": "no_answer",
+   "sha256": "361b7615a2578f8d76598b52709264ed6254a81f48f72b2930648161c9acef24",
+   "note": "apology plus a tool call written as text"
+  },
+  "llama3.2:3b|B|Q05|2": {
+   "label": "incorrect",
+   "sha256": "c8479df1c13ee373aa6986071decdb7c6bd4cdfe3524f30f3d0faef04ff267f6",
+   "note": "says the charge is outside the 30-day window"
+  },
+  "llama3.2:3b|B|Q05|3": {
+   "label": "incorrect",
+   "sha256": "84fbab90cce6257a4a86b557c2216a30c90d2e23312e81e0078935e0dfb6c7d0",
+   "note": "says it cannot be refunded because it is within the 30-day window"
+  },
+  "llama3.2:3b|C|Q05|1": {
+   "label": "no_answer",
+   "sha256": "37f74bf059f33dec2d993d21619a974bf6d7847e8fcdc76ed32963d85c380b72",
+   "note": "invoice not found; asks for payment details"
+  },
+  "llama3.2:3b|C|Q05|2": {
+   "label": "no_answer",
+   "sha256": "5910cc8b73c2791e83de576d094376dda4d778e4c7677b1403b64f4a24ad5e47",
+   "note": "invoice not found; lists options"
+  },
+  "llama3.2:3b|C|Q05|3": {
+   "label": "no_answer",
+   "sha256": "badd119aa15fd71149109caeb442fe9b8117c0b973c7df108db5d054e46c5972",
+   "note": "invoice not found; lists options"
+  },
+  "llama3.2:3b|A|Q06|1": {
+   "label": "incorrect",
+   "sha256": "5e19d8b8ff56aa5d6606e77b1f782559ac3d6dd0925dfd1c520b4c2ee9892bca",
+   "note": "says the August invoice can be refunded"
+  },
+  "llama3.2:3b|A|Q06|2": {
+   "label": "incorrect",
+   "sha256": "dea083beb6f5c359f853ed448100d39e3acb5019837b0a8e00a59b1aff58ba40",
+   "note": "offers to process a refund for the August invoice"
+  },
+  "llama3.2:3b|A|Q06|3": {
+   "label": "incorrect",
+   "sha256": "925973f4f827c8e62a0f6cbed67a7b773eacbc396cc30f019acd5bfc6f646460",
+   "note": "says it can be refunded if within 30 days; never answers no"
+  },
+  "llama3.2:3b|B|Q06|1": {
+   "label": "no_answer",
+   "sha256": "b1514818f7923df48ebc06d3e10b4331645f433fa8ee5b5d7aa48e0482742ec6",
+   "note": "restates the policy; asks for the invoice number and reason"
+  },
+  "llama3.2:3b|B|Q06|2": {
+   "label": "incorrect",
+   "sha256": "e9d59f18652fe9fbc867086991192ba8d48a37595df7b51b15d9748d67e07989",
+   "note": "says a refund can be requested and gives steps"
+  },
+  "llama3.2:3b|B|Q06|3": {
+   "label": "no_answer",
+   "sha256": "e652bf2774705a8a9ea2c48b15727d152e52abb2b650209febfc6260f756ea51",
+   "note": "restates the policy; offers to help with a request"
+  },
+  "llama3.2:3b|C|Q06|1": {
+   "label": "no_answer",
+   "sha256": "5c7cef2454a10f43a00466e75ff18add11c1dafdd17d3c14631849aaea4dfa54",
+   "note": "invoice INV-0000 not found; suggests checking email"
+  },
+  "llama3.2:3b|C|Q06|2": {
+   "label": "no_answer",
+   "sha256": "d6f4cde97d467333b360d07965221d778e565e4ac1c5f5101f0424d70a1c55f1",
+   "note": "invoice INV-0000 not found; asks for the number"
+  },
+  "llama3.2:3b|C|Q06|3": {
+   "label": "no_answer",
+   "sha256": "14339394bd452eba48e4bb5bb999431aaab4abc12d19fd5a6ae45a0e82aa583f",
+   "note": "invoice not found; asks for details"
+  },
+  "llama3.2:3b|A|Q07|1": {
+   "label": "no_answer",
+   "sha256": "fc00c0a127fe727e586bd0ff6f61faa2d930f08212ec3b18f7a13fffaf085eca",
+   "note": "gives the Pro price ($25, correct); asks the customer to check the invoice"
+  },
+  "llama3.2:3b|A|Q07|2": {
+   "label": "no_answer",
+   "sha256": "a15869e10f1f1579a56bc0e027f4113e547328311c56554b3f774414b2275eaa",
+   "note": "gives the Pro price; says it has no access to the invoice"
+  },
+  "llama3.2:3b|A|Q07|3": {
+   "label": "no_answer",
+   "sha256": "66e8e26c2e5a096e0759f6bba9e32736430afcda868f0115ad89ceb353a74a1d",
+   "note": "gives the Pro price; says the invoice may differ; no answer"
+  },
+  "llama3.2:3b|B|Q07|1": {
+   "label": "no_answer",
+   "sha256": "685a6070dcd10c22ff8f3b1c700a84eba14b6ab0eaf6c74a3257d4d5b76733f1",
+   "note": "says the information doesn't answer the question"
+  },
+  "llama3.2:3b|B|Q07|2": {
+   "label": "no_answer",
+   "sha256": "4fef16f56d70f3b8b2d520063bec03f07cf72225a46631120fa2ee5c11b4f6eb",
+   "note": "gives the Pro price; says the invoice amount is not specified"
+  },
+  "llama3.2:3b|B|Q07|3": {
+   "label": "no_answer",
+   "sha256": "9db6a2cefcb980f73dc6ebcd3bc39f6ba8f9389dfcde2d480b596dcc4462e50c",
+   "note": "gives the Pro price; can't verify the invoice"
+  },
+  "llama3.2:3b|C|Q07|1": {
+   "label": "incorrect",
+   "sha256": "cae0da871cd912de21c83db2017dfc044c9fb98ecf5c0ad1886fe82400ab767d",
+   "note": "says the Pro plan costs $19.99"
+  },
+  "llama3.2:3b|C|Q07|2": {
+   "label": "incorrect",
+   "sha256": "624bf73cf34e733fef355f9e3111135c7008f6693ea6894e277f39cb3b745410",
+   "note": "says the Pro plan costs $19.99"
+  },
+  "llama3.2:3b|C|Q07|3": {
+   "label": "incorrect",
+   "sha256": "4f45c7c9de8260e00905405b3e4daf4db84bd378c0ca1602d18283affe8f4a0a",
+   "note": "says the Pro plan costs $19.99"
+  },
+  "llama3.2:3b|A|Q08|1": {
+   "label": "no_answer",
+   "sha256": "59d0141c37c81400469460b0ea34b2cf216f46a17ab6f57b2624ced8914a3fdb",
+   "note": "found nothing in the help center; asks the customer"
+  },
+  "llama3.2:3b|A|Q08|2": {
+   "label": "incorrect",
+   "sha256": "75093b4fbb287fa905bf519e7455daabd73b7707d213fdc9225f4c3da323833b",
+   "note": "says the oldest refundable invoice is from 2022"
+  },
+  "llama3.2:3b|A|Q08|3": {
+   "label": "incorrect",
+   "sha256": "39e046483f82823eb28e359cf342ad15c4acd665556189f956b3a4a99767242e",
+   "note": "names INV-0998, while noting it is already refunded"
+  },
+  "llama3.2:3b|B|Q08|1": {
+   "label": "no_answer",
+   "sha256": "de427ed2c8e340c3fef97b3731850fe08db319b01a353074498bbbd486e554dd",
+   "note": "asks the customer to rephrase"
+  },
+  "llama3.2:3b|B|Q08|2": {
+   "label": "no_answer",
+   "sha256": "c9e96a94d6401a9eb4baf33b0bfab979d02aa676a95cbde695f116f942e53989",
+   "note": "found nothing; asks for context"
+  },
+  "llama3.2:3b|B|Q08|3": {
+   "label": "incorrect",
+   "sha256": "73139284e69902b508a2cd30101303d0cce7c84c5dd8fa7778b7c0278fcbc25f",
+   "note": "names INV-1001; says its 2026-10-28 deadline is 15 days away"
+  },
+  "llama3.2:3b|C|Q08|1": {
+   "label": "no_answer",
+   "sha256": "8b1c8d56747b7b4b17c82dbed8657f51a3aa8fdee7dca5dd74eeea225cc49aed",
+   "note": "invalid call; asks for an invoice number"
+  },
+  "llama3.2:3b|C|Q08|2": {
+   "label": "incorrect",
+   "sha256": "e3c8992533157efa57d9b0186e3541ba2cab2a84ffbabeb3267681c1ff60ff68",
+   "note": "says no invoices were found and no refund is possible"
+  },
+  "llama3.2:3b|C|Q08|3": {
+   "label": "incorrect",
+   "sha256": "83b93350c5321fcd2a486af1b3e8c9925ea998a32f2f57345bcc46befee1ecb9",
+   "note": "says no invoices were found for the customer"
+  },
+  "llama3.2:3b|A|Q09|1": {
+   "label": "correct",
+   "sha256": "2b9b672c3a9f052704de638de1fccca6f43016aec0ed37181f0eea1f2b6dc3b0",
+   "note": "30 days from purchase"
+  },
+  "llama3.2:3b|A|Q09|2": {
+   "label": "correct",
+   "sha256": "50822a23b2bc20b9773fc23d666a00830d69b89902cb2b342b8ab2f25a1ca348",
+   "note": "30 days from purchase"
+  },
+  "llama3.2:3b|A|Q09|3": {
+   "label": "correct",
+   "sha256": "fdd08766a6cf1d111940c5ca3b092410f9c413a9aa530155b3448e27ae24e8b8",
+   "note": "30 days from purchase"
+  },
+  "llama3.2:3b|B|Q09|1": {
+   "label": "correct",
+   "sha256": "c40f14730e6978bf2fb1289f9da22620e31013263a2191379cee351db585db9f",
+   "note": "30 days from purchase"
+  },
+  "llama3.2:3b|B|Q09|2": {
+   "label": "correct",
+   "sha256": "beba0a0f374871d1455869dbe6f5fca471e36ed3a5dc95d528fa113c1a84aea2",
+   "note": "30 days from purchase"
+  },
+  "llama3.2:3b|B|Q09|3": {
+   "label": "correct",
+   "sha256": "8aa48d3c291645261723d833b4c19ec6340ede26f549f0518661fc48f8c7a4f8",
+   "note": "30 days from purchase"
+  },
+  "llama3.2:3b|C|Q09|1": {
+   "label": "no_answer",
+   "sha256": "26f4ff3a33813ee159a12f0b69cca822eaa6c989623d32a2fc48fa76ad0f7e2e",
+   "note": "only a tool call written as text"
+  },
+  "llama3.2:3b|C|Q09|2": {
+   "label": "correct",
+   "sha256": "9cc6cc58e97b0a62aec5a2f70f9cbd02d9b8951cf591f67d3447744dae4014a1",
+   "note": "30 days from purchase (policy not retrieved)"
+  },
+  "llama3.2:3b|C|Q09|3": {
+   "label": "incorrect",
+   "sha256": "1ef91974c61e27547283b6bc2c610f0dbc2368fac176cd9c0ffeb30aa3b1abb2",
+   "note": "15 days; invents a partial refund"
+  },
+  "llama3.2:3b|A|Q10|1": {
+   "label": "correct",
+   "sha256": "9f7c57686d4b1e05b9dded3f7cfe55f27f141b9c0b37c7b8197e8d7a30db966b",
+   "note": "$15, extra seats add-on, November 5"
+  },
+  "llama3.2:3b|A|Q10|2": {
+   "label": "correct",
+   "sha256": "b42ee3f3e8f38c95d16a771a8d15345493b2b47ce1652a6888ab7b439543bc76",
+   "note": "$15, 2026-11-05"
+  },
+  "llama3.2:3b|A|Q10|3": {
+   "label": "correct",
+   "sha256": "774e79f4fb5821b775b6619772912fd559cf7c7604c2b547dafa49b25540635c",
+   "note": "$15, November 5"
+  },
+  "llama3.2:3b|B|Q10|1": {
+   "label": "correct",
+   "sha256": "832bba8ff05cfa54cfe6ce1c99b6d206dec33175c5f76f86139e727cab8d413f",
+   "note": "INV-1003, $15, 2026-11-05"
+  },
+  "llama3.2:3b|B|Q10|2": {
+   "label": "incorrect",
+   "sha256": "c58948e5259476f3f6fe4412124581aae882d11bbf27b34bc6188684400ff937",
+   "note": "$15 correct, but says the invoice will be 'due for refund on 2026-12-05' (misreads the deadline)"
+  },
+  "llama3.2:3b|B|Q10|3": {
+   "label": "correct",
+   "sha256": "a537d1bef92a1f7238844d441e74ad3d051c31fd44fa1541abc4ca222915ad0a",
+   "note": "INV-1003, $15, 2026-11-05"
+  },
+  "llama3.2:3b|C|Q10|1": {
+   "label": "correct",
+   "sha256": "9f7c57686d4b1e05b9dded3f7cfe55f27f141b9c0b37c7b8197e8d7a30db966b",
+   "note": "$15, November 5"
+  },
+  "llama3.2:3b|C|Q10|2": {
+   "label": "correct",
+   "sha256": "b42ee3f3e8f38c95d16a771a8d15345493b2b47ce1652a6888ab7b439543bc76",
+   "note": "$15, 2026-11-05"
+  },
+  "llama3.2:3b|C|Q10|3": {
+   "label": "correct",
+   "sha256": "774e79f4fb5821b775b6619772912fd559cf7c7604c2b547dafa49b25540635c",
+   "note": "$15, November 5"
+  },
+  "qwen2.5:3b|A|Q01|1": {
+   "label": "incorrect",
+   "sha256": "5978cc08dddc11d339ee927949e688d9b996cac20a888a203bf2f4a2e65f0a79",
+   "note": "says no invoice can be refunded because they are paid"
+  },
+  "qwen2.5:3b|A|Q01|2": {
+   "label": "incorrect",
+   "sha256": "0750e6cb1345dfa489ef8f13b3900c3a9a76a62aa84683a7b025adf7b816e254",
+   "note": "says no invoice can be refunded because they are paid"
+  },
+  "qwen2.5:3b|A|Q01|3": {
+   "label": "incorrect",
+   "sha256": "9878517c569df5af63d2bdfa58a3eb091371dde0077648d3621d08373cb0b91a",
+   "note": "names INV-0998 (already refunded)"
+  },
+  "qwen2.5:3b|B|Q01|1": {
+   "label": "incorrect",
+   "sha256": "fec20ad02bb593c8e0e442cead70e8cd9bafe8abdcf8983f7c49c89338029113",
+   "note": "names only INV-0998 (already refunded)"
+  },
+  "qwen2.5:3b|B|Q01|2": {
+   "label": "incorrect",
+   "sha256": "cf5a7ce04c6e35514e6f8904894d5afa49e511e2b1fc85392986ba0d8c58557e",
+   "note": "names INV-1001, INV-1002, INV-1003 (INV-1001 is past its deadline)"
+  },
+  "qwen2.5:3b|B|Q01|3": {
+   "label": "incorrect",
+   "sha256": "f0032ccc7e624333317fd55e5b357ae34cea505309ac9c39117f6b02818188c9",
+   "note": "names INV-1001, INV-1002, INV-1003 (INV-1001 is past its deadline)"
+  },
+  "qwen2.5:3b|C|Q01|1": {
+   "label": "correct",
+   "sha256": "cf20addde2e269a381842e40f0f196d9288ad2d63eeaebc7ddfc83fa23a7e0da",
+   "note": "INV-1002 and INV-1003, deadlines correct"
+  },
+  "qwen2.5:3b|C|Q01|2": {
+   "label": "incorrect",
+   "sha256": "fdf27368165c72008294cc2b9161357af5b2b606f4f526eb4a19fd99bf5a1b4a",
+   "note": "right two invoices, but swaps the reasons: says INV-1001 was refunded and INV-0998 is outside the window"
+  },
+  "qwen2.5:3b|C|Q01|3": {
+   "label": "correct",
+   "sha256": "4cebf9d114b854ffc8d44cb0281772961b66975e3fd462274ddcc73317188266",
+   "note": "INV-1002 and INV-1003; reasons for the others correct"
+  },
+  "qwen2.5:3b|A|Q02|1": {
+   "label": "incorrect",
+   "sha256": "255b464e80fa9be4e3cf7aac466c1c887f826c63dbecf272754bcb9e9bfa83b4",
+   "note": "says the invoice is still within the 30-day period"
+  },
+  "qwen2.5:3b|A|Q02|2": {
+   "label": "incorrect",
+   "sha256": "2df9b9cd6d66f54f7cab9bd708f9a2e9c95336d4fad3729826c139b7f5d2f658",
+   "note": "says no, but because the invoice is paid (false reason)"
+  },
+  "qwen2.5:3b|A|Q02|3": {
+   "label": "incorrect",
+   "sha256": "cb355f4dc55ee3c761dd8510f853de9d13ecbd7ca06322a61fe83d6893b17bfb",
+   "note": "says support will process the refund"
+  },
+  "qwen2.5:3b|B|Q02|1": {
+   "label": "no_answer",
+   "sha256": "22f119cf0dacac1ebc464d5bf0f15cbb077e413ab1184c00324e27304e3a629d",
+   "note": "says it has no access to the invoice; suggests support"
+  },
+  "qwen2.5:3b|B|Q02|2": {
+   "label": "incorrect",
+   "sha256": "d5318335f07a81f155ff6a9d82524a6bb6ff1de263717e1d9832b0945a1a62b2",
+   "note": "says it is still within the window (deadline 2026-10-28 has passed)"
+  },
+  "qwen2.5:3b|B|Q02|3": {
+   "label": "incorrect",
+   "sha256": "eab2107c72096103afb79ea34b21c025e93ec101b16f36cf49ddd38e890b2724",
+   "note": "says the 2026-10-28 deadline has not passed"
+  },
+  "qwen2.5:3b|C|Q02|1": {
+   "label": "correct",
+   "sha256": "4c35430d3b8c33417810b84f38f29a761515a2f9dd3c7b5ba5f28af0a2ffb8a5",
+   "note": "no; date and deadline correct"
+  },
+  "qwen2.5:3b|C|Q02|2": {
+   "label": "correct",
+   "sha256": "070411a3ad4e20cea792915634cae847036febf31273665877d5bde447ab7096",
+   "note": "no; date, age, and deadline correct"
+  },
+  "qwen2.5:3b|C|Q02|3": {
+   "label": "correct",
+   "sha256": "e9d21e2f525450e21cff120523c82064375c710a081fd6570a9fd3e1fe3bbf45",
+   "note": "no; deadline correct"
+  },
+  "qwen2.5:3b|A|Q03|1": {
+   "label": "no_answer",
+   "sha256": "71b264da14b94b77cdcbebef2c2dfb314a8a9d1c5d70fb9fd1a960bbd41dfc40",
+   "note": "says it has no access to invoices (called no tool)"
+  },
+  "qwen2.5:3b|A|Q03|2": {
+   "label": "incorrect",
+   "sha256": "b8db94d498ff5b13babfbecce53a556faa248452cc3610ca82fd72a11fe98814",
+   "note": "says paid invoices can't be refunded"
+  },
+  "qwen2.5:3b|A|Q03|3": {
+   "label": "incorrect",
+   "sha256": "927aedf3a33c0ea15b02e19299fded0e171a690e78f0b260d2966526e4d1e26b",
+   "note": "says paid invoices can't be refunded"
+  },
+  "qwen2.5:3b|B|Q03|1": {
+   "label": "no_answer",
+   "sha256": "71b264da14b94b77cdcbebef2c2dfb314a8a9d1c5d70fb9fd1a960bbd41dfc40",
+   "note": "says it has no access to invoices (called no tool)"
+  },
+  "qwen2.5:3b|B|Q03|2": {
+   "label": "correct",
+   "sha256": "46d7edb14a78c1f3ca3167a2e0e0367a50051addc08e3dee7c33b6cfe284e263",
+   "note": "November 27, 2026"
+  },
+  "qwen2.5:3b|B|Q03|3": {
+   "label": "incorrect",
+   "sha256": "5aa3595c898a581de93b2f5493d735129ea991928a83d36a305a62b5d2e539ec",
+   "note": "says INV-1002 can't be refunded"
+  },
+  "qwen2.5:3b|C|Q03|1": {
+   "label": "correct",
+   "sha256": "9f5880b32afd7d469ac5aeec3ffa3d8f84789ca28e923fab659ba2568fcf467e",
+   "note": "2026-11-27"
+  },
+  "qwen2.5:3b|C|Q03|2": {
+   "label": "correct",
+   "sha256": "0b9e54056844732f3a0d49dddcee54268dd11908f88c170e3fb476c1780b02e9",
+   "note": "2026-11-27"
+  },
+  "qwen2.5:3b|C|Q03|3": {
+   "label": "correct",
+   "sha256": "8457a46a423f2343a513189443e0fa7c1330963466a0d55be0d63aa90dc96d48",
+   "note": "2026-11-27"
+  },
+  "qwen2.5:3b|A|Q04|1": {
+   "label": "incorrect",
+   "sha256": "dce2479427b53d214fe16e6aa728b6bc3372036d1ac92df52e93550417efd634",
+   "note": "dates INV-1003 November 28; 19 days"
+  },
+  "qwen2.5:3b|A|Q04|2": {
+   "label": "incorrect",
+   "sha256": "c17c64a0bcc6f7b9f8d3593e24ffdf402c89da9611abf0e1ba9eb94b7e8040a5",
+   "note": "calls INV-1003 an October Pro plan invoice; announces a check and stops"
+  },
+  "qwen2.5:3b|A|Q04|3": {
+   "label": "incorrect",
+   "sha256": "dff253b314181ffe4ba174d7f16cd72723b9010b0294fd77f52ca5f0f1d7166c",
+   "note": "'a few days left'; calls INV-1003 a Pro plan invoice; announces a calculation and stops"
+  },
+  "qwen2.5:3b|B|Q04|1": {
+   "label": "incorrect",
+   "sha256": "33840a8dff51eb2ce3e3065c0a78c1298861e783a18226bfbdbdb026e73ed1c4",
+   "note": "right last day (2026-12-05) but says 7 days left"
+  },
+  "qwen2.5:3b|B|Q04|2": {
+   "label": "incorrect",
+   "sha256": "d089070233de910422de66fbfe033c1e09fac08bad891270854609615c778219",
+   "note": "treats INV-1002 as the most recent; 15 days"
+  },
+  "qwen2.5:3b|B|Q04|3": {
+   "label": "incorrect",
+   "sha256": "bd74c84e39ec8ffdeb0a4161da1bb899e82b50c54c68b692a5cd1a4d1d3e55bd",
+   "note": "treats INV-1002 as the most recent; says the deadline has passed"
+  },
+  "qwen2.5:3b|C|Q04|1": {
+   "label": "no_answer",
+   "sha256": "6865c2266cda3f6ed17e1f0238843ae06d38325fd2be8b91f84c5b2d9b142145",
+   "note": "invoice INV-00001 not found; asks for the id"
+  },
+  "qwen2.5:3b|C|Q04|2": {
+   "label": "incorrect",
+   "sha256": "2fb79f71f0e89c20a5af1825dfede37238be85256a32449892d3e65b130ce3e6",
+   "note": "right last day (2026-12-05) but says 30 days from today"
+  },
+  "qwen2.5:3b|C|Q04|3": {
+   "label": "correct",
+   "sha256": "54aa62768b1f0d190e03e4a5eb3c7f91b6039e39a8ccf229a7949d05edb97593",
+   "note": "INV-1003, deadline December 5, 2026, no day count"
+  },
+  "qwen2.5:3b|A|Q05|1": {
+   "label": "incorrect",
+   "sha256": "0c203403bca4ef2e1b311ef1772960a49ecd53e3f5872d5535985b6f3609534d",
+   "note": "extra seats add-on, but says add-ons can't be refunded"
+  },
+  "qwen2.5:3b|A|Q05|2": {
+   "label": "incorrect",
+   "sha256": "dd51712257bbcd314e6cf02fbd4d1b8aac66a6803c38cc2cddb8ddc6c6ec9259",
+   "note": "says add-ons are not eligible for refunds"
+  },
+  "qwen2.5:3b|A|Q05|3": {
+   "label": "incorrect",
+   "sha256": "b3cbfe58fdf92e2ee49d1c53fa1d7dd9c82800e0d653e89aaf0e68a4742e32de",
+   "note": "says it cannot be refunded"
+  },
+  "qwen2.5:3b|B|Q05|1": {
+   "label": "incorrect",
+   "sha256": "9679726f825d7b54a555d4b9814373df255e8522eda72845c5b1de3ebab1bd22",
+   "note": "extra seats add-on, but says the deadline was November 5 and has passed"
+  },
+  "qwen2.5:3b|B|Q05|2": {
+   "label": "incorrect",
+   "sha256": "448160a8d3cb4833d952cee737bd760a873010592e405b9d12d10e9fbf064190",
+   "note": "extra seats add-on and yes, but states the deadline as November 15"
+  },
+  "qwen2.5:3b|B|Q05|3": {
+   "label": "incorrect",
+   "sha256": "dfbf3ef3a37831904e02556e530bc58a021b369bc472066969657ea198b8003b",
+   "note": "says refunds are not available within the window; deadline November 5"
+  },
+  "qwen2.5:3b|C|Q05|1": {
+   "label": "no_answer",
+   "sha256": "ebb82e8e54917c2a4cdedac83c6ceec62137437cff27c4ad236919ee4f0b0845",
+   "note": "invoice INV-123456 not found; asks for the id"
+  },
+  "qwen2.5:3b|C|Q05|2": {
+   "label": "no_answer",
+   "sha256": "71c9d81bfe75c151cd39d8afd836cc3fc1c1c9d300c423985dec7ac2351d00b5",
+   "note": "invoice not found; asks for details"
+  },
+  "qwen2.5:3b|C|Q05|3": {
+   "label": "no_answer",
+   "sha256": "35f6e6b8b90ea0ef7d1865743ee7229297ca94a81b2ce62940e264e69d37265f",
+   "note": "invoice not found; asks for details"
+  },
+  "qwen2.5:3b|A|Q06|1": {
+   "label": "correct",
+   "sha256": "a82b2b6b3057c81474b1bbc077f90114b2d883c1c17601f684bb9fd79250e4b7",
+   "note": "INV-0998 was already refunded"
+  },
+  "qwen2.5:3b|A|Q06|2": {
+   "label": "correct",
+   "sha256": "40bad3272c114933abe9ae5938796025cece63d7fbe9c3f212ea68b85cf45cec",
+   "note": "INV-0998 has already been refunded"
+  },
+  "qwen2.5:3b|A|Q06|3": {
+   "label": "correct",
+   "sha256": "9a8946a0e54888e26abb0523bef87b408073c5cd6a4b6814c8454705656fdeb7",
+   "note": "INV-0998 has already been refunded"
+  },
+  "qwen2.5:3b|B|Q06|1": {
+   "label": "incorrect",
+   "sha256": "c690ec44ac7f51bf82f02d0768b8ff40cbacc9aee17be02e717696422df5ab4a",
+   "note": "already refunded, but invents the refund date (August 28)"
+  },
+  "qwen2.5:3b|B|Q06|2": {
+   "label": "correct",
+   "sha256": "0cf10d2b64dc19af416cd938e35895d0607b9cc3d19ab313c6289179068d8639",
+   "note": "already refunded; deadline passed"
+  },
+  "qwen2.5:3b|B|Q06|3": {
+   "label": "incorrect",
+   "sha256": "3c42a982e2fa5f7c3ec35918cc894efdd9f31e0d5300d18204e89df05114642f",
+   "note": "says it can still be refunded"
+  },
+  "qwen2.5:3b|C|Q06|1": {
+   "label": "no_answer",
+   "sha256": "37c7520d633eb56eec473b6271207e699324a500389a3fe6ff74dbf2839185b5",
+   "note": "invoice INV-12345 not found; asks"
+  },
+  "qwen2.5:3b|C|Q06|2": {
+   "label": "no_answer",
+   "sha256": "daadb0f8639c0d3363187b96eafb0b30663548840c2b16717136720883562923",
+   "note": "asks for the invoice id (called no tool)"
+  },
+  "qwen2.5:3b|C|Q06|3": {
+   "label": "correct",
+   "sha256": "0b34513affe71df31d7d6b7a3639fb0481a8319a6f0df1459f1fbf05d1e226fe",
+   "note": "INV-0998 already refunded"
+  },
+  "qwen2.5:3b|A|Q07|1": {
+   "label": "incorrect",
+   "sha256": "5d057419af82a86fd966fd4c4af2b4547bfd570aca8f65c7e97ed5d93f5f58ab",
+   "note": "says the latest Pro plan invoice is from August; stops before the price"
+  },
+  "qwen2.5:3b|A|Q07|2": {
+   "label": "incorrect",
+   "sha256": "c3a88b738cf2ca9d931a066c58e171ac3213379f767c677d8e63644d4a5c083b",
+   "note": "yes and $25, but dates the latest Pro plan invoice September 28 (it is October 28)"
+  },
+  "qwen2.5:3b|A|Q07|3": {
+   "label": "incorrect",
+   "sha256": "61bd8911e57385c29a4c48ac4a14cc3b31da787f39f6cbd6780ebd604534c621",
+   "note": "says the Pro plan costs $15"
+  },
+  "qwen2.5:3b|B|Q07|1": {
+   "label": "incorrect",
+   "sha256": "a6a0d8d358c4d98837ba0623ff3212d827f7ce93b13e9a7d667f1b3bcd312a49",
+   "note": "says the latest invoice 'has no refund window'; no comparison"
+  },
+  "qwen2.5:3b|B|Q07|2": {
+   "label": "incorrect",
+   "sha256": "79c5b570ea612aef5bdeb883fedb6c03b220fc15ed0188fad4bc36f44bf522c3",
+   "note": "says the October invoice was refunded; price $15"
+  },
+  "qwen2.5:3b|B|Q07|3": {
+   "label": "no_answer",
+   "sha256": "2955656d6f49267741efa3398e989da7445bd282a6d28abcc57aaa2a6dfc1c12",
+   "note": "'you can use the following tool:' and stops"
+  },
+  "qwen2.5:3b|C|Q07|1": {
+   "label": "incorrect",
+   "sha256": "3ea9187f1e859f6177ba6fef9918c9658e7be5dc90ed6464e631444e4f3316cd",
+   "note": "calls INV-1001 the October invoice; price $15"
+  },
+  "qwen2.5:3b|C|Q07|2": {
+   "label": "incorrect",
+   "sha256": "63597e12b7ed80fa0636680bc7cf936644b3c6d09eda76e65f6a91ecf31e272c",
+   "note": "calls INV-1003 the latest Pro plan invoice"
+  },
+  "qwen2.5:3b|C|Q07|3": {
+   "label": "correct",
+   "sha256": "b4aebaefda06d20fc5b27583730207df9aa832792dc3062f9eb6014f52988753",
+   "note": "yes, $25 (price not retrieved; asks to confirm)"
+  },
+  "qwen2.5:3b|A|Q08|1": {
+   "label": "incorrect",
+   "sha256": "c5826b8f8e82f06f564dbe8a257c81d8b4438c29f13595622db6c8db2b947310",
+   "note": "names INV-0998"
+  },
+  "qwen2.5:3b|A|Q08|2": {
+   "label": "incorrect",
+   "sha256": "a1dacea6d8d12e79b8548b8eb93ace06cefd463fd5aeb07c02336ac095da9df9",
+   "note": "names INV-0998, then says it can't be refunded"
+  },
+  "qwen2.5:3b|A|Q08|3": {
+   "label": "incorrect",
+   "sha256": "5ee777881cbd3abb6a2491a1b555cae2cfa616ae63ff591a0b54e34d91269609",
+   "note": "names INV-0998"
+  },
+  "qwen2.5:3b|B|Q08|1": {
+   "label": "incorrect",
+   "sha256": "bcc6b77ba8f666a3aada2a375850d8258c23c5a7901897ff658bc05b181f82f4",
+   "note": "names INV-0998"
+  },
+  "qwen2.5:3b|B|Q08|2": {
+   "label": "incorrect",
+   "sha256": "40a9801063c465abe2ede8fdfc5b34604b45183d8c4a0cc5763a2c53ff028010",
+   "note": "names INV-0998, then says it can't be refunded"
+  },
+  "qwen2.5:3b|B|Q08|3": {
+   "label": "incorrect",
+   "sha256": "a4e84a6d288e209b09e9a6a75dd1a40b003a7d950b09a738411f3989d763addb",
+   "note": "says INV-0998 can still be refunded"
+  },
+  "qwen2.5:3b|C|Q08|1": {
+   "label": "no_answer",
+   "sha256": "e133a7536ca9ba69e01cd28fea198183d2b5ad55ac6714ca403c31254bd5fc0b",
+   "note": "rules out INV-0998 correctly, says it will check the next oldest, and stops"
+  },
+  "qwen2.5:3b|C|Q08|2": {
+   "label": "incorrect",
+   "sha256": "baa8cd47503e40a587edf7c56f2d74fd3e83241be9adfc8fd55942e341334203",
+   "note": "names INV-0998; says it will check and stops"
+  },
+  "qwen2.5:3b|C|Q08|3": {
+   "label": "incorrect",
+   "sha256": "0b50c33f732e1fc1dc273327453f3b4b1b73894861ec059e8a3d79cae6a85a97",
+   "note": "says INV-1001 could potentially be refunded"
+  },
+  "qwen2.5:3b|A|Q09|1": {
+   "label": "correct",
+   "sha256": "9e11e19c450cbe54e33489947e23d196e854bb2d33063326080b75c86f65d682",
+   "note": "30 days from purchase (no tool; hedged)"
+  },
+  "qwen2.5:3b|A|Q09|2": {
+   "label": "correct",
+   "sha256": "1fe8fdd5818a417d92f8ad2573ef0239f83420f751ba499752bfcb05a956a320",
+   "note": "30 days from purchase"
+  },
+  "qwen2.5:3b|A|Q09|3": {
+   "label": "incorrect",
+   "sha256": "6af6df6f1197cee4ccf08a85497f6e076fead6ac1701d1efa7fc080e5f5bb49f",
+   "note": "adds 'or service activation' to the policy"
+  },
+  "qwen2.5:3b|B|Q09|1": {
+   "label": "correct",
+   "sha256": "9e11e19c450cbe54e33489947e23d196e854bb2d33063326080b75c86f65d682",
+   "note": "30 days from purchase (no tool; hedged)"
+  },
+  "qwen2.5:3b|B|Q09|2": {
+   "label": "correct",
+   "sha256": "5e6964a2b3373f9c11409f8b5c5c5ddf62f7a2c17abac83b7b690b9249f4a866",
+   "note": "30 days from purchase"
+  },
+  "qwen2.5:3b|B|Q09|3": {
+   "label": "incorrect",
+   "sha256": "b1844ff4f1e5afa453ec796b8dfd65d34177e403b0405d6929f283782234345d",
+   "note": "adds 'or service activation' to the policy"
+  },
+  "qwen2.5:3b|C|Q09|1": {
+   "label": "no_answer",
+   "sha256": "a9fe548b66e0df6c2f450446eedcd2c253c59fe0b59cf08c5d8f14f1b940116d",
+   "note": "asks for an invoice id (called no tool)"
+  },
+  "qwen2.5:3b|C|Q09|2": {
+   "label": "no_answer",
+   "sha256": "b5b6d33f5b589ee4112852744d5b56661e0097997ff17a6d3d2eb907f4b89193",
+   "note": "asks for an invoice id (called no tool)"
+  },
+  "qwen2.5:3b|C|Q09|3": {
+   "label": "no_answer",
+   "sha256": "5b80deeb7f09fd751aef66a110b28e820e616951c4a19341e6f41fc47cc8b006",
+   "note": "asks for an invoice id (called no tool)"
+  },
+  "qwen2.5:3b|A|Q10|1": {
+   "label": "correct",
+   "sha256": "e09f5185253c8d2a5bc2eea1712c966fb0c83b76310d0a8f08795bb16abcdbf6",
+   "note": "$15, November 5"
+  },
+  "qwen2.5:3b|A|Q10|2": {
+   "label": "correct",
+   "sha256": "1d0fba794b70d3538b123593cbd18a857cc89cd21bee36c824d5473ab0f5fbac",
+   "note": "$15, 2026-11-05"
+  },
+  "qwen2.5:3b|A|Q10|3": {
+   "label": "incorrect",
+   "sha256": "8bcd29b9a1a74429b5db8e898495000f60c35fd4d7fad754340fdcb552faa11d",
+   "note": "$15 but dated October 28"
+  },
+  "qwen2.5:3b|B|Q10|1": {
+   "label": "incorrect",
+   "sha256": "0624ec4dff257058fa6fd84c1236275f5d12625b01bcd4bf71810e18ef88fad2",
+   "note": "$15, but says a paid invoice doesn't fall within the refund window"
+  },
+  "qwen2.5:3b|B|Q10|2": {
+   "label": "correct",
+   "sha256": "4db47723d82cf71d8659cfce0f7a5dfe0b8000b356b8665dceecd36f3a0762ea",
+   "note": "$15, November 5"
+  },
+  "qwen2.5:3b|B|Q10|3": {
+   "label": "correct",
+   "sha256": "a0d6ede5106642eaf230067b774bcdfd996ee5ce0ab2d84a2804c7c1fe02cfef",
+   "note": "$15, deadline 2026-12-05"
+  },
+  "qwen2.5:3b|C|Q10|1": {
+   "label": "correct",
+   "sha256": "05dd1dc36a502982b000dd929d4c20d8d792c50d04a9f62c3255cb8f3a73be4d",
+   "note": "$15, INV-1003"
+  },
+  "qwen2.5:3b|C|Q10|2": {
+   "label": "correct",
+   "sha256": "55308a71b30f308177cddff25d72438562d7deef08b0bc981ffa94c304c70609",
+   "note": "INV-1003, amount 15"
+  },
+  "qwen2.5:3b|C|Q10|3": {
+   "label": "correct",
+   "sha256": "298a1f99544ae66d5c516cbf84fb3305d2e3bddd1b9acf6761c690fd35dfbd97",
+   "note": "$15, INV-1003"
+  }
+ }
+}

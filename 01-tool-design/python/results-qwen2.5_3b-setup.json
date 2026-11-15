@@ -1,0 +1,17 @@
+{
+ "ollama": "0.40.16",
+ "model": "qwen2.5:3b",
+ "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+ "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+ "template_file": "template-qwen2.5_3b.txt",
+ "max_steps": 5,
+ "max_tokens": 1000,
+ "sampling": "Ollama defaults, seed = run seed",
+ "frozen_sha256": {
+  "account.json": "e3727a20f62e436449df20973d666901b85b98ad1b52a649e523bf055750b889",
+  "help_center.json": "4e8c88d4a3bc9b886cd94bf499a18c51ff1c88df72b9888c419ae9fa73c3ca2f",
+  "prompt.json": "26a212e52242dd6b248be29f8c6f4bf3d5e541d44290e97f8a8a6e8e20197cb4",
+  "questions.json": "596f55092f74076f7f4af4f07d2bb3085caf400793af05fa4f81d23c98d27344"
+ },
+ "started_utc": "2026-11-15T09:48:20Z"
+}

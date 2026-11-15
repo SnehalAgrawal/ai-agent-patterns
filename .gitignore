@@ -1,0 +1,15 @@
+# Local configuration
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ruff_cache/
+
+# OS
+.DS_Store
+
+# Saved runs (results-*.jsonl) and hand labels (labels.json) are committed on purpose:
+# the articles quote them, and report.py re-grades them without calling a model.
