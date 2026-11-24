@@ -1,6 +1,6 @@
 # 06 · State and workflows: an agent loop vs a state machine that can move money
 
-Companion demo for **Article #28, "Building AI Agents With State and Workflows"** on [snehalagrawal.com](https://snehalagrawal.com/articles/).
+Companion demo for **Article #28, ["Building AI Agents With State and Workflows"](https://snehalagrawal.com/articles/building-ai-agents-with-state-and-workflows/)** on snehalagrawal.com.
 
 The support assistant from the earlier demos gets one write action: `issue_refund`. A customer was charged twice for October's invoice, and the assistant may refund the extra charge, once. Everything else it must hand to the billing team.
 
