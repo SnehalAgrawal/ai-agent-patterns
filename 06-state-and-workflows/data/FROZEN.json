@@ -1,0 +1,12 @@
+{
+  "_comment": "SHA-256 of every data file, taken before any system code in python/ was written. python/run.py refuses to run if a file no longer matches.",
+  "frozen_at_utc": "2026-11-24 06:12:56",
+  "files": {
+    "account.json": "5fd63dd9366fd309feef2a2267e920c1e810058f99ce5181f0cd7694c966f673",
+    "designs.json": "b3d0a2437065060a7ff53a2cbc9fe637d543582eb82d735cd22df25e736489f3",
+    "evaluation.json": "b29bb0dc6500629c2231e89386754ea0904bb28bc9e61d2c7d156cbc713e4cee",
+    "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+    "prompts.json": "41824894b4721f33607d2fd0d33f04b75331c6977bbd9353ceb4215b71b11db1",
+    "scenarios.json": "9867d7fa8173548c1324bfc7c9c0a77219cf3f5e573b6363c111e04ba634bcb6"
+  }
+}

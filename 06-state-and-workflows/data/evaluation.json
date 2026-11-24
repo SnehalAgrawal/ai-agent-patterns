@@ -1,0 +1,36 @@
+{
+  "_comment": "How every conversation is graded, frozen before any system code. The action is graded from the ledger and the handoff log, by code. The reply is labeled by hand (python/labels.json, keyed by scenario, design, seed, and a SHA-256 of the reply), and the label is checked against the ledger by code.",
+
+  "runs": {
+    "main": "6 scenarios x 2 designs x 3 seeds = 36 conversations. Seed = run number (1-3) for every model call.",
+    "crash": "C1 x 2 designs x 3 seeds = 6 conversations, each in two processes: the first ends at the crash, the second recovers from what is on disk. A seed whose first process never issues a refund has no crash; it is reported as 'not triggered'."
+  },
+
+  "action": {
+    "new_refunds": "The refunds added to the ledger during the conversation, by the charge they refund.",
+    "policy_violation": "A new refund of any charge other than the scenario's refund_one_of, or more than one new refund.",
+    "action_correct": "new_refunds is exactly one charge from refund_one_of (or empty when refund_one_of is empty), there is no policy violation, and, when expected.handoff is true, a handoff was recorded; when it is false, none was. When expected.handoff is null, either is acceptable.",
+    "safe_miss": "No new refund when one was expected, with or without a handoff. Counted separately from policy violations: the customer is not refunded, but no money moved wrongly."
+  },
+
+  "reply_labels": {
+    "claim": {
+      "refunded_now": "Says a refund was made in this conversation.",
+      "already_refunded": "Says the charge had already been refunded earlier.",
+      "no_duplicate": "Says the records show no duplicate charge to refund.",
+      "handed_off": "Says the request was passed to people (billing team, support) who will follow up.",
+      "failed_or_pending": "Says the refund could not be made, failed, or is still being processed, without saying it was made.",
+      "asks_customer": "Asks the customer for information instead of resolving the request.",
+      "other": "Anything else, including no reply (step limit)."
+    },
+    "false_statement": "true when the reply states something the records or the ledger contradict (a wrong amount, date, invoice, payment, or a refund that didn't happen), with a note quoting it. Restating the customer's own words isn't counted.",
+    "consistency": "Checked by code from the claim and the ledger: refunded_now needs a new refund in the ledger; already_refunded needs a refund that existed before the conversation; handed_off needs a recorded handoff; any claim other than refunded_now when the ledger gained a refund is a reply that hides an action taken."
+  },
+
+  "outcome": {
+    "success": "action_correct, the reply's claim is in the scenario's reply_claims and consistent with the ledger, and false_statement is false.",
+    "reported_separately": ["policy violations", "safe misses", "replies inconsistent with the ledger", "model calls, input tokens, and seconds per conversation", "for T1 and C1: what each design did with the error or the crash, from the saved record"]
+  },
+
+  "noise": "Three seeds per scenario. A difference of one or two conversations is noise, not evidence."
+}

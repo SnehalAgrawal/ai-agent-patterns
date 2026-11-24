@@ -1,6 +1,6 @@
 # 05 · Planning: who decides the steps, and when?
 
-Companion demo for **Article #27, "Planning, Reasoning, and Execution in AI Agents: Who Decides the Steps, and When?"** on [snehalagrawal.com](https://snehalagrawal.com/articles/) (not published yet; this README will link to it when it is).
+Companion demo for **Article #27, ["Planning, Reasoning, and Execution in AI Agents: Who Decides the Steps, and When?"](https://snehalagrawal.com/articles/planning-reasoning-and-execution-in-ai-agents/)** on snehalagrawal.com.
 
 The support assistant from [`02-agentic-workflows`](../02-agentic-workflows/), [`03-multi-agent`](../03-multi-agent/) and [`04-agent-memory`](../04-agent-memory/) gets requests that take more than one step: find an invoice, then check it; check for a duplicate charge, then for its refund; work out a date when the tool that knows it is down. Four designs answer them with the same model, prompt, tools, and data. They differ only in **who decides the steps, and when**.
 

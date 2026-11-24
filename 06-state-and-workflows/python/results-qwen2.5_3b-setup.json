@@ -1,0 +1,29 @@
+{
+  "ollama": "0.40.17",
+  "model": "qwen2.5:3b",
+  "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+  "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+  "command": "all",
+  "sampling": "Ollama defaults, seed = run seed for every model call",
+  "frozen_sha256": {
+    "account.json": "5fd63dd9366fd309feef2a2267e920c1e810058f99ce5181f0cd7694c966f673",
+    "designs.json": "b3d0a2437065060a7ff53a2cbc9fe637d543582eb82d735cd22df25e736489f3",
+    "evaluation.json": "b29bb0dc6500629c2231e89386754ea0904bb28bc9e61d2c7d156cbc713e4cee",
+    "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+    "prompts.json": "41824894b4721f33607d2fd0d33f04b75331c6977bbd9353ceb4215b71b11db1",
+    "scenarios.json": "9867d7fa8173548c1324bfc7c9c0a77219cf3f5e573b6363c111e04ba634bcb6"
+  },
+  "code_sha256": {
+    "llm.py": "ba51cd76dcdc888d59ca9f1bb803cc3d2c7dc8b977a4127b97f08514063b2854",
+    "payments.py": "c57336cf79bd132e8ada49895fb8ea53a76987dc10e468ed0d8d0e322bf09a86",
+    "tools.py": "e97b89ea6c1c5aeb6e4b5a2239a6436a396cdaebfaeca9a2684b8fed42a82cfb",
+    "agent_loop.py": "1b5d430353b000a4e3873620305cf25453b306129ad5e80422a49028c139d484",
+    "workflow.py": "2de1a1b1cd2bd1c0472e9a02081a6f2b1fde929fc524477a7c59ed79462c44ef",
+    "run.py": "cb3b1b78cf9f828c7781778848cd045cba796354e6b3851afe06f0ea2b53d769"
+  },
+  "python": "3.12.13",
+  "machine": "arm64",
+  "power": "Now drawing from 'Battery Power'",
+  "started_utc": "2026-11-24T06:27:55Z",
+  "finished_utc": "2026-11-24T06:29:47Z"
+}

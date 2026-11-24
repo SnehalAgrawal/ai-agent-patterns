@@ -1,0 +1,153 @@
+{
+  "_comment": "The two designs, frozen before any system code. Both use the same model, the same customer-facing prompt (data/prompts.json 'system'), the same simulated payment service and ledger (python/payments.py), and the same refund policy. They differ in where the state lives and who decides the next step.",
+  "limits": {
+    "L_max_model_calls": 6,
+    "max_tokens_per_call": 1000,
+    "intake_max_tokens": 100,
+    "_comment": "L: if its 6th model call still requests tools, the run ends without a reply (outcome step_limit), as in the earlier demos."
+  },
+  "designs": {
+    "L": {
+      "name": "agent loop",
+      "state": "The message list. It is saved to a file after every message is appended, so a crashed run can be resumed from it.",
+      "control": "The model gets five tools (search_help_center, get_invoices, get_payments, issue_refund(payment_id), hand_off_to_billing(summary)) and the refund policy in its system prompt, and decides every step, for up to 6 model calls. Tool calls are checked against their schemas before they run (as in the earlier demos). issue_refund goes straight to the payment service, which enforces only its own data rules (the payment exists, belongs to the customer, is a successful charge, and has not been refunded), not the refund policy.",
+      "retries": "None in code. A tool error is returned to the model as the tool result; the model decides what to do next.",
+      "resume": "Load the saved message list. If its last message is an assistant message whose tool calls have no results yet, run those calls (the usual way to continue a transcript), then continue the loop with the remaining model calls."
+    },
+    "S": {
+      "name": "state machine",
+      "state": "A case record owned by code: the current node, the classified request, what verification found in the records, the refund (status, idempotency key, every attempt, and the result), the reply, and a log of transitions. It is saved after every transition, and before the refund request is sent.",
+      "nodes": {
+        "intake": "One model call with a JSON schema (data/prompts.json intake_system and intake_schema). Its output is checked; an unreadable result goes to handoff.",
+        "verify": "Code. Candidate invoices: the invoice id from intake if it is one of the customer's; otherwise the customer's invoices dated in the intake month; otherwise all of the customer's invoices. A candidate is a duplicate when it has two or more successful charges. Exactly one duplicate invoice: if one of its charges was already refunded, the outcome is already_refunded; otherwise the charge to refund is the duplicate invoice's last successful charge by id. No duplicate: the outcome is no_duplicate. More than one duplicate invoice: handoff.",
+        "refund": "Code. Sends issue_refund with an idempotency key made from the case id and the payment id. Retry policy: at most 3 attempts in total, only for errors the service marks retryable, waiting 0.2 s and then 0.4 s. A non-retryable error, or a third failed attempt, goes to handoff.",
+        "reply": "One model call (data/prompts.json reply_system) with case facts written by code from the record: what the records show and what action was taken. No tools.",
+        "handoff": "Code. Records the handoff in the same handoff log L uses, and replies with a fixed text: 'Thanks for your message. I've passed it to our billing team. ' followed by data/prompts.json handoff_message."
+      },
+      "transitions": {
+        "intake": [
+          "verify",
+          "handoff"
+        ],
+        "verify": [
+          "refund",
+          "reply",
+          "handoff"
+        ],
+        "refund": [
+          "reply",
+          "handoff"
+        ],
+        "reply": [
+          "done"
+        ],
+        "handoff": [
+          "done"
+        ]
+      },
+      "guards": {
+        "intake -> verify": "kind is duplicate_charge",
+        "verify -> refund": "verification found exactly one duplicate invoice, the charge to refund is a successful charge of that invoice, none of its charges was refunded, and the record has no refund yet",
+        "refund -> reply": "the refund's status is succeeded"
+      },
+      "invalid_transitions": "A transition not in the table, or one whose guard fails, raises an error and is recorded; the case goes to handoff.",
+      "resume": "Load the saved record and run its current node again from the start. The refund node, finding a refund with status 'requested', sends the request again with the same idempotency key; the payment service returns the saved result of the first request instead of refunding twice."
+    }
+  },
+  "payment_service": {
+    "data_rules": "issue_refund(payment_id) fails, with a non-retryable error, when the payment doesn't exist, belongs to another customer, isn't a successful charge, or has already been refunded (the error names the earlier refund).",
+    "idempotency": "An optional idempotency key, as in common payment APIs: a repeat of a request with the same key returns the saved result of the first request; the same key with a different payment id is an error. L's tool calls carry no key; S's refund node always sends one.",
+    "faults": "transient_failures: the first N requests fail with a retryable error and change nothing. crash_after_commit: the process exits right after the first successful refund is written to the ledger file, before the result is returned."
+  },
+  "loop_tools": {
+    "_comment": "L's five tool definitions, sent to the model as written here. The first two are 02-agentic-workflows' definitions, unchanged; get_payments adds one sentence about refund_of. S's model calls get no tools.",
+    "tools": [
+      {
+        "type": "function",
+        "function": {
+          "name": "search_help_center",
+          "description": "Search the help center articles. Returns the three most relevant articles.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "What to search for."
+              }
+            },
+            "required": [
+              "query"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_invoices",
+          "description": "List the signed-in customer's invoices.",
+          "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": [],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "get_payments",
+          "description": "List the signed-in customer's card payments and refunds: date, amount, invoice, and whether each succeeded. A refund names the charge it refunds in refund_of.",
+          "parameters": {
+            "type": "object",
+            "properties": {},
+            "required": [],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "issue_refund",
+          "description": "Refund one card charge to the original payment method.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "payment_id": {
+                "type": "string",
+                "description": "The id of a charge from get_payments."
+              }
+            },
+            "required": [
+              "payment_id"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      {
+        "type": "function",
+        "function": {
+          "name": "hand_off_to_billing",
+          "description": "Pass the request to a person on the billing team, who will reply to the customer by email.",
+          "parameters": {
+            "type": "object",
+            "properties": {
+              "summary": {
+                "type": "string",
+                "description": "One sentence describing the customer's request."
+              }
+            },
+            "required": [
+              "summary"
+            ],
+            "additionalProperties": false
+          }
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,45 @@
+Holding the Ollama lock (ai-agent-patterns/06-state-and-workflows run.py all). Waiting for 60 s of idle Ollama first.
+Ollama is in use (loaded: ['qwen2.5:3b'], connections: 2); waiting.
+D1 L seed 1: replied, refunds ['PAY-5005'], handoffs 0, 3.155 s
+D1 L seed 2: replied, refunds [], handoffs 0, 3.27 s
+D1 L seed 3: replied, refunds ['PAY-5005'], handoffs 0, 3.024 s
+D1 S seed 1: done, refunds ['PAY-5006'], handoffs 0, 1.712 s
+D1 S seed 2: done, refunds ['PAY-5006'], handoffs 0, 0.934 s
+D1 S seed 3: done, refunds ['PAY-5006'], handoffs 0, 1.121 s
+D2 L seed 1: replied, refunds ['PAY-5005'], handoffs 0, 4.586 s
+D2 L seed 2: replied, refunds ['PAY-5005'], handoffs 0, 3.429 s
+D2 L seed 3: replied, refunds ['PAY-5005'], handoffs 0, 2.182 s
+D2 S seed 1: done, refunds ['PAY-5006'], handoffs 0, 1.977 s
+D2 S seed 2: done, refunds ['PAY-5006'], handoffs 0, 1.958 s
+D2 S seed 3: done, refunds ['PAY-5006'], handoffs 0, 1.896 s
+N1 L seed 1: replied, refunds ['PAY-5005'], handoffs 0, 2.342 s
+N1 L seed 2: replied, refunds ['PAY-5005'], handoffs 0, 2.455 s
+N1 L seed 3: replied, refunds ['PAY-5005'], handoffs 0, 3.376 s
+N1 S seed 1: done, refunds [], handoffs 0, 1.768 s
+N1 S seed 2: done, refunds [], handoffs 0, 1.475 s
+N1 S seed 3: done, refunds [], handoffs 0, 1.165 s
+O1 L seed 1: replied, refunds ['PAY-5005', 'PAY-5003'], handoffs 0, 6.543 s
+O1 L seed 2: replied, refunds [], handoffs 0, 1.99 s
+O1 L seed 3: replied, refunds [], handoffs 1, 7.705 s
+O1 S seed 1: done, refunds [], handoffs 1, 0.424 s
+O1 S seed 2: done, refunds [], handoffs 1, 0.371 s
+O1 S seed 3: done, refunds [], handoffs 1, 0.367 s
+R1 L seed 1: replied, refunds [], handoffs 0, 7.184 s
+R1 L seed 2: replied, refunds ['PAY-5005'], handoffs 0, 3.355 s
+R1 L seed 3: replied, refunds ['PAY-5005'], handoffs 1, 4.588 s
+R1 S seed 1: done, refunds [], handoffs 0, 1.407 s
+R1 S seed 2: done, refunds [], handoffs 0, 1.25 s
+R1 S seed 3: done, refunds [], handoffs 0, 1.087 s
+T1 L seed 1: replied, refunds [], handoffs 0, 2.472 s
+T1 L seed 2: replied, refunds [], handoffs 1, 4.346 s
+T1 L seed 3: replied, refunds [], handoffs 0, 3.584 s
+T1 S seed 1: done, refunds ['PAY-5006'], handoffs 0, 1.616 s
+T1 S seed 2: done, refunds ['PAY-5006'], handoffs 0, 1.2 s
+T1 S seed 3: done, refunds ['PAY-5006'], handoffs 0, 1.38 s
+C1 L seed 1: crashed=True, replied, refunds ['PAY-5005']
+C1 L seed 2: crashed=False, replied, refunds []
+C1 L seed 3: crashed=True, replied, refunds ['PAY-5005']
+C1 S seed 1: crashed=True, done, refunds ['PAY-5006']
+C1 S seed 2: crashed=True, done, refunds ['PAY-5006']
+C1 S seed 3: crashed=True, done, refunds ['PAY-5006']
+Released the Ollama lock.

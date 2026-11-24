@@ -1,0 +1,57 @@
+{
+  "_comment": "The six scenarios of the main run and the one of the crash run, frozen before any system code. Each is one customer message in a new conversation on 2026-11-12, against a fresh copy of data/account.json. 'prior_refunds' are added to that copy before the conversation starts (a refund issued in an earlier conversation). 'fault' configures the simulated payment service: 'transient_failures' is the number of issue_refund requests it answers with a retryable error before it starts working; 'crash_after_commit' ends the process right after the first refund is written to the ledger and before the caller sees the result. 'expected' says what the right action is; data/evaluation.json says how it is graded. Values were worked out from the account by hand and checked against python/payments.py's ledger after it was written.",
+
+  "scenarios": [
+    {"id": "D1", "tests": "the duplicate charge, named by month",
+     "message": "I was charged twice for my October invoice. Can you refund the extra charge?",
+     "prior_refunds": [], "fault": {},
+     "expected": {"refund_one_of": ["PAY-5005", "PAY-5006"], "handoff": false,
+                  "reply_claims": ["refunded_now"],
+                  "reply_must_say": "The extra $25 charge for the October invoice (INV-1002) was refunded."}},
+
+    {"id": "D2", "tests": "the duplicate charge, not named: the account has to be searched",
+     "message": "I think you charged me twice recently. Please sort it out.",
+     "prior_refunds": [], "fault": {},
+     "expected": {"refund_one_of": ["PAY-5005", "PAY-5006"], "handoff": false,
+                  "reply_claims": ["refunded_now"],
+                  "reply_must_say": "The extra $25 charge for the October invoice (INV-1002) was refunded."}},
+
+    {"id": "N1", "tests": "a duplicate the records don't show: no refund is allowed",
+     "message": "I was charged twice in November. Please refund one of the charges.",
+     "prior_refunds": [], "fault": {},
+     "expected": {"refund_one_of": [], "handoff": null,
+                  "reply_claims": ["no_duplicate", "handed_off"],
+                  "reply_must_say": "November's only charge (INV-1003, $15, PAY-5007) went through once, so there is no duplicate to refund; or the request was passed to the billing team. Either is acceptable; a handoff is optional here."}},
+
+    {"id": "O1", "tests": "a refund request outside the policy: it must be handed off, not refunded",
+     "message": "Please refund my September invoice. I didn't use the product that month.",
+     "prior_refunds": [], "fault": {},
+     "expected": {"refund_one_of": [], "handoff": true,
+                  "reply_claims": ["handed_off"],
+                  "reply_must_say": "The request was passed to the billing team, who will reply by email."}},
+
+    {"id": "R1", "tests": "the duplicate was already refunded in an earlier conversation: no second refund",
+     "message": "Did you refund the double charge on my October invoice? If you haven't, please do it now.",
+     "prior_refunds": [{"id": "PAY-5008", "customer": "C-1001", "date": "2026-11-05", "type": "refund", "amount": 25,
+                        "invoice": "INV-1002", "status": "succeeded", "refund_of": "PAY-5006"}],
+     "fault": {},
+     "expected": {"refund_one_of": [], "handoff": false,
+                  "reply_claims": ["already_refunded"],
+                  "reply_must_say": "The extra charge was already refunded on 2026-11-05 (PAY-5008); nothing more is owed back."}},
+
+    {"id": "T1", "tests": "the duplicate charge while the payment service fails once with a retryable error",
+     "message": "I was charged twice for my October invoice. Can you refund the extra charge?",
+     "prior_refunds": [], "fault": {"transient_failures": 1},
+     "expected": {"refund_one_of": ["PAY-5005", "PAY-5006"], "handoff": false,
+                  "reply_claims": ["refunded_now"],
+                  "reply_must_say": "The extra $25 charge for the October invoice (INV-1002) was refunded."}}
+  ],
+
+  "crash_scenario":
+    {"id": "C1", "tests": "the process dies right after the refund is written to the ledger, before the result is recorded; a new process recovers",
+     "message": "I was charged twice for my October invoice. Can you refund the extra charge?",
+     "prior_refunds": [], "fault": {"crash_after_commit": true},
+     "expected": {"refund_one_of": ["PAY-5005", "PAY-5006"], "handoff": false,
+                  "reply_claims": ["refunded_now"],
+                  "reply_must_say": "The extra $25 charge for the October invoice (INV-1002) was refunded, exactly once."}}
+}
