@@ -1,6 +1,6 @@
 # ai-agent-patterns
 
-Runnable examples for the AI Agents articles on [snehalagrawal.com](https://snehalagrawal.com/articles/): tools, agent loops, state, memory, planning, and human-in-the-loop.
+Runnable examples for the AI Agents articles on [snehalagrawal.com](https://snehalagrawal.com/articles/): tools, agent loops, state, memory, planning, human-in-the-loop, and failure modes.
 
 | Demo | Article | What it shows |
 |---|---|---|
@@ -11,6 +11,7 @@ Runnable examples for the AI Agents articles on [snehalagrawal.com](https://sneh
 | [`05-planning`](05-planning/) | [#27 Planning, Reasoning, and Execution in AI Agents: Who Decides the Steps, and When?](https://snehalagrawal.com/articles/planning-reasoning-and-execution-in-ai-agents/) | The same assistant with a fixed workflow, a step-by-step loop, a plan written up front, and a plan revised after every result: where planning fails, where reasoning over the right results fails, and what replanning costs |
 | [`06-state-and-workflows`](06-state-and-workflows/) | [#28 Building AI Agents With State and Workflows](https://snehalagrawal.com/articles/building-ai-agents-with-state-and-workflows/) | The same refund assistant as an agent loop whose task progress lives only in its message list and as a state machine whose case record is owned by code: wrong refunds, retries, and recovery after a crash |
 | [`07-human-in-the-loop`](07-human-in-the-loop/) | [#29 Human-in-the-Loop AI Agents: When Should an Agent Stop and Ask?](https://snehalagrawal.com/articles/human-in-the-loop-ai-agents-when-should-an-agent-stop-and-ask/) | The same assistant with a refund tool that pauses for a reviewer: hard checks in code, approval tiers and roles, expiry, a re-check before execution, execution once, an audit trail, and what the agent tells the customer while it waits and after each decision |
+| [`08-failure-modes`](08-failure-modes/) | #30 Why AI Agents Fail: Common Failure Modes and Design Patterns (link added when the article is published) | No model calls: the recorded decisions of 01–07 replayed through guards at each failure boundary (argument provenance, repeats, budgets, a refund policy in code, typed handoffs, reply checks): what each guard would have stopped, what correct work it would have stopped too, and which failures pass every guard |
 
 Each demo has its own README with setup, how to run it, expected output, and limitations. All data is synthetic.
 

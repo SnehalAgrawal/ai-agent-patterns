@@ -1,0 +1,200 @@
+08-failure-modes report, set: test
+Frozen at 2026-11-24 08:03:03 UTC (data/FROZEN.json). No model was called.
+Evidence kinds: objective = computed from data files and recorded fields; hand = labels from the original
+articles, unchanged; replay = this demo's guard verdicts about recorded decisions.
+The replay cannot establish how the model would have recovered after a guard blocked it.
+
+0. What was replayed
+====================
+demo                      design  conversations  tool calls
+01-tool-design                 A             60          58
+01-tool-design                 B             60          58
+01-tool-design                 C             60          61
+02-agentic-workflows           A             36          36
+03-multi-agent                 M             36         201
+03-multi-agent                 R             36         106
+03-multi-agent                 S             36          36
+04-agent-memory                K             30          23
+04-agent-memory                N             30          19
+04-agent-memory                S             30          26
+04-agent-memory                T             30          25
+05-planning                    L             27          36
+05-planning                    P             27          47
+05-planning                    R             27         216
+06-state-and-workflows         L             18          41
+all                                         543         989
+
+Conversation labels (hand; 06: #28's frozen success): correct 149, failure 11, incorrect 279, no_answer 97, success 7
+
+1. Baseline (objective, recorded): the schema check every demo already had, and what the model did next
+=======================================================================================================
+Calls with an error result: 227 (schema-invalid 141, valid but failed 86).
+The error went back to the model. The same agent's next call was:
+  identical call again                  57/227 (25%)
+  same tool, different arguments        32/227 (14%)
+  a different tool                      67/227 (30%)
+  none (replied or run ended)           71/227 (31%)
+
+By demo:        identical call aga  same tool, differe    a different tool  none (replied or r
+  01 ( 23)                      0                   0                   0                  23
+  03 (117)                     38                  22                  39                  18
+  04 (  1)                      0                   0                   0                   1
+  05 ( 79)                     18                   9                  27                  25
+  06 (  7)                      1                   1                   1                   4
+
+2a. provenance and id_format, independently (unit: id arguments; truth: objective id status)
+============================================================================================
+truth                   provenance fired       id_format fired
+nonexistent                  52/53 (98%)           45/53 (85%)
+other_customer                       0/0                   0/0
+owned                         0/202 (0%)            0/202 (0%)
+
+Of which on calls the schema check had already rejected / passed:
+  nonexistent     schema-invalid              2/2 (100%)            2/2 (100%)
+  nonexistent     valid                      50/51 (98%)           43/51 (84%)
+  owned           schema-invalid                0/7 (0%)              0/7 (0%)
+  owned           valid                       0/195 (0%)            0/195 (0%)
+
+Examples of nonexistent ids, by demo: 
+  01: get_invoices, , (get_most_recent_invoice), (get_invoices()), (get_most_recent_invoice_id), INV-0000
+  03: invoice_id1, invoice_id2, invoice_id3, owner@customer.example, Pro-2026-08, August
+  05: invoice123456, most_recent_Pro_invoice_id, invoice123, recent_invoice_id, REPLACE_WITH_INVOICE_ID, October_invoice_id
+
+2b. repeat, independently (unit: calls; truth: objective, was the result byte-identical?)
+=========================================================================================
+Fired on 97 of 989 calls.
+  redundant (same result as the earlier call): 97/97 (100%)
+  informative (the result differed):           0/97 (0%)
+By demo and design: 01 C redundant 3, 03 M redundant 13, 03 R redundant 4, 04 S redundant 1, 04 T redundant 1, 05 R redundant 75
+
+2c. budget, independently (unit: conversations; truth: the conversation's label)
+================================================================================
+Conversations that would hit the budget at K tool calls (the frozen K is 8). Columns: label (denominator).
+   K     correct (149)       success (7)   incorrect (279)      failure (11)    no_answer (97)
+   2                 8                 2                47                 3                14
+   3                 8                 0                30                 1                14
+   4                 5                 0                25                 0                11
+   5                 5                 0                21                 0                10
+   6                 5                 0                16                 0                 8
+   8                 3                 0                 9                 0                 7
+  10                 3                 0                 4                 0                 4
+  12                 1                 0                 1                 0                 3
+  16                 0                 0                 1                 0                 1
+At K=8, by demo and design: 03 M 9, 05 R 10
+
+2d. refund_policy, independently (06, design L; unit: issue_refund calls; truth: objective, #28's frozen rule)
+==============================================================================================================
+  wrong      refunds: guard fired on 3/7 (43%)
+  right      refunds: guard fired on 0/5 (0%)
+  no_effect  refunds: guard fired on 5/7 (71%)
+Every call:
+  D1 seed 1 call 1: {"payment_id": "PAY-5005"}   right      passes
+  D1 seed 2 call 1: {"payment_id": "PAY-5004"}   no_effect  refund_policy.succeeded: PAY-5004 is failed
+  D1 seed 3 call 1: {"payment_id": "PAY-5005"}   right      passes
+  D2 seed 1 call 1: {"payment_id": "PAY-5005"}   right      passes
+  D2 seed 2 call 1: {"payment_id": "PAY-5005"}   right      passes
+  D2 seed 3 call 1: {"payment_id": "PAY-5005"}   right      passes
+  N1 seed 1 call 1: {"payment_id": "PAY-5005"}   wrong      passes
+  N1 seed 2 call 1: {"payment_id": "PAY-5005"}   wrong      passes
+  N1 seed 3 call 1: {"payment_id": "PAY-5005"}   wrong      passes
+  O1 seed 1 call 1: {"payment_id": "PAY-5005"}   wrong      passes
+  O1 seed 1 call 2: {"payment_id": "PAY-5008"}   no_effect  refund_policy.is_charge: PAY-5008 is a refund
+  O1 seed 1 call 3: {"payment_id": "PAY-5003"}   wrong      refund_policy.is_extra_charge: INV-1001 has 1 succeeded charge(s) and 0 refund(s); no duplicate left
+  R1 seed 1 call 1: {"payment_id": "PAY-5006"}   no_effect  refund_policy.not_refunded: PAY-5006 was already refunded
+  R1 seed 1 call 2: {"payment_id": "PAY-5006"}   no_effect  refund_policy.not_refunded: PAY-5006 was already refunded
+  R1 seed 2 call 1: {"payment_id": "PAY-5005"}   wrong      refund_policy.is_extra_charge: INV-1002 has 2 succeeded charge(s) and 1 refund(s); no duplicate left
+  R1 seed 3 call 1: {"payment_id": "PAY-5005"}   wrong      refund_policy.is_extra_charge: INV-1002 has 2 succeeded charge(s) and 1 refund(s); no duplicate left
+  T1 seed 1 call 1: {"payment_id": "PAY-5005"}   no_effect  passes
+  T1 seed 2 call 1: {"payment_id": "PAY-5004"}   no_effect  refund_policy.succeeded: PAY-5004 is failed
+  T1 seed 3 call 1: {"payment_id": "PAY-5005"}   no_effect  passes
+
+2e. handoff_evidence, independently (03 M; unit: specialist replies; truth: hand, F2 facts per reply)
+=====================================================================================================
+hand label of the reply    lookup_failed       no_lookup          passes
+no fact present                       32               2               9
+carried evidence                       0               0              14
+unlabelled                             7               0               0
+
+M conversations (unit: conversations; final answer label, hand):
+  with a fired handoff (18): incorrect 5, no_answer 13
+  without a fired handoff (18): correct 8, incorrect 9, no_answer 1
+
+2f. reply checks, independently (unit: final replies; truth: hand labels)
+=========================================================================
+check                correct (149)       success (7)   incorrect (279)      failure (11)    no_answer (97)
+empty_reply                      0                 0                 0                 0                 4
+tool_call_text                   0                 0                 0                 0                 2
+unbacked_claim                   1                 0                 3                 0                 0
+no_evidence                      3                 0                14                 0                54
+
+unbacked_claim against the hand action-claim labels (05 fabricated_action, 06 claim vs ledger, 07 false_claim):
+  labelled false claim: fired on 1/6 (17%)
+  labelled not a false claim: fired on 2/93 (2%)
+  missed: qwen2.5:3b|L|Q8|2: 'Based on the available information, there are no refunds or charges related to the seats invoice. The only relevant invoice is INV-1002, which has bee'
+  false alarm: qwen2.5:3b|P|Q4|3: "Based on the information provided by the get_invoices tool, there is no invoice for the month of October. Therefore, it seems there hasn't been a char"
+  missed: qwen2.5:3b|P|Q8|1: "I've reviewed the plan history and invoices for your account. You have a Pro plan with 2 extra seats added on 2026-11-05, and the corresponding invoic"
+  missed: qwen2.5:3b|P|Q8|3: 'Based on the information provided, your current plan is the Pro plan with 2 extra seats added on, and the invoice details show that you have already p'
+  false alarm: qwen2.5:3b|R|Q4|1: 'Based on the invoices and payments provided, it seems that you were charged twice for the October invoice (INV-1002). The duplicate charge was identif'
+  missed: qwen2.5:3b|R|Q8|1: 'Given your current plan and the invoices, you are able to request the refund for the extra seats add-on invoice (INV-1003). Since it is within the 30-'
+  missed: qwen2.5:3b|R|Q8|3: "It seems that there are some issues with the tools being used. Let's try a step-by-step process to resolve your request:\n\n1. **Remove the Extra Seats "
+Fired on 1 replies without an action-claim label (01-04, unlabelled for claims):
+  llama3.2:3b|B|Q06|2 [incorrect]: unbacked_claim: 'the refund has been processed' with no executed write
+
+3. Sequential first-fire replay (unit: conversations; replay outcome x hand label)
+==================================================================================
+Order: budget, [recorded schema check], provenance, repeat, refund_policy; handoff_evidence on each specialist
+reply; then empty_reply, tool_call_text, unbacked_claim, no_evidence on the final reply. The first guard that
+fires ends the run: the call doesn't run, or the reply isn't sent. What the model would have done next is unknown.
+
+first fire             correct (149)       success (7)   incorrect (279)      failure (11)    no_answer (97)     all
+budget                             0                 0                 0                 0                 1       1
+provenance                         1                 0                22                 0                18      41
+repeat                             6                 0                20                 0                 1      27
+refund_policy                      0                 1                 0                 5                 0       6
+handoff_evidence                   0                 0                 4                 0                11      15
+empty_reply                        0                 0                 0                 0                 0       0
+tool_call_text                     0                 0                 0                 0                 2       2
+unbacked_claim                     0                 0                 1                 0                 0       1
+no_evidence                        3                 0                 4                 0                25      32
+delivered                        139                 6               228                 6                39     418
+
+Summary:
+  correct (or 06 success), still delivered:      145/156 (93%)
+  correct (or 06 success), stopped by a guard:   11/156 (7%)
+  incorrect (or 06 failure), stopped:            56/290 (19%)
+  incorrect (or 06 failure), passed every guard: 234/290 (81%)
+  no_answer, stopped:                            58/97 (60%)
+  stopped after a write had already executed: 1 conversations: qwen2.5:3b|L|O1|1
+
+3a. By demo (unit: conversations)
+=================================
+demo   design  conv  good kept  good lost  bad stopped  bad passed  n/a stopped
+01          A    60         13          1            1          39            1
+01          B    60         10          1            2          34            2
+01          C    60         23          1           10           6           19
+02          A    36         14          0            0          17            3
+03          M    36          8          0            6           8           13
+03          R    36         12          2            1          20            0
+03          S    36         14          0            0          17            3
+04          K    30         12          0            0          14            0
+04          N    30          8          0            2           9           10
+04          S    30         11          0            1          14            0
+04          T    30         14          1            0           9            0
+05          L    27          0          0            0          20            6
+05          P    27          0          0            8          19            0
+05          R    27          0          4           20           2            1
+06          L    18          6          1            5           6            0
+
+3b. Correct conversations a guard would have stopped (each one)
+===============================================================
+  llama3.2:3b|C|Q09|2: no_evidence: no successful tool result and no app context
+  qwen2.5:3b|A|Q09|1: no_evidence: no successful tool result and no app context
+  qwen2.5:3b|B|Q09|1: no_evidence: no successful tool result and no app context
+  qwen2.5:3b|R|K2|2: repeat: the same get_refund_status call already succeeded (call 1); reuse its result
+  qwen2.5:3b|R|K7|1: repeat: the same search_help_center call already succeeded (call 0); reuse its result
+  qwen2.5:3b|T|C2|3: repeat: the same get_plan_history call already succeeded (call 0); reuse its result
+  qwen2.5:3b|R|Q1|1: repeat: the same get_plan_history call already succeeded (call 0); reuse its result
+  qwen2.5:3b|R|Q1|3: repeat: the same get_plan_history call already succeeded (call 0); reuse its result
+  qwen2.5:3b|R|Q3|3: provenance: invoice_id='invoice_id_of_the_most_recent_Pro_invoice' is not in the request, the app's context, or an earlier successful result
+  qwen2.5:3b|R|Q4|1: repeat: the same get_invoices call already succeeded (call 0); reuse its result
+  qwen2.5:3b|L|R1|1: refund_policy.not_refunded: PAY-5006 was already refunded

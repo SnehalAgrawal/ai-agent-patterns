@@ -1,0 +1,38 @@
+08-failure-modes report, set: crosscheck
+Frozen at 2026-11-24 08:03:03 UTC (data/FROZEN.json). No model was called.
+Evidence kinds: objective = computed from data files and recorded fields; hand = labels from the original
+articles, unchanged; replay = this demo's guard verdicts about recorded decisions.
+The replay cannot establish how the model would have recovered after a guard blocked it.
+
+0. What was replayed
+====================
+demo                      design  conversations  tool calls
+07-human-in-the-loop                         24          27
+all                                          24          27
+
+Conversation labels (hand; 06: #28's frozen success): correct 6, incorrect 14, no_answer 2, unlabelled 2
+
+4. Cross-check with #29's hard checks (07, proposal phase; unit: issue_refund calls)
+====================================================================================
+#29's hard checks ran in the loop (recorded verdict). This demo's guards are replayed on the same calls.
+  S1 seed 3: invoice_id='INV-1003'                   id owned           #29 passed           provenance passes  id_format passes
+  S2 seed 1: invoice_id='invoice_for_extra_seats'    id nonexistent     #29 blocked: owned   provenance fires   id_format fires
+  S2 seed 1: invoice_id='invoice_for_extra_seats'    id nonexistent     #29 blocked: owned   provenance fires   id_format fires
+  S2 seed 2: invoice_id='extra_seats_invoice_id'     id nonexistent     #29 blocked: owned   provenance fires   id_format fires
+  S2 seed 3: invoice_id='extra_seats_charge'         id nonexistent     #29 blocked: owned   provenance fires   id_format fires
+  S5 seed 1: invoice_id='INV-2042'                   id other_customer  #29 blocked: owned   provenance passes  id_format passes
+  S5 seed 2: invoice_id='INV-2042'                   id other_customer  #29 blocked: owned   provenance passes  id_format passes
+  S5 seed 3: invoice_id='INV-2042'                   id other_customer  #29 blocked: owned   provenance passes  id_format passes
+  S7 seed 1: invoice_id='INV-1002'                   id owned           #29 passed           provenance passes  id_format passes
+
+  #29 blocked and provenance fires:    4
+  #29 blocked, provenance passes:      3
+  #29 passed, provenance fires:        0
+  both passed:                         2
+
+4a. 07 reply checks against #29's false_claim labels (unit: proposal replies)
+=============================================================================
+  2 conversations paused for approval and have no reply in this phase; excluded here.
+  S3|1: false_claim=True, unbacked_claim=None
+  S6|2: false_claim=True, unbacked_claim=None
+  labelled false claim: fired on 0/2 (0%); labelled not: fired on 0/20 (0%)

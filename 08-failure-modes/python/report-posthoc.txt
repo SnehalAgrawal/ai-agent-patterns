@@ -1,0 +1,15 @@
+08-failure-modes: post-hoc analyses (not part of the frozen protocol). No model was called.
+
+1. repeat as 'serve the earlier result' instead of 'end the run' (unit: conversations)
+   every repeat got a byte-identical result: True
+                                                 frozen (end the run)  serve the earlier result
+   correct (or 06 success), stopped (of 156)                       11                         8
+   incorrect (or 06 failure), stopped (of 290)                     56                        40
+   no_answer, stopped (of 97)                                      58                        58
+   the 27 conversations the frozen replay stopped at 'repeat', under the variant: budget 6, delivered 19, provenance 1, unbacked_claim 1
+   tool executions the cache would have saved: 97; model calls saved: 0 (the model still asks for the call and still reads the result)
+
+2. provenance and id_format on invented ids (unit: id arguments whose value doesn't exist)
+   caught by both 44, provenance only 8, id_format only 1, neither 0 (of 53)
+   id_format only: invoice_id='August' (1 arguments)
+   provenance only: invoice_id='INV-0000', invoice_id='INV-0005', invoice_id='INV-5006', invoice_id='INV-5007' (8 arguments)
