@@ -1,8 +1,8 @@
 # 07 · Human in the loop: an agent that stops and asks before it refunds
 
-Companion demo for **Article #29, "Human-in-the-Loop AI Agents: When Should an Agent Stop and Ask?"** on snehalagrawal.com (the article link will be added when it's published).
+Companion demo for **Article #29, ["Human-in-the-Loop AI Agents: When Should an Agent Stop and Ask?"](https://snehalagrawal.com/articles/human-in-the-loop-ai-agents-when-should-an-agent-stop-and-ask/)** on snehalagrawal.com.
 
-The support assistant from [`02-agentic-workflows`](../02-agentic-workflows/) through [`04-agent-memory`](../04-agent-memory/) gets its first tool that changes something: `issue_refund`. The five read-only tools still run immediately. A refund never runs when the model asks for it. Code checks it, and if it passes, the run **pauses** until a person with the right role decides, or the request expires. Then the run resumes from where it stopped, executes the approved action once, and the agent tells the customer what happened.
+The support assistant from [`02-agentic-workflows`](../02-agentic-workflows/) through [`04-agent-memory`](../04-agent-memory/) gets `issue_refund`, the action tool that [`06-state-and-workflows`](../06-state-and-workflows/) introduced. The difference here: a refund never runs when the model asks for it. The five read-only tools still run immediately; a refund call goes to code, which checks it, and if it passes, the run **pauses** until a person with the right role decides, or the request expires. Then the run resumes from where it stopped, executes the approved action once, and the agent tells the customer what happened.
 
 This is a reference implementation of that lifecycle, plus a measured run that asks two questions about the agent around it: what does a human checkpoint catch that code can't, and does the agent tell the customer the truth while it waits and after each decision?
 
