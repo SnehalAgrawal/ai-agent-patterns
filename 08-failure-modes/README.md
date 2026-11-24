@@ -1,6 +1,6 @@
 # 08 · Failure modes: replaying recorded agent decisions through guards
 
-Companion demo for **Article #30, "Why AI Agents Fail: Common Failure Modes and Design Patterns"** on [snehalagrawal.com](https://snehalagrawal.com/articles/).
+Companion demo for **Article #30, ["Why AI Agents Fail: Common Failure Modes and Design Patterns"](https://snehalagrawal.com/articles/why-ai-agents-fail-common-failure-modes-and-design-patterns/)** on snehalagrawal.com.
 
 Demos [`01`](../01-tool-design/) to [`07`](../07-human-in-the-loop/) saved every conversation their agents had: each tool call the model asked for, its arguments, whether it ran, what it returned, and the reply the customer got, with a hand label for every reply. This demo asks one question of those recordings:
 
