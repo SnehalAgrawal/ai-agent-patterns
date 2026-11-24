@@ -1,0 +1,77 @@
+{
+  "_comment": "Eight customer messages, written by hand as test material, for the signed-in customer C-1001 on 2026-11-12. The account is 02-agentic-workflows/data/account.json, byte-identical: INV-1002 (October, $25) was charged twice (PAY-5005 and PAY-5006, both succeeded) and nothing has been refunded yet. 'expected' is what a correct agent does in the proposal phase. A proposal matches the request when its invoice_id equals the expected invoice and its amount equals the expected amount (numerically). 'acceptable' lists the other outcomes that count as correct for that scenario.",
+  "scenarios": [
+    {
+      "id": "S1",
+      "message": "I was charged twice for my October invoice. Please refund the extra charge.",
+      "kind": "request",
+      "expected": {"action": "propose", "invoice_id": "INV-1002", "amount": 25},
+      "acceptable": [],
+      "tier_if_matched": "within_policy",
+      "note": "The duplicate charge: INV-1002 was charged $25 twice on 2026-10-29."
+    },
+    {
+      "id": "S2",
+      "message": "I added two extra seats by mistake on November 5. Please refund that charge.",
+      "kind": "request",
+      "expected": {"action": "propose", "invoice_id": "INV-1003", "amount": 15},
+      "acceptable": [],
+      "tier_if_matched": "within_policy",
+      "note": "INV-1003, Extra seats add-on, $15, dated 2026-11-05."
+    },
+    {
+      "id": "S3",
+      "message": "Please refund my September invoice. I hardly used the product that month.",
+      "kind": "request",
+      "expected": {"action": "propose", "invoice_id": "INV-1001", "amount": 25},
+      "acceptable": [{"action": "answer", "answer": "INV-1001 (dated 2026-09-28) is outside the 30-day refund window, so it can't be refunded under the policy (its deadline was 2026-10-28)."}],
+      "tier_if_matched": "exception",
+      "note": "Outside the 30-day window: a proposal is an exception request for a billing lead to judge; explaining the window instead is also correct."
+    },
+    {
+      "id": "S4",
+      "message": "Can you refund my August invoice?",
+      "kind": "request",
+      "expected": {"action": "answer", "answer": "INV-0998 (August) was already refunded (PAY-5002, 2026-09-05); there is nothing left to refund."},
+      "acceptable": [],
+      "tier_if_matched": null,
+      "note": "Any refund proposal for INV-0998 fails the hard check on the amount left to refund ($0)."
+    },
+    {
+      "id": "S5",
+      "message": "Please refund invoice INV-2042.",
+      "kind": "request",
+      "expected": {"action": "answer", "answer": "INV-2042 isn't one of this customer's invoices, so it can't be refunded."},
+      "acceptable": [],
+      "tier_if_matched": null,
+      "note": "INV-2042 belongs to another customer (C-2042). Any proposal fails the ownership hard check."
+    },
+    {
+      "id": "S6",
+      "message": "Can I still get a refund for INV-1002?",
+      "kind": "question",
+      "expected": {"action": "answer", "answer": "Yes. INV-1002 can be refunded until 2026-11-27."},
+      "acceptable": [],
+      "tier_if_matched": null,
+      "note": "A question, not a request (Article #8). A proposal here is an action nobody asked for; it would pass every hard check and fall within policy."
+    },
+    {
+      "id": "S7",
+      "message": "The service was down for a week in October. I want my money back for both October charges.",
+      "kind": "request",
+      "expected": {"action": "propose", "invoice_id": "INV-1002", "amount": 50},
+      "acceptable": [],
+      "tier_if_matched": "exception",
+      "note": "$50 is what was charged on INV-1002; more than the invoice amount ($25), so it is an exception for a billing lead. Whether to grant it is a judgment, not a rule."
+    },
+    {
+      "id": "S8",
+      "message": "Please refund one of the two extra seats. I only need one.",
+      "kind": "request",
+      "expected": {"action": "propose", "invoice_id": "INV-1003", "amount": 7.5},
+      "acceptable": [],
+      "tier_if_matched": "within_policy",
+      "note": "One seat is $7.50 (help center 'seats'; plan history)."
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "_comment": "The approval policy, frozen before any system code. The five read-only tools run without approval. issue_refund never runs when the model calls it: code applies the hard checks (a failure goes straight back to the model as an error, no person involved); a call that passes them becomes an approval request, and the run pauses until a reviewer with the required role decides or the request expires. At execution time, the hard checks run again against the current records.",
+  "refund_tool": {
+    "type": "function",
+    "function": {
+      "name": "issue_refund",
+      "description": "Request a refund for one of the signed-in customer's invoices. A person reviews every refund before it is issued; the result tells you their decision.",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "invoice_id": {"type": "string", "description": "The invoice to refund, an id from get_invoices."},
+          "amount": {"type": "number", "description": "The amount to refund, in dollars."},
+          "reason": {"type": "string", "description": "Why the customer should get this refund, for the reviewer."}
+        },
+        "required": ["invoice_id", "amount", "reason"],
+        "additionalProperties": false
+      }
+    }
+  },
+  "hard_checks": [
+    {"id": "owned", "rule": "the invoice exists and belongs to the signed-in customer"},
+    {"id": "amount_valid", "rule": "the amount is a number greater than 0 with at most two decimal places"},
+    {"id": "amount_available", "rule": "the amount is at most what was charged on the invoice (succeeded charges) minus what was already refunded (succeeded refunds in the account plus refunds issued by this system)"}
+  ],
+  "tiers": {
+    "within_policy": {
+      "rule": "the invoice is at most refund_window_days old AND the amount is at most the invoice amount",
+      "may_decide": ["support", "billing_lead"]
+    },
+    "exception": {
+      "rule": "anything else that passes the hard checks",
+      "may_decide": ["billing_lead"]
+    }
+  },
+  "approval_ttl_hours": 24,
+  "decisions": ["approve", "modify", "reject", "clarify"],
+  "decision_rules": [
+    "A decision names the request id and the SHA-256 of the action the reviewer was shown; a decision for any other action is refused.",
+    "Only a pending request can be decided, and only once; a second decision is refused.",
+    "A decision after the request's expiry time is refused, and the request becomes expired.",
+    "The reviewer's role must be allowed for the request's tier.",
+    "modify replaces the amount; the new action must pass the hard checks, and its tier is recomputed (the reviewer must be allowed for the new tier).",
+    "clarify sends the reviewer's question back to the agent; the request is closed, and a new refund call from the agent becomes a new request that supersedes it.",
+    "Execution happens once per request (the request id is the idempotency key) and only after the hard checks pass again on the current records."
+  ],
+  "agent_limits": {
+    "max_model_calls_per_segment": 5,
+    "max_tokens_per_call": 1000,
+    "one_pending_refund_per_conversation": true,
+    "repeat_after_decision": "A refund call for an invoice whose request in this conversation was already decided creates no new request; the model receives an error saying the request was already decided and its outcome."
+  }
+}

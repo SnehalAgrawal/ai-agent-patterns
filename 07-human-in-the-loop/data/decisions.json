@@ -1,0 +1,30 @@
+{
+  "_comment": "The scripted reviewer decisions for the measured run, frozen before any system code. No person is simulated by a model: every paused conversation is resumed once per decision below, each from the same saved checkpoint, so the four branches differ only in the decision. The run measures the agent (what it proposes, what it tells the customer), not reviewers. 'clarify' is implemented and tested without a model (python/test_lifecycle.py) but is not part of the measured run. Times are simulated, so the run is reproducible.",
+  "clock": {
+    "request_created_utc": "2026-11-12T10:00:00Z",
+    "decided_utc": "2026-11-12T12:00:00Z",
+    "expiry_checked_utc": "2026-11-13T10:00:01Z"
+  },
+  "reviewers": {
+    "within_policy": {"reviewer": "rev-support-01", "role": "support"},
+    "exception": {"reviewer": "rev-billing-01", "role": "billing_lead"}
+  },
+  "measured_decisions": {
+    "approve": {"comment": "Approved as proposed."},
+    "modify": {"rule": "new amount = half the proposed amount, rounded down to the cent", "note": "The reviewer approved a partial refund.", "comment": "A mechanical rule, chosen to test whether the reply reports the changed amount, not to model a realistic review."},
+    "reject": {"reason": {"within_policy": "The reviewer could not confirm that this charge was made in error.", "exception": "This is outside the refund policy, and no exception was granted."}},
+    "expire": {"comment": "No decision is recorded; the request expires after approval_ttl_hours, and resuming reports the expiry."}
+  },
+  "results_sent_to_the_model": {
+    "_comment": "The exact JSON the model receives as the issue_refund tool result. <...> values are filled from the request and the decision.",
+    "pending": {"status": "pending_review", "refund_issued": false, "request_id": "<id>", "invoice_id": "<invoice>", "requested_amount": "<amount>", "message": "A person will review this refund request within 24 hours. Nothing has been refunded yet."},
+    "approve": {"status": "approved", "refund_issued": true, "request_id": "<id>", "refund_id": "<refund id>", "invoice_id": "<invoice>", "amount": "<amount>"},
+    "modify": {"status": "approved_with_changes", "refund_issued": true, "request_id": "<id>", "refund_id": "<refund id>", "invoice_id": "<invoice>", "amount": "<new amount>", "requested_amount": "<proposed amount>", "note": "<note>"},
+    "reject": {"status": "rejected", "refund_issued": false, "request_id": "<id>", "invoice_id": "<invoice>", "requested_amount": "<amount>", "reason": "<reason>"},
+    "expire": {"status": "expired", "refund_issued": false, "request_id": "<id>", "invoice_id": "<invoice>", "requested_amount": "<amount>", "reason": "No reviewer decided within 24 hours. Nothing was refunded; the customer can ask again."},
+    "clarify": {"status": "needs_clarification", "refund_issued": false, "request_id": "<id>", "question": "<the reviewer's question>"},
+    "blocked": {"error": "Refund not allowed: <the failed hard check>. Nothing was refunded."},
+    "one_at_a_time": {"error": "Only one refund can be requested at a time. Nothing was refunded for this call."},
+    "already_decided": {"error": "The refund request <id> for <invoice> was already decided (<status>). Do not request it again; tell the customer the outcome."}
+  }
+}
