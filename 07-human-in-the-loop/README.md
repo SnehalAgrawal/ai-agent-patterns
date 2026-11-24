@@ -6,7 +6,7 @@ The support assistant from [`02-agentic-workflows`](../02-agentic-workflows/) th
 
 This is a reference implementation of that lifecycle, plus a measured run that asks two questions about the agent around it: what does a human checkpoint catch that code can't, and does the agent tell the customer the truth while it waits and after each decision?
 
-**Article #39, "Security Considerations for Production AI"** (link added when it's published), uses the same code for a different question: what can a *fully fooled* model reach? See [Security probes](#security-probes-article-39).
+**Article #39, ["Security Considerations for Production AI"](https://snehalagrawal.com/articles/security-considerations-for-production-ai/)**, uses the same code for a different question: what can a *fully fooled* model reach? See [Security probes](#security-probes-article-39).
 
 ## The lifecycle
 
