@@ -1,0 +1,28 @@
+{
+ "ollama": "0.40.17",
+ "model": "qwen2.5:3b",
+ "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+ "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+ "limits": {
+  "max_model_calls_per_conversation": 8,
+  "max_tokens_per_call": 1000,
+  "max_steps_executed_per_plan": 6
+ },
+ "sampling": "Ollama defaults, seed = run seed for every call",
+ "frozen_sha256": {
+  "account.json": "c7f7d19fb662e58702d353348d1e0d200206ba3878d73dfc4e6a2ebaf53a0607",
+  "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+  "prompt.json": "65bf1bc99b33faa224786cfa4b0589de1fb0c9dcbfd2f2dd29412068462c7070",
+  "tasks.json": "ce7333594aa469996c0a9ea5a75cfa07ac284edb33ac2a820c35f82baa47d462",
+  "designs.json": "9351abf15363fcd5311dc4ea5606f8c8a9713d3af999145b3e5ab83a5da57741",
+  "evaluation.json": "693957d44626bb1666c9d29a534b86122008c327d63ad331fc3b245f57515134"
+ },
+ "code_sha256": {
+  "systems.py": "8fb1e187c650257db80b0c6551bdde1fe8e05fd94746f6ef828c0aef63e4e8fb",
+  "tools.py": "c8b21c43efc66bafb39b73e1f00076809a0aa709b68db013aaae815a5a9a8f69",
+  "llm.py": "f4e7733c164915579855568150fae46b3d4514d3053b552811c4520b927aa401",
+  "run.py": "f4023447cafbb709e6c0231cb690e3b2fab3bc8cc553e7927f0bd28237d7433e"
+ },
+ "power": "Now drawing from 'Battery Power'",
+ "started_utc": "2026-11-24T06:09:06Z"
+}

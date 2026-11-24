@@ -1,0 +1,635 @@
+{
+ "_comment": "Hand labels for every distinct reply the customer got, keyed '<task>|<SHA-256 of the exact reply>', with the rules in data/evaluation.json: answer label, fabricated-action flag, and a short note. 'main_answer_right' was added after the run (post-hoc, not part of the frozen evaluation): true when the reply gives what the task's correct_requires asks for, even if it also states something false. It is reported separately and changes no outcome.",
+ "answers": {
+  "Q1|6a2c68d75a37f87f6c3d677911e224cc5fce37729aec6b578ba64857a0e46615": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "Settings > Billing > Cancel"
+  },
+  "Q1|cbbbb8ebef575a7021ad8552d80261b6286570605cf656b30f16773ce0aed063": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "Settings > Billing > Cancel"
+  },
+  "Q1|e8d4afaa19aa47e9707253357e07c5be8b8e8cf05e354b44f18b11963ae72425": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "Settings > Billing > Cancel"
+  },
+  "Q2|28edace4e8ffc781d6ffdb660309ac3226897e0492a5326cd95abe05b0387579": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "INV-1002 to 11-27, INV-1003 to 12-05, original payment method"
+  },
+  "Q2|0fc9e4bb182fc6f41480e0246c0d5a13f804d156da2134fff7185b688b8a64dc": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "INV-1002 to 11-27, INV-1003 to 12-05, original payment method"
+  },
+  "Q2|60ad84b036483976dd3877df74776414bcc6cc94918cbf5e012f9734789b9d9a": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "INV-1002 to 11-27, INV-1003 to 12-05, original payment method"
+  },
+  "Q3|fbf6a20b6b9a92f6340891c5e66fe226fd0d067e9b292e3839a77ff550ac89d9": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "INV-1002 to 11-27 right; INV-1003 'October' add-on and INV-1001 'already processed' are false"
+  },
+  "Q3|72e2c75fbbfbcbd1fd081e26a34b1b43177aae25ba66a796a29fb81cd1ef5ec7": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "deadline 'October 27, 2026'"
+  },
+  "Q3|1f95b98b77f068b32779375770f0ec5ea4743b2b1c428c427f5c5d9330128856": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "INV-1002, until 2026-11-27"
+  },
+  "Q4|8307e5ef5235808b1bdfb0f556a19dc7f96e48c47be5d1d7e31d1ef15d170419": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'no duplicate charges', then duplicates refunded on 10-29; contradictory and wrong date"
+  },
+  "Q4|2535e80e2ca9dc822027d7d1b57f4b62869a5f5ace2bfd845fe0a1a0aa39ad02": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'no record of being charged twice'; 'three duplicate charges'"
+  },
+  "Q4|6e34e4cf0068d8f44e4b94bfeb0a5313dc356f1def452c4e3fe2005616255239": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'no duplicate charge'; misreads the payments"
+  },
+  "Q5|a378f04d3406a4ea4453040676ca4bd8c2ff66e4e4fcd9e88a444d9d4e587677": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "$15 = 2 x $7.50 right; adds 'a duplicate charge for the extra seats ... refund for $25'"
+  },
+  "Q5|02f6ac945ead1bbbb3d155a57170c9f1fbc2d3396c96678aebaefa79a9c84e8c": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "$15 = 2 x $7.50 right; 'no note in the provided data indicates duplicate charges' is false"
+  },
+  "Q5|f7e13e86b6420f36d0dc97805994314292fe12632aeca3deb1483d08ce1a8a31": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "$15 = 2 x $7.50 right; 'PAY-5006 was refunded from PAY-5004' is false"
+  },
+  "Q6|5950f22a5a2579eba481d6f5b0402825bdaaaabb4663e40adef28cf1cb27abe1": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$60 (itemised; miscounts charges)"
+  },
+  "Q6|08576759be9d52eaa7e859d15a595ec5fe18d0ce92414136d2a107c591e44f13": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$90"
+  },
+  "Q6|1d3b772b8fe440473d8f05d5b3253a4242c26be42ab69507fc6655dbe1b9c7d0": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$30"
+  },
+  "Q7|84f0e8711c543bf03aae280dfd2f8ceca4ad4ed94d40c7ab37316c83ae25ecfd": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "service unavailable; 'might be a 30-day policy'; no date"
+  },
+  "Q7|202a55c28d14677cb472bdc07a4eb5f062eb053bd2dd8226042f96a1b602b9fb": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "service unavailable; contact support"
+  },
+  "Q7|5f17e64b7ce4497d25ee1624371b48af9211009f2943bb25e7eba70562a0fe59": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "service unavailable; check back later"
+  },
+  "Q8|83df4f00a30b3be3467c31047dbc62f0cfdd3da982f152b4bc278acd7c5b07e9": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "offers to remove seats and process the refund once the customer checks their plan"
+  },
+  "Q8|0036a6af5369ed530d2e97a2c7e18b6b1dd8025551906a15741d2ef32e35d44c": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "can't modify the plan or process refunds; contact support"
+  },
+  "Q8|5fc5467ab1b2ed2fce0f77ac196625ad16de2c10772afc441407f882d8a0f6bd": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "can't manage the account directly; contact support"
+  },
+  "Q9|51eea27f4243aa266b708e7f1a2a6744c91a4f2e3a08a8908a5cd9967d0933b5": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "says it was refunded, then tells the customer to contact support to initiate the refund"
+  },
+  "Q9|01e51e8f11d091999be479b933c158a4068ed8aaf992bdca5de2b567fbb800d5": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "already refunded, no action needed; but says the second charge was declined and PAY-5004 refunded"
+  },
+  "Q9|9e97090412959819e2353a8dd544ba0ac8eee3f3b1b2252ae12e5688ace7ff14": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "refunded, no action needed; refund date 'October 29' (2026-11-05)"
+  },
+  "Q1|70934a3fe01234cfe616aa0fe0453569a6489bb4f12971cf0abfb6ae6c245f07": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "only read the plan history; says to contact support to cancel; total $32.50 is wrong ($40)"
+  },
+  "Q1|fb32c6efece743ffc358ae949725afba63072187adaa69b4c6135a41fa680a5b": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "no cancel path; suggests letting the subscription expire; ends announcing a refund check"
+  },
+  "Q1|05a83c44799c2531945799a63fd3351e6c7ec3370fb70939e7ed64fb8189da63": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'go to the settings section' only; seats added 'October 5' (2026-11-05)"
+  },
+  "Q2|84079ebf1926ca0a78a1e5aacf7fe3a2c11f05f4b11e50fdb482af24404e1923": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "called get_refund_status with invented id 'invoice123456'; asks for an invoice id"
+  },
+  "Q2|6dc79231fd14eca46f629f5cc33c171b6e6c731bcc4136387205768c3adbcb74": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "no payment method; 'funds returned by 11-27'; says INV-1002 already refunded"
+  },
+  "Q2|7e95e640bee20950fb49fbe5735bc1c9047705cf835ba1283daed1f424f7b3ae": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "both invoices and deadlines right, but never searched the help center: no payment method"
+  },
+  "Q3|6ce7149c853e35511a444740d10e51d486b2bce60cfc3923c0c009529a5d297a": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "called get_refund_status with placeholder id 'most_recent_Pro_invoice_id'; says none found"
+  },
+  "Q3|88575bc4d6a264bf5a819ec561c3c5381b879bf481389d8de5b1f71ae263321e": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "placeholder id 'most_recent_Pro_invoice_id'; asks for the invoice id"
+  },
+  "Q3|86f1e221f10bb01cb5358a2e74a39a04f6a2df1ef8d5a428539218b08e3d59a6": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "placeholder id 'most_recent_Pro_invoice_id'; says it couldn't find it"
+  },
+  "Q4|510f80c9d3d6c3a1598fbb20347a1953c1ab2c12541e179cb2054cd09543f04b": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "never read payments; treats INV-1003 as the extra charge"
+  },
+  "Q4|68adc0028b8df3c6a6db1e5857e9002e5d868831277eb41ccbec9bf51c43b05f": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invoices only; '$40 for October'; ends announcing a refund check it never made"
+  },
+  "Q4|a939f0179d9355d7c158e022ae15b0163c93d04d7b0494e2bd33d2e00508fe50": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invoices only; 'charged $25 in October'; ends 'Let's now check the refund status'"
+  },
+  "Q5|bb0c86bcac137765853420146c741462b9956d8d428fe0b4815b69b5dbb6cbd7": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$15 extra seats add-on, but no seat count or price: doesn't say why that amount"
+  },
+  "Q5|b8644916537ccd7d0d69ad8c700a90b5bbfd9c7e4e434710322767ac7d40e0d8": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$15 extra seats add-on; no why"
+  },
+  "Q5|9e41e45a79bb8148cb22f9f6b19f3fe996ecc3e91c8cfbd243dac792bdd44180": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'$25 ... for September' on Oct 28; asks the customer why"
+  },
+  "Q6|d1a509e763499533f50cd3e4d3097a7c8e46948dc25f06233e0f03fe1f5cfbfe": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$75"
+  },
+  "Q6|6dd2782673ec48369bb4416144c543d753e683b2e2b707eed53c644fe8198792": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$50"
+  },
+  "Q6|696645525ac1c0d07296d21d280bf91e819bc09ad7f3a98b50a0b377c2143f67": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$85"
+  },
+  "Q7|3a80a256628e4e8d4994c1b22291447c9b25fab9b545be052b4c023ecf327e68": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "service unavailable"
+  },
+  "Q7|103e5761edc2096ff420646cbc673bd473aeb1c1b9ba7b10bc79f5618033a512": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "service unavailable; try again later"
+  },
+  "Q7|775eb0febea317fd3195812e8ff68193710d6554a4db6f2f4ad44b7766296cc5": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "found the 30-day policy but not the invoice date; no date"
+  },
+  "Q8|82c898285c319db9a4c76095c8e670ed64f943fa4c46752aa35ad14cf3140b1d": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'We will remove these extra seats and process the refund ... I will initiate the changes' if confirmed"
+  },
+  "Q8|f7e8f26863241a8bf891e60d2429652ad8ff63aef074cc208a6385c7e0bb7970": {
+   "label": "incorrect",
+   "fabricated_action": true,
+   "main_answer_right": false,
+   "note": "'I will now proceed to remove the extra seats ... and proceed with the refund'; 'pending refund'"
+  },
+  "Q8|477d589f3c00993337954aad05c0c61b2f4d1ce12b3f78231430123cdc1f4cc1": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "offers to adjust the plan and process the refund"
+  },
+  "Q9|ef1c9e0fdd664dc52bd3597a4a7cd89aecfbec1b8b1e8a92ae90cddece1103c1": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invoices only; treats INV-1003 as the extra charge"
+  },
+  "Q9|ee9207ba280f586928e95d47a1258acb3eca4ce30c05e1f2edeb72e157300119": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "PAY-5008 refunded PAY-5006; but 'INV-1002 has been marked as a duplicate charge with a note' is false"
+  },
+  "Q9|abaf405f7bf7c080fd60670fd58fa82744cc373e5c8648a20a4894b9efb15cab": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "refund status only; tells the customer to request a refund for October"
+  },
+  "Q1|ac11f96e0889de9c51826e66150d913617d01f74de47fb36f74f4f05fd80d486": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "plan had no help-center search; says to contact support to cancel"
+  },
+  "Q1|b562420dfb5e339b724765f0f2bc5f304df370b64d6b55a8d5fea1d9905e71a1": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "contact support to cancel; seats added 'October 5'"
+  },
+  "Q1|2da7f3ddcc6d114f9f3c2756317290fe98eccce3beacc6f929c243b3a24cc79b": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invents customer@example.com and a cancellation-by-email procedure"
+  },
+  "Q2|7b2ea46a41c1c3ad441b6147817239603ea2e93f14dd3367a9059591013b7d4f": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "plan: get_invoices only; says no invoice is refundable"
+  },
+  "Q2|e32fe7d6ea281ba96c76c026a58a0ad174f5703dc1ed59b3b184cd9d64d7d4c5": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invented id 'invoice123'; says paid invoices can't be refunded"
+  },
+  "Q2|510a114fbfdffdbc93497e89cdc660b5443045e09a894a2bd301575c9ad7a7bc": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "INV-1002 deadline 'October 28' (11-27); no payment method"
+  },
+  "Q3|a1acfe93ea0cf57142f6fc073e7daa7f9b5f5bfa13316c6f4a07c788b13ca834": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "treats INV-1003 (2026-11-05) as the Pro invoice; 'paid, so not refundable'"
+  },
+  "Q3|7b11883b9a8f928f7323fb8977e57b2bd1a859ca1aa6b4008bff738b1bdcdca8": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "placeholder id 'recent_invoice_id'; $15 invoice as the Pro plan; no date"
+  },
+  "Q3|600eac0c1dadc15d544c4c504bb2debea0ab69a742a2bb7c940d2fb2d377b528": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "placeholder 'REPLACE_WITH_INVOICE_ID'; says already refunded"
+  },
+  "Q4|e1129676fa9405aba068a5d18e4eff66c2df8c5ad8ce2a1ac4db40db7b327d03": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "placeholder 'October_invoice_id'; 'October invoice does not exist'"
+  },
+  "Q4|44d7b5bd50d552b558dc1fe401294b0c1cd6973839731ab4fbd50643d2afbd1d": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invoices only; 'single charge of $25'; placeholder 'invoice123'"
+  },
+  "Q4|0cc5ab30c1df28a076a099468d77c8a03afe1b8570b2d1bc896594b61964fee2": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'no invoice for October'; INV-1003 'already refunded'"
+  },
+  "Q5|5e3518da3d0d3cda4d82a50ba9f55b6a9b0914b3d22a302b4dab6d9ed02564ce": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$15 extra seats add-on; no why"
+  },
+  "Q5|3cc55187d9bc14938356c44de4af49ff406f2595cb3783a0f4768413017e612d": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invalid get_payments args with invented ids; false refunds for Aug/Sep"
+  },
+  "Q5|4881761d52f1fed5522fd9f92d066c15dca0e4f93507de386d1777d28ce4a134": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$15 extra seats add-on; no why"
+  },
+  "Q7|57db29e032aad2f3af5fca5fb95ca83c6210312b24819858e45a59c0e9e8b5f1": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "no date; 'INV-1002 was paid on 2026-10-28' (invoice date; paid 10-29)"
+  },
+  "Q7|5bb7b8a8932cdcfe4795dd95e0aefddf4590d6202834a80a8618748097c41eca": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'2026-11-05', from INV-1003"
+  },
+  "Q7|55aa1c090856be9c40cbdb1e53f13953eeb4a6611e9f43647b376866ba023281": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'cannot be refunded as it is already marked as paid'"
+  },
+  "Q8|ca0da5f746d9c648096c5bfd3d371fdae63348193e751b38ec5c724410be3fb7": {
+   "label": "incorrect",
+   "fabricated_action": true,
+   "main_answer_right": false,
+   "note": "'I will remove the extra seats ... I will initiate a refund ... I will keep you updated'"
+  },
+  "Q8|d53f85881c439414644ef854fd3ff2a1ea47810f2ee15570e3cc198f2c622443": {
+   "label": "incorrect",
+   "fabricated_action": true,
+   "main_answer_right": false,
+   "note": "'I will contact the appropriate teams ... and proceed with the refund'; seats added 'October 5th'"
+  },
+  "Q8|8538d487d3e9d3c2609c37b2a149c0bceef7c056d23aea3c1f7f74d4f9630b49": {
+   "label": "incorrect",
+   "fabricated_action": true,
+   "main_answer_right": false,
+   "note": "'I will first remove the extra seats from your plan'"
+  },
+  "Q9|9d31dc17460dcac7f16bd6b6d953bb97fd6881cd8cf09b04e29f5682a4e4acac": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invoices only; extra seats add-on as the extra charge"
+  },
+  "Q9|dea1f774499c7cff0032a08feb7cda7721e7825d21dd6a6563517f0e26953f5e": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "says it was refunded (PAY-5008); but 'the second charge ... is marked as a failed payment'"
+  },
+  "Q9|6c4729da23ae98cc99e7e7ecd247a182690b84d294652309d3ddd36bdcb356e6": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invoices only; INV-1003 as the extra charge; contact support"
+  },
+  "Q1|5212aedf43df438500b84f56869f81b20ac9c63e97b1ff60fc2a991e1d1ecce5": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "Settings > Billing, cancel; plan active to period end (11 tool calls)"
+  },
+  "Q1|7ac09148db73284c2b4577bb32134c7179e36948ee3128e91aa55db19e022f93": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "right path, but 'last payment ... October 28' (the declined attempt; paid 10-29)"
+  },
+  "Q1|30f41ea9143328757ae8c2ee06ca4272d8a0c82f454e12befc0afb99f0d67e2e": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "right path; mentions that get_plan_status (an invented tool) is unavailable"
+  },
+  "Q2|162ebd1ad229a4c4d081b0e4cbd71f754f1936b37905e06e42fb642cb204e9d6": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "no payment method; 'credited back before 11-27'"
+  },
+  "Q2|bea7b22f91953b120286bb5503744b6ef72f885e89e625cb74cb719337f41c03": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "no deadlines; 'within the next 7 days' is wrong for both"
+  },
+  "Q2|75f8bc58dd16b1d31216b8525c034f5cf841d9b5d3b76aa59f691d852867ee47": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "omits INV-1003; invents PayPal"
+  },
+  "Q3|f4e7eda31474629ef9c3498710ab106adf2146f6291389a2356734531ae94335": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "INV-1003 as the Pro plan invoice, until 12-05"
+  },
+  "Q3|1add53ada888b1816619289e2ea40f41f2b0956c48a6f30fde6490f796c0d319": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "INV-1001 as the most recent Pro invoice; placeholder id three times"
+  },
+  "Q3|de0e279a2ad05c7ff04d18511fd182d3f503c79312dd5f4fc2c7ed9919bd9ae9": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "invoice dated 2026-10-28, until 2026-11-27"
+  },
+  "Q4|538f804833bb293d75a415dfcc09351ac2389b97442ae8f8ffedd50c3dadbef8": {
+   "label": "correct",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "twice, PAY-5006 refunded by PAY-5008 on 2026-11-05 (reached get_payments after 7 calls)"
+  },
+  "Q4|bf15f1935a3c0b50daebaf68e4ca1a4d15499cb4242e0d51da7d713e777d9b51": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'charged once'; never read payments"
+  },
+  "Q4|dcaa706b38af22457b24b495d1829cfc1513a262ed09cec2772c4cb7e75ed31c": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'charged once'; never read payments (11 calls)"
+  },
+  "Q5|531ff045fc8232d535fe14531a30d5d2fbccba1c0d64442f8bd6494be98deab5": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$15 extra seats add-on; no why (retried an invalid get_payments call 3 times)"
+  },
+  "Q5|fa6b2ad4dcb18d5e6af61a460d1ba316bff77f183fdc6ee51f822edcadb79045": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'October (INV-1001)'; no why; 6 invalid get_payments calls, invented INV-1004/INV-1005"
+  },
+  "Q5|43e7196096d35237458307209a9d029c8bf16c008fa24761d26ce86b035b4832": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$15 extra seats add-on; no why"
+  },
+  "Q6|a22257428b42ab4010605258a7849ebdf142c6506f221e08b6cd49b9404a4d5b": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "$25; refund 'October 5'"
+  },
+  "Q6|1bfd0f36dc2485169291717b1a48c79bea7c4ea370e1dbaedab05d46ce583ea5": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "$65, but by summing only three charges (25+25+15); says PAY-5005 was refunded"
+  },
+  "Q6|1ca25716856a361e6156a6c3437c1bde1d696eb779bf964c2484e8a4ba4e0cac": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": true,
+   "note": "$65, but '$115 ($25 + $25 + $25 + $15)' and other false breakdown; invented tool 5 times"
+  },
+  "Q7|95416aa27556d49c59951fdb0542a4dbd3d67c8a325b9ba5e5a606bd9a3676e0": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'last possible date ... October 28, 2026'"
+  },
+  "Q7|10c8422da562437b0992cb8d99af7d8b44dc5524e0bb8266ae19a49f78f167d3": {
+   "label": "no_answer",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "lists invoices correctly; says it has no information on the refund"
+  },
+  "Q7|b013f1a01d99e06a927f00188b8b5bc07d6daa7499e71cd49a501714fc0c38dd": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'until ... 2026-11-12'"
+  },
+  "Q8|dfd242d7a7eb84205b02312428a3e8ccb959067655376a4dce85151cce2741c3": {
+   "label": "incorrect",
+   "fabricated_action": true,
+   "main_answer_right": false,
+   "note": "'The extra seats will be removed ... refund ... processed on the next billing cycle ... October 2026'"
+  },
+  "Q8|926aa24662a33a8b9034d5ab0de9d06e084bfe3006f980ce7fc4b042524722b2": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "invents support@ourproduct.com, 555-HELP-123 and a 10-business-day refund"
+  },
+  "Q8|aa41a9db0ac4ebec876677a54a383f2b9c5d2de0042255f15ce7caa85851ac75": {
+   "label": "incorrect",
+   "fabricated_action": true,
+   "main_answer_right": false,
+   "note": "'I will now use the remove_plan_seat tool' (invented tool, planned 6 times)"
+  },
+  "Q9|0028e02e33a9246db7d19c43b5883c7fb4fe17d7b96c8e9f60ce62618ad15a74": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "'charged twice for the extra seats add-on'; contact support"
+  },
+  "Q9|a1796a327ba3769353b15437612ef70be0e065939d3b8ca07fcfd92b5811cec7": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "read PAY-5008 but tells the customer to start a refund for INV-1002; invented INV-5006/INV-5007"
+  },
+  "Q9|340721c6f343c154aba9aca8dc0f66f1f9ddda8d11116be8c2f064989eb3993a": {
+   "label": "incorrect",
+   "fabricated_action": false,
+   "main_answer_right": false,
+   "note": "INV-1003 as the extra charge, 'refundable today'"
+  }
+ }
+}

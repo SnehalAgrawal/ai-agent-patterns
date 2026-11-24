@@ -1,0 +1,71 @@
+108 conversations; 0 without a hand label (shown as ?).
+other models loaded during any conversation: none
+
+design   n  correct  incorrect  no answer  fabricated  success  unsupp.  wrong+ev  wrong-ev  evidence
+W       27        9         15          3           0        9        0        15         3        24
+L       27        0         20          7           1        0        0         7        20         7
+P       27        0         27          0           3        0        0         7        20         7
+R       27        4         22          1           2        4        0         9        14        13
+
+successes (evidence retrieved), per task, of 3 seeds
+task           W         L         P         R   tests
+Q1         3 (3)     0 (0)     0 (0)     2 (3)   one step
+Q2         3 (3)     0 (0)     0 (0)     0 (1)   independent lookups
+Q3         1 (3)     0 (0)     0 (0)     1 (1)   a dependent step
+Q4         0 (3)     0 (0)     0 (0)     1 (1)   a conditional chain
+Q5         0 (3)     0 (0)     0 (0)     0 (0)   synthesis
+Q6         0 (3)     0 (3)     0 (3)     0 (3)   reasoning over correct results
+Q7         0 (0)     0 (0)     0 (0)     0 (0)   an execution failure with another route
+Q8         2 (3)     0 (3)     0 (3)     0 (3)   a request no tool can carry out
+Q9         0 (3)     0 (1)     0 (1)     0 (1)   new information
+
+post-hoc, not frozen: replies whose main answer was right, and of those, how many also stated something false
+task           W         L         P         R
+Q1         3 (0)     0 (0)     0 (0)     3 (1)
+Q2         3 (0)     0 (0)     0 (0)     0 (0)
+Q3         2 (1)     0 (0)     0 (0)     1 (0)
+Q4         0 (0)     0 (0)     0 (0)     1 (0)
+Q5         3 (3)     0 (0)     0 (0)     0 (0)
+Q6         0 (0)     0 (0)     0 (0)     2 (2)
+Q7         0 (0)     0 (0)     0 (0)     0 (0)
+Q8         2 (0)     0 (0)     0 (0)     0 (0)
+Q9         2 (2)     1 (1)     1 (1)     0 (0)
+all       15 (6)     1 (1)     1 (1)     7 (3)
+
+plans                         P        R
+first plans                        27       27
+first plan steps, mean           1.74     1.85
+empty first plans                   0        0
+unparseable plans (any)             0        0
+first plan got the evidence         7        6
+final evidence                      7       13
+replanning calls, total             0      133
+replans that added steps            0      106
+replan_limit                        0       14
+
+calls                        W       L       P       R
+unknown tool                 0       0       0      13
+invalid arguments            0       2       1      19
+injected failure             3       3       3      15
+repeated                     0       0       0     106
+outside useful tools         0       9      12      72
+unseen id in args            0       0       0       4
+tool calls, total           36      36      47     216
+step_limit (L)               0       0       0       0
+
+Q7 (get_refund_status unavailable)        W     L     P     R
+conversations                             3     3     3     3
+hit the failure                           3     3     3     3
+called it again after failing             0     0     0     3
+got invoice date + policy                 0     0     0     0
+success                                   0     0     0     0
+
+cost per conversation   model calls  tool calls  input tok med/max  largest call  seconds med/max  total input tok
+W                              1.00        1.33        589 / 805            805     3.76 / 8.6           12,705
+L                              2.22        1.33      1,065 / 2,270        1,184     4.63 / 15.0          32,922
+P                              2.00        1.74        719 / 1,238          911     4.00 / 10.8          21,222
+R                              6.93        8.00      7,360 / 16,452       3,260    18.10 / 30.5         210,415
+
+input tokens by model-call position (median; conversations reaching it)
+L  1: 405 (27)   2: 531 (27)   3: 893 (6)
+R  1: 343 (27)   2: 662 (27)   3: 993 (27)   4: 1,035 (27)   5: 1,303 (25)   6: 1,554 (21)   7: 1,626 (18)   8: 1,406 (15)
