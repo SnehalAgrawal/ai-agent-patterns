@@ -1,0 +1,97 @@
+Recorded 2026-11-24 with qwen2.5:3b (357c53fb659c) on Ollama 0.40.17. Every command below was run with
+`--seed 3 --db <a fresh database>`, each as a separate process; the clock was set with --now.
+
+$ python hitl.py --now 2026-11-12T10:00:00Z ask I was charged twice for my October invoice. Please refund the extra charge.
+  tool  get_invoices {}  (executed)
+  tool  issue_refund {"invoice_id": "INV-1003", "amount": 15, "reason": "Extra seats add-on was mistakenly charged twice"}  (waiting for review)
+
+Paused: APR-0001 is waiting for a reviewer. Nothing has been refunded.
+  python hitl.py show APR-0001
+
+$ python hitl.py pending
+APR-0001  within_policy  INV-1003  $15  expires 2026-11-13T10:00:00Z
+
+$ python hitl.py show APR-0001
+{
+ "request_id": "APR-0001",
+ "created_at": "2026-11-12T10:00:00Z",
+ "expires_at": "2026-11-13T10:00:00Z",
+ "customer_message": "I was charged twice for my October invoice. Please refund the extra charge.",
+ "action": {
+  "tool": "issue_refund",
+  "invoice_id": "INV-1003",
+  "amount": 15
+ },
+ "action_sha256": "a8d12278c5975ec946d239585e5225c69dc89f1283e4539663204a0908f54526",
+ "agent_reason": "Extra seats add-on was mistakenly charged twice",
+ "checks": [
+  {
+   "id": "owned",
+   "passed": true,
+   "detail": "INV-1003 belongs to the signed-in customer"
+  },
+  {
+   "id": "amount_valid",
+   "passed": true,
+   "detail": "$15.00 is a valid amount"
+  },
+  {
+   "id": "amount_available",
+   "passed": true,
+   "detail": "$15.00 of $15.00 left to refund on INV-1003"
+  }
+ ],
+ "tier": "within_policy",
+ "may_decide": [
+  "support",
+  "billing_lead"
+ ],
+ "policy_facts": {
+  "days_since_invoice": 7,
+  "refund_window_days": 30,
+  "invoice_amount": 15,
+  "within_window": true,
+  "at_most_invoice_amount": true
+ },
+ "evidence": [
+  {
+   "tool": "get_invoices",
+   "arguments": "{}",
+   "result": "[{\"id\": \"INV-0998\", \"date\": \"2026-08-28\", \"amount\": 25, \"description\": \"Pro plan, August 2026\", \"status\": \"refunded\"}, {\"id\": \"INV-1001\", \"date\": \"2026-09-28\", \"amount\": 25, \"description\": \"Pro plan, September 2026\", \"status\": \"paid\"}, {\"id\": \"INV-1002\", \"date\": \"2026-10-28\", \"amount\": 25, \"description\": \"Pro plan, October 2026\", \"status\": \"paid\"}, {\"id\": \"INV-1003\", \"date\": \"2026-11-05\", \"amount\": 15, \"description\": \"Extra seats add-on\", \"status\": \"paid\"}]"
+  }
+ ],
+ "supersedes": null,
+ "status": "pending",
+ "decision": null
+}
+
+$ python hitl.py --now 2026-11-12T10:40:00Z decide APR-0001 approve --reviewer ana --role support --sha 0000000000000000000000000000000000000000000000000000000000000000
+Refused: The action you were shown is not the action in this request.
+
+$ python hitl.py --now 2026-11-12T10:41:00Z decide APR-0001 clarify --reviewer ana --role support --sha a8d12278c5975ec946d239585e5225c69dc89f1283e4539663204a0908f54526 --question The customer says their October invoice was charged twice. INV-1003 is the November extra-seats invoice. Which payment is the duplicate?
+Recorded: clarification_requested
+
+$ python hitl.py --now 2026-11-12T10:42:00Z resume APR-0001
+  issue_refund result: {"status": "needs_clarification", "refund_issued": false, "request_id": "APR-0001", "question": "The customer says their October invoice was charged twice. INV-1003 is the November extra-seats invoice. Which payment is the duplicate?"}
+
+Reply to the customer:
+The payment that was charged twice is the extra seats add-on invoice, identified by the ID `INV-1003`, which has an amount of $15. I have flagged this as needing clarification. 
+
+Could you please confirm which of the October payments (INV-1001 or INV-1002) was the duplicate charge? 
+
+Once we have this information, we can proceed with the refund request. 
+
+If neither of the October payments was the duplicate, we will need to look into this further. Please provide any additional details you have.
+
+$ python hitl.py pending
+
+$ python hitl.py audit
+   1  2026-11-12T10:00:00Z  -          customer        customer_message      {"text": "I was charged twice for my October invoice. Please refund the extra charge."}
+   2  2026-11-12T10:00:00Z  -          agent           tool_call             {"tool": "get_invoices", "arguments": "{}", "executed": true}
+   3  2026-11-12T10:00:00Z  -          agent           refund_proposed       {"arguments": "{\"invoice_id\": \"INV-1003\", \"amount\": 15, \"reason\": \"Extra seats add-on was mistakenly charged tw
+   4  2026-11-12T10:00:00Z  APR-0001   system          approval_requested    {"action": {"invoice_id": "INV-1003", "amount": 15}, "action_sha256": "a8d12278c5975ec946d239585e5225c69dc89f1283e453966
+   5  2026-11-12T10:40:00Z  APR-0001   ana             decision_refused      {"decision": "approve", "role": "support", "why": "The action you were shown is not the action in this request."}
+   6  2026-11-12T10:41:00Z  APR-0001   ana             decision_recorded     {"decision": "clarify", "reviewer": "ana", "role": "support", "at": "2026-11-12T10:41:00Z", "question": "The customer sa
+   7  2026-11-12T10:42:00Z  APR-0001   system          resumed               {"result": {"status": "needs_clarification", "refund_issued": false, "request_id": "APR-0001", "question": "The customer
+   8  2026-11-12T10:42:00Z  -          agent           reply                 {"text": "The payment that was charged twice is the extra seats add-on invoice, identified by the ID `INV-1003`, which h
+

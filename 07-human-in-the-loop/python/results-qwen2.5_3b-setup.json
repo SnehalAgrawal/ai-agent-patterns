@@ -1,0 +1,28 @@
+{
+ "ollama": "0.40.17",
+ "model": "qwen2.5:3b",
+ "digest": "357c53fb659c5076de1d65ccb0b397446227b71a42be9d1603d46168015c9e4b",
+ "template_sha256": "eb4402837c7829a690fa845de4d7f3fd842c2adee476d5341da8a46ea9255175",
+ "max_model_calls_per_segment": 5,
+ "max_tokens": 1000,
+ "sampling": "Ollama defaults, seed = run seed for every call",
+ "checkpoint_version": "bb18f1cd91568afb",
+ "frozen_sha256": {
+  "account.json": "079296db321e3858b75e8746541442dfcc2eba2f9c87a0d483e62747ff7b825f",
+  "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+  "prompt.json": "65bf1bc99b33faa224786cfa4b0589de1fb0c9dcbfd2f2dd29412068462c7070",
+  "scenarios.json": "5f0015fe8419833b142391b45d86908b491cc2f96995484b230f582d26336934",
+  "policy.json": "a9d7aba3e50ba07e5ef364637d091b775feeaa4b818b8205a02628afd62dad90",
+  "decisions.json": "2b8f16e36332f48fd0c88e0ce59abd177fdd841a3d80d7f3b812356c8d955e64",
+  "evaluation.json": "3788231fcebf1bcef50a87d9fc6d965c6811e6191f176f4a56ceb3f8db9e0ec5"
+ },
+ "code_sha256": {
+  "agent.py": "887a271bb3b02f6552e4f92c71331e84b009f72115e71e7683a54ba41f29cf98",
+  "policy.py": "238791ac19fa1cdce76ce26dbfe26980632e08072b874235eb90f506687c530f",
+  "store.py": "54e0bb118eace2aac46040430202f4554b7954a1fc4f1ae7793af31c1634f148",
+  "tools.py": "6c3d267c7cadfded28d473fe36ccd9a1f5953068f650e30603be4a9ecda21ee8",
+  "llm.py": "f4e7733c164915579855568150fae46b3d4514d3053b552811c4520b927aa401",
+  "run.py": "c82007ecd9dfe61ad5301b4ef9f203ad569007c50129c51c148ccb3d28971dd4"
+ },
+ "started_utc": "2026-11-24T06:37:05Z"
+}
