@@ -1,0 +1,13 @@
+{
+  "_comment": "Test material, designs, and evaluation rules, frozen before any system code was written. account.json, help_center.json and prompt.json are byte-identical copies of 04-agent-memory/data (same SHA-256 as its FROZEN.json). python/tools.py and python/llm.py were copied byte-identical from 04-agent-memory/python before the freeze; they are shared code, not part of the designs. python/run.py checks these hashes before every run and records them in the results.",
+  "frozen_at_utc": "2026-11-24T06:06:39Z",
+  "copied_from": "04-agent-memory/data (frozen 2026-11-15T14:02:46Z)",
+  "sha256": {
+    "account.json": "c7f7d19fb662e58702d353348d1e0d200206ba3878d73dfc4e6a2ebaf53a0607",
+    "help_center.json": "3f8d3621584e16e1156c7b05bdcfc13255ebb42b9480023c8629499674eb8380",
+    "prompt.json": "65bf1bc99b33faa224786cfa4b0589de1fb0c9dcbfd2f2dd29412068462c7070",
+    "tasks.json": "ce7333594aa469996c0a9ea5a75cfa07ac284edb33ac2a820c35f82baa47d462",
+    "designs.json": "9351abf15363fcd5311dc4ea5606f8c8a9713d3af999145b3e5ab83a5da57741",
+    "evaluation.json": "693957d44626bb1666c9d29a534b86122008c327d63ad331fc3b245f57515134"
+  }
+}

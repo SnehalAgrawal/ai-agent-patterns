@@ -1,0 +1,84 @@
+{
+  "_comment": "The four designs, frozen before any system code. They share the model, the customer-facing prompt (data/prompt.json), the five read-only tools of 04-agent-memory (python/tools.py, byte-identical), the data, and the limits below. They differ only in who decides the steps and when. W, P and R also share the answer step: one model call, without tools, that sees the customer's message and every attempted step with its result, in the same format the agent loop sees them (an assistant turn that made the calls, followed by their results).",
+
+  "limits": {
+    "max_model_calls_per_conversation": 8,
+    "max_tokens_per_call": 1000,
+    "max_steps_executed_per_plan": 6,
+    "_comment": "Every design is held to 8 model calls per conversation. L: if its 8th call still requests tools, the run ends without a reply (outcome step_limit), as in the earlier demos. R: the answer call is always reserved, so R makes at most 6 replanning calls; if the 6th still plans steps, they are not executed and R goes to the answer step (outcome replan_limit). Steps beyond the 6th in one plan are recorded and not executed."
+  },
+
+  "tool_list": "- search_help_center(query: string, required): Search the help center articles. Returns the three most relevant articles.\n- get_invoices(): List the signed-in customer's invoices.\n- get_refund_status(invoice_id: string, optional): For each of the signed-in customer's invoices: whether it can be refunded today, why, and its refund deadline. invoice_id is one invoice id from get_invoices; leave it out to get every invoice.\n- get_payments(): List the signed-in customer's card payments and refunds: date, amount, invoice, and whether each succeeded.\n- get_plan_history(): List the changes to the signed-in customer's plan, with dates.",
+
+  "plan_schema": {
+    "type": "object",
+    "properties": {
+      "reasoning": {"type": "string"},
+      "steps": {"type": "array", "items": {"type": "object", "properties": {
+        "tool": {"type": "string"}, "arguments": {"type": "object"}, "purpose": {"type": "string"}},
+        "required": ["tool", "arguments", "purpose"]}}
+    },
+    "required": ["reasoning", "steps"]
+  },
+
+  "replan_schema": {
+    "type": "object",
+    "properties": {
+      "reasoning": {"type": "string"},
+      "done": {"type": "boolean"},
+      "steps": {"type": "array", "items": {"type": "object", "properties": {
+        "tool": {"type": "string"}, "arguments": {"type": "object"}, "purpose": {"type": "string"}},
+        "required": ["tool", "arguments", "purpose"]}}
+    },
+    "required": ["reasoning", "done", "steps"]
+  },
+
+  "designs": {
+    "W": {
+      "name": "workflow",
+      "summary": "A developer-written plan for each task, run by code; the model only writes the reply. Routing is assumed correct (the code knows which task it is), so W is a ceiling for a fixed workflow, not a fair competitor: a real one needs a router (Article #24). With the right steps given, W's failures are failures of the answer step.",
+      "plans": {
+        "Q1": [["search_help_center", {"query": "{question}"}]],
+        "Q2": [["get_refund_status", {}], ["search_help_center", {"query": "refund"}]],
+        "Q3": [["get_refund_status", {}]],
+        "Q4": [["get_payments", {}]],
+        "Q5": [["get_payments", {}], ["get_plan_history", {}], ["search_help_center", {"query": "extra seats"}]],
+        "Q6": [["get_payments", {}]],
+        "Q7": [["get_refund_status", {"invoice_id": "INV-1002"}]],
+        "Q8": [],
+        "Q9": [["get_payments", {}], ["search_help_center", {"query": "duplicate charge refund"}]]
+      },
+      "_plans_comment": "'{question}' is replaced by the customer's message. Q7's plan has no fallback, as written. Q8's plan is empty: no tool can do what is asked, so the answer step gets no results."
+    },
+
+    "L": {
+      "name": "loop (interleaved, ReAct-style)",
+      "summary": "The agent loop of Articles #8 and #23-#26: the model gets the five tools and decides one response at a time, after seeing every earlier result, for up to 8 model calls. One response may request several tools. There is no separate plan."
+    },
+
+    "P": {
+      "name": "plan, then execute",
+      "summary": "One planning call writes the whole plan (JSON, plan_schema) before any tool runs. Code checks and runs each step through the same tool code (unknown tools and invalid arguments become error results, as in the loop), at most 6 steps, and the answer step writes the reply. No step can see another's result, and nothing is replanned.",
+      "planner_system": "You plan the steps a support assistant takes to answer a customer's message. Today's date is 2026-11-12. The signed-in customer is owner@customer.example (plan: Pro).\n\nThe assistant can use these tools, and no others:\n<tool_list>\n\nWrite a plan: the tool calls that will get the information needed to answer the message. All the steps run together, and then the assistant writes the reply from their results. A step can't use another step's result, so only use argument values you already know. Plan no more steps than needed, and no steps if none are needed.\n\nAnswer with JSON only: {\"reasoning\": \"<how you will answer the message>\", \"steps\": [{\"tool\": \"<tool name>\", \"arguments\": {<arguments>}, \"purpose\": \"<why this step>\"}]}",
+      "planner_user": "<the customer's message>"
+    },
+
+    "R": {
+      "name": "plan, execute, replan",
+      "summary": "P's planning call (with one sentence changed, because the results come back to the planner), then code runs the steps, then a replanning call sees the message and every step run so far with its result, and either says it is done or plans the next steps, which code runs before replanning again. At most 6 replanning calls; then the answer step writes the reply. The replanner is always called at least once, even after an empty plan.",
+      "planner_system": "You plan the steps a support assistant takes to answer a customer's message. Today's date is 2026-11-12. The signed-in customer is owner@customer.example (plan: Pro).\n\nThe assistant can use these tools, and no others:\n<tool_list>\n\nWrite a plan: the tool calls that will get the information needed to answer the message. All the steps run together; then you'll see their results and can plan more steps before the assistant writes the reply. A step can't use another step's result, so only use argument values you already know. Plan no more steps than needed, and no steps if none are needed.\n\nAnswer with JSON only: {\"reasoning\": \"<how you will answer the message>\", \"steps\": [{\"tool\": \"<tool name>\", \"arguments\": {<arguments>}, \"purpose\": \"<why this step>\"}]}",
+      "planner_user": "<the customer's message>",
+      "replanner_system": "You plan the steps a support assistant takes to answer a customer's message. Today's date is 2026-11-12. The signed-in customer is owner@customer.example (plan: Pro).\n\nThe assistant can use these tools, and no others:\n<tool_list>\n\nYou'll get the customer's message and the steps that have already run, with their results. Decide whether those results are enough for the assistant to answer the message. If they are, set done to true and give no steps. If they aren't, set done to false and plan the next steps: they run together, and you'll see their results afterwards. A step can't use another step's result, so only use argument values you already know. Don't repeat a step that has already run, unless its result was an error you expect to change.\n\nAnswer with JSON only: {\"reasoning\": \"<what the results show and what is still missing>\", \"done\": true or false, \"steps\": [{\"tool\": \"<tool name>\", \"arguments\": {<arguments>}, \"purpose\": \"<why this step>\"}]}",
+      "replanner_user": "Customer's message: <the customer's message>\n\nSteps that have already run, with their results:\n<one line per step, numbered from 1: '<n>. <tool> <arguments as JSON> -> <the exact result text the tool returned>'; or 'None.' if no step has run>"
+    }
+  },
+
+  "answer_step": {
+    "applies_to": ["W", "P", "R"],
+    "messages": "[system: data/prompt.json's system prompt] [user: the customer's message] then, if any step was attempted: [assistant: tool_calls = every attempted step, in order, with its tool name and arguments] [one tool message per step, in order: the exact result text]",
+    "tools_offered": "none: the answer step can't call tools",
+    "_comment": "Attempted steps include unknown tools and invalid arguments; their error results are shown like any other result, as the loop shows them. Steps not executed because of a limit are not shown."
+  },
+
+  "plan_parsing": "A planning or replanning reply that isn't a JSON object with a 'steps' array is recorded as unparseable. For P and R's first plan, it counts as a plan with no steps. For a replanning call, it counts as done. 'arguments' that aren't a JSON object are passed to the tool code as given and come back as an argument error."
+}

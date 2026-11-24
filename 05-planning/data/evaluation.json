@@ -1,0 +1,44 @@
+{
+  "_comment": "How every conversation is evaluated. Frozen with the data, tasks, and designs before any system code was written; python/run.py checks the hash. Four things are recorded separately: the answer (by hand), whether the steps retrieved the evidence (automatic), the outcome that combines them, and the plans and calls themselves (automatic).",
+
+  "answer_label": {
+    "rule": "By hand, for the reply the customer gets, with the rules used since Article #23: correct (gives what the task's 'correct_requires' asks for, and every value or claim it states is true), incorrect (attempts an answer that is wrong or incomplete, or states anything false about the customer's invoices, payments, plan, the policies, prices, or what the assistant did), or no_answer (empty, or doesn't attempt an answer and states nothing false: asks for information, says it can't help or couldn't check). A run that ends without a reply (step_limit) is no_answer. Stored in python/labels.json, keyed '<task>|<SHA-256 of the exact reply>'.",
+    "fabricated_action": "A separate yes/no flag, by hand, for every reply: yes when the reply states or implies that the assistant performed, started, or scheduled an action (a refund, a seat change, a ticket or case, an email, a reminder). No tool in this demo changes anything, so every such claim is fabricated."
+  },
+
+  "evidence": {
+    "rule": "Retrieved when at least one option in the task's record_evidence is satisfied: every string in the option appears in the result of a data-tool call that executed in the conversation. Error results, including injected failures, don't count. Tasks with no record_evidence (Q8) count as retrieved.",
+    "first_plan": "For P and R, also recorded: whether the results of the first plan alone satisfy record_evidence. For R, the difference between this and the final evidence is what replanning added."
+  },
+
+  "outcome": {
+    "_comment": "Exactly one per conversation. It separates getting the facts (the steps) from using them (the answer).",
+    "success": "Answer labeled correct, and evidence retrieved.",
+    "correct_unsupported": "Answer labeled correct, but evidence not retrieved.",
+    "wrong_with_evidence": "Answer labeled incorrect or no_answer, although the evidence was retrieved: the steps got the facts and the reply didn't use them correctly.",
+    "wrong_without_evidence": "Answer labeled incorrect or no_answer, and the evidence was not retrieved: the steps never got the facts."
+  },
+
+  "plans": {
+    "_comment": "Automatic, for every plan P and R wrote, and for every response in which L requested tools.",
+    "steps": "Number of steps in the plan (planned), and how many were executed.",
+    "unknown_tool": "A step naming a tool that isn't one of the five.",
+    "invalid_arguments": "A step with arguments the tool's schema rejects.",
+    "unseen_id": "A step with an argument containing an invoice or payment id (INV-<digits> or PAY-<digits>) that appears neither in the customer's message nor in any result returned earlier in the conversation: an id used before the agent could have seen it. Recorded whether or not the id happens to exist.",
+    "empty_plan": "A first plan with no steps.",
+    "unparseable": "As defined in data/designs.json (plan_parsing)."
+  },
+
+  "calls": {
+    "per_conversation": "Tool calls attempted and executed; repeated calls (the same tool with the same arguments, compared as parsed JSON objects, as an earlier call in the conversation); calls to a tool outside the task's useful_tools; calls that failed (unknown tool, invalid arguments, or an injected failure).",
+    "limits": "Conversations ending at step_limit (L) or replan_limit (R)."
+  },
+
+  "cost": {
+    "per_conversation": "Model calls, input tokens (Ollama prompt_eval_count) and output tokens (eval_count) summed over every call, the largest single call's input tokens, and end-to-end wall-clock seconds measured by the runner.",
+    "context_growth": "For L and R: input tokens of each model call by its position in the conversation.",
+    "summary": "Mean model calls, mean tool calls, median and maximum input tokens per conversation, median and maximum seconds, per design and task, and totals for the whole run."
+  },
+
+  "reporting": "With three seeds per task, a difference of one or two conversations is noise, not evidence. Results describe one small model, one synthetic account, and nine tasks."
+}
